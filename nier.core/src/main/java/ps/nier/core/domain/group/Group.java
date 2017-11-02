@@ -1,13 +1,17 @@
 package ps.nier.core.domain.group;
 
-import ps.nier.core.domain.base.BaseEntity;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+import ps.nier.core.domain.base.BaseEntity;
+@Entity
 public class Group extends BaseEntity{
 	private static final long serialVersionUID = 1L;
-	
+	@Id
 	private String id;
-	private Integer groupType;
-	private String title;
+	private String category;
+	private String subcategory;
+	private String name;
 	private String description;
 	private String imagePath;
 	private int memberCount;
@@ -21,17 +25,23 @@ public class Group extends BaseEntity{
 	public void setId(String id) {
 		this.id = id;
 	}
-	public Integer getGroupType() {
-		return groupType;
+	public String getCategory() {
+		return category;
 	}
-	public void setGroupType(Integer groupType) {
-		this.groupType = groupType;
+	public void setCategory(String category) {
+		this.category = category;
 	}
-	public String getTitle() {
-		return title;
+	public String getSubcategory() {
+		return subcategory;
 	}
-	public void setTitle(String title) {
-		this.title = title;
+	public void setSubcategory(String subcategory) {
+		this.subcategory = subcategory;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	public String getDescription() {
 		return description;

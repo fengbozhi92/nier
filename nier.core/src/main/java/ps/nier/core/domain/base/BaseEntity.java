@@ -3,13 +3,20 @@ package ps.nier.core.domain.base;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
+@MappedSuperclass 
 public class BaseEntity implements Serializable{
 	private static final long serialVersionUID = 1L;
-	
+	@Column(name="create_time")
 	private Date 		createTime;
+	@Column(name="modify_time")
 	private Date 		modifyTime;
-	private String 		createUserId;
-	private String 		modifyUserId;
+	@Column(name="create_user")
+	private String 		createUser;
+	@Column(name="modify_user")
+	private String 		modifyUser;
+	@Column(name="version")
 	private int 		version;
 	
 	public Date getCreateTime() {
@@ -24,17 +31,17 @@ public class BaseEntity implements Serializable{
 	public void setModifyTime(Date modifyTime) {
 		this.modifyTime = modifyTime;
 	}
-	public String getCreateUserId() {
-		return createUserId;
+	public String getCreateUser() {
+		return createUser;
 	}
-	public void setCreateUserId(String createUserId) {
-		this.createUserId = createUserId;
+	public void setCreateUser(String createUser) {
+		this.createUser = createUser;
 	}
-	public String getModifyUserId() {
-		return modifyUserId;
+	public String getModifyUser() {
+		return modifyUser;
 	}
-	public void setModifyUserId(String modifyUserId) {
-		this.modifyUserId = modifyUserId;
+	public void setModifyUser(String modifyUser) {
+		this.modifyUser = modifyUser;
 	}
 	public int getVersion() {
 		return version;

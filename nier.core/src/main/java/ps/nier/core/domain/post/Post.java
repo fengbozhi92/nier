@@ -1,10 +1,13 @@
 package ps.nier.core.domain.post;
 
-import ps.nier.core.domain.base.BaseEntity;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+import ps.nier.core.domain.base.BaseEntity;
+@Entity
 public class Post extends BaseEntity{
 	private static final long serialVersionUID = 1L;
-	
+	@Id
 	private String id;
 	private String groupId;
 	private String userId;
