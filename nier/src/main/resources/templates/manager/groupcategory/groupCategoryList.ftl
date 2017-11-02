@@ -35,9 +35,6 @@
             <button id="btn_add" type="button" class="btn btn-default">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
             </button>
-            <button id="btn_edit" type="button" class="btn btn-default">
-                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
-            </button>
             <button id="btn_delete" type="button" class="btn btn-default">
                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
             </button>
@@ -48,12 +45,12 @@
     </div>
 		<div id="listDiv">
 			<#include "/manager/groupcategory/groupCategoryListFrag.ftl">
-			<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel">
 	            <div class="modal-dialog" role="document">
 	                <div class="modal-content">
 	                    <div class="modal-header">
 	                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	                        <h4 class="modal-title" id="myModalLabel">新增</h4>
+	                        <h4 class="modal-title" id="addModalLabel">新增</h4>
 	                    </div>
 	                    <div class="col-sm-12 modal-body form-horizontal">
 	
@@ -79,6 +76,39 @@
 	                </div>
 	            </div>
         	</div>
+        	
+        	<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel">
+	            <div class="modal-dialog" role="document">
+	                <div class="modal-content">
+	                    <div class="modal-header">
+	                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	                        <h4 class="modal-title" id="editModalLabel">修改</h4>
+	                    </div>
+	                    <div class="col-sm-12 modal-body form-horizontal">
+	
+	                        <div class="form-group">
+	                            <label class="col-sm-2 lh34 text-right" for="name">名称</label>
+	                            <div class="col-sm-8">
+	                            	<input type="text" name="name" class="form-control" id="name" placeholder="名称">
+	                            </div>
+	                        </div>
+	                        <div class="form-group">
+	                            <label class="col-sm-2 lh34 text-right" for="status">状态</label>
+	                            <div class="col-sm-8">
+	                            	<input type="text" name="status" class="form-control" id="status" placeholder="状态">
+	                        	</div>
+	                        </div>
+	                    </div>
+	                    <div class="modal-footer">
+	                        <button type="button" class="btn btn-default" data-dismiss="modal">
+	                        	<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭</button>
+	                        <button type="button" id="btn_submit" class="btn btn-primary" data-dismiss="modal" onclick="save()">
+	                        	<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>保存</button>
+	                    </div>
+	                </div>
+	            </div>
+        	</div>	
+        	
 		</div>
 	</div>
 <#include "/visitor/common/footer.ftl">
@@ -91,9 +121,14 @@ $(function () {
     //2.初始化Button的点击事件
     var oButtonInit = new ButtonInit();
     oButtonInit.Init();
+    
     $("#btn_add").on("click",function(){
     	$('#addModal').modal();
-    })  
+    });
+
+    $("#btn_delete").on("click",function(){
+    	del();
+    });
 });
 
 var TableInit = function () {
@@ -120,12 +155,13 @@ var TableInit = function () {
             showColumns: true,                  //是否显示所有的列
             showRefresh: true,                  //是否显示刷新按钮
             minimumCountColumns: 2,             //最少允许的列数
-            clickToSelect: true,                //是否启用点击选中行
+            clickToSelect: false,                //是否启用点击选中行
             height: 500,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
             uniqueId: "id",                     //每一行的唯一标识，一般为主键列
             showToggle:true,                    //是否显示详细视图和列表视图的切换按钮
             cardView: false,                    //是否显示详细视图
             detailView: false,                   //是否显示父子表
+            editable:true,
             columns: [{
                 checkbox: true
             }, {
@@ -146,6 +182,10 @@ var TableInit = function () {
                 formatter : function (value, row, index){
                 	return new Date(value).format('yyyy-MM-dd hh:mm:ss');
                 }
+            },{
+                field: 'name',
+                title: '操作',
+                width:100
             },]
         });
     };
@@ -160,6 +200,11 @@ var TableInit = function () {
         };
         return temp;
     };
+    window.editEvent={
+    		'click':function(e,value, row, index){
+    			$('#editModal').modal("show");
+    		}
+    }
     return oTableInit;
 };
 
@@ -174,7 +219,9 @@ var ButtonInit = function () {
 
     return oInit;
 };	
-
+function edit(el, row){
+    
+}
 function responseHandler(res) { 
     if (res) {
         return {
