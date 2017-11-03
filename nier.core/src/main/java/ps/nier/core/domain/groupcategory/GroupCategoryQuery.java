@@ -1,9 +1,10 @@
 package ps.nier.core.domain.groupcategory;
 
-public class GroupCategoryQuery {
-	
-	private String name;
+public class GroupCategoryQuery{
 
+	private String name;
+	private Integer status;
+	
 	public String getName() {
 		return name;
 	}
@@ -11,4 +12,13 @@ public class GroupCategoryQuery {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+
 }

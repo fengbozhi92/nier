@@ -31,7 +31,6 @@
 <body>
 	<div class="container" style="min-height: 1000px;">
 		<div class="col-lg-2 col-md-2 col-sm-1">
-			<#include "/visitor/common/layout.ftl">  
 		</div>
 		<div class="col-lg-8 col-md-8 col-sm-10" id="app">
 			<div style="margin-top: 100px">

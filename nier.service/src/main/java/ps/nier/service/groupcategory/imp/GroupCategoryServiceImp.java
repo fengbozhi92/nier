@@ -1,5 +1,7 @@
 package ps.nier.service.groupcategory.imp;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -28,16 +30,17 @@ public class GroupCategoryServiceImp implements GroupCategoryService{
 		return groupCategoryRepository.findAll(new Specification<GroupCategory>(){
 			@Override
 			public Predicate toPredicate(Root<GroupCategory> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
-				Predicate nameLike = null;
-				if (groupCategory != null && StringUtils.isNotBlank(groupCategory.getName())) {
-					nameLike = cb.like(root.<String>get("name"), QueryHelper.getFullImplict(groupCategory.getName()));
+				List<Predicate> predicate = new ArrayList<Predicate>();
+				if (StringUtils.isNotBlank(groupCategory.getName())) {
+					predicate.add(cb.like(root.get("name").as(String.class), QueryHelper.getFullImplict(groupCategory.getName())));
 				}
-				if (nameLike != null) {
-					query.where(nameLike);
+				if (groupCategory.getStatus() != null) {
+					predicate.add(cb.equal(root.get("status").as(Integer.class), groupCategory.getStatus()));
 				}
+				Predicate[] p = new Predicate[predicate.size()];
+				query.where(predicate.toArray(p)).orderBy(cb.desc(root.get("createTime").as(Date.class)));
 				return query.getRestriction();
 			}
-			
 		}, page);
 	}
 
