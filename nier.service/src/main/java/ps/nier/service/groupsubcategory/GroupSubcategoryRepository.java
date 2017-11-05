@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import ps.nier.core.domain.groupsubcategory.GroupSubcategory;
 
 public interface GroupSubcategoryRepository extends JpaRepository<GroupSubcategory, String>{
+	
 	Page<GroupSubcategory> findAll(Specification<GroupSubcategory> spec, Pageable page);
 	
 	GroupSubcategory findByName(String name);
