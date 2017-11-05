@@ -2,9 +2,13 @@ package ps.nier.core.domain.groupsubcategory;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Transient;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import ps.nier.core.domain.base.BaseEntity;
 @Entity
+@JsonIgnoreProperties({ "handler","hibernateLazyInitializer" })
 public class GroupSubcategory extends BaseEntity{
 	private static final long serialVersionUID = -705963853473736023L;
 	@Id
@@ -13,6 +17,8 @@ public class GroupSubcategory extends BaseEntity{
 	private String name;
 	private int sequence;
 	private Integer status;
+	@Transient
+	private String groupCategoryName;
 	
 	public String getId() {
 		return id;
@@ -43,5 +49,11 @@ public class GroupSubcategory extends BaseEntity{
 	}
 	public void setStatus(Integer status) {
 		this.status = status;
+	}
+	public String getGroupCategoryName() {
+		return groupCategoryName;
+	}
+	public void setGroupCategoryName(String groupCategoryName) {
+		this.groupCategoryName = groupCategoryName;
 	}
 }

@@ -44,14 +44,11 @@
 	    	url:"/manager/groupcategory/edit.do?id="+id,
 	    	type:"POST",
 	    	success:function(res){
-	    		if (res.result) {
-	    		    $('#editModal').modal('show');
-	    		    var data = res.data;
-	    		    $('#editModal').find("input[name='name']").val(data.name);
-	    		    $('#editModal').find("#status option[value='"+data.status+"']").attr("selected", true);
-	    		} else {
-	    			alert("操作失败");
-	    		}
+    		    $('#editModal').modal('show');
+    		    var data = res.data;
+    		    $('#editModal').find("input[name='id']").val(data.id);
+    		    $('#editModal').find("input[name='name']").val(data.name);
+    		    $('#editModal').find("#status option[value='"+data.status+"']").attr("selected", true);
 	    	},
 	    	error:function(){
 	    		alert("操作失败");
@@ -65,11 +62,13 @@
 				rand:Math.random()
 			}
 		$.ajax({
-			url:"/manager/groupcategory/update.do?"+$("#editForm").serialize(),
+			url:"/manager/groupcategory/update.do",
 			type:"POST",
 			data:$("#editForm").serialize() + "&" + $.param(data),
 			success:function(res){
+				 $('#editModal').modal('hide');
 				alert("修改成功");
+				search();
 			},
 			error:function(){
 				alert("操作失败");

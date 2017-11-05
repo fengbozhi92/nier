@@ -44,21 +44,17 @@
 				rand:Math.random()
 			}
 		$.ajax({
-			url:"/manager/groupcategory/save.do?",
+			url:"/manager/groupcategory/save.do",
 			type:"POST",
 			data:$("#addForm").serialize() + "&" + $.param(data),
 			success:function(res, status){
-				if (res.result) {
-					alert("保存成功！"+status);
-					search();
-				} else {
-					alert("保存失败！");
-				}
+				alert("保存成功！"+status);
+				$("#addForm")[0].reset();
+				search();
 			},
 			error:function(res){
 				alert("保存失败！");
 			}
-			
 		});
 	}
 </script>

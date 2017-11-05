@@ -1,18 +1,19 @@
 package ps.nier.core.domain.base;
 
-import ps.nier.core.dictionary.ResCode;
+import ps.nier.core.dictionary.ResCodeEnum;
 
 public class ResEntity {
+	
 	private int code;
     private String msg;
     private Object data;
 
-    public ResEntity(ResCode respCode) {
+    public ResEntity(ResCodeEnum respCode) {
         this.code = respCode.getCode();
         this.msg = respCode.getMsg();
     }
 
-    public ResEntity(ResCode respCode, Object data) {
+    public ResEntity(ResCodeEnum respCode, Object data) {
         this(respCode);
         this.data = data;
     }

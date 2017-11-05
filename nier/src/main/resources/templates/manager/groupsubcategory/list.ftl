@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<#include "/visitor/common/header.ftl">
+<#include "/manager/common/header.ftl">
 <title></title>
 </head>
 <body>
+	<#include "/manager/common/top.ftl">
 	<div class="container" style="min-height: 1600px;">
 		<div class="panel-body" style="padding-bottom:0px;">
         	<div class="panel panel-default">
@@ -13,18 +14,27 @@
                 	<form id="formSearch" class="form-horizontal">
                     	<div class="form-group" style="margin-top:15px">
                         	<label class="control-label col-sm-1" for="search_name">名称</label>
-	                        <div class="col-sm-3">
+	                        <div class="col-sm-2">
 	                            <input type="text" class="form-control" id="search_name">
 	                        </div>
+	                        <label class="control-label col-sm-1" for="search_groupCategoryId">分类</label>
+	                        <div class="col-sm-2">
+	                            <select class="form-control" id="search_groupCategoryId">
+	                            	<option value="">全部</option>
+	                            	<#list groupCategorys as it>
+	                            		<option value="${it.id}">${it.name}</option>
+	                            	</#list>
+	                            </select>
+	                        </div>
                         	<label class="control-label col-sm-1" for="search_status">状态</label>
-	                        <div class="col-sm-3">
+	                        <div class="col-sm-2">
 	                            <select class="form-control" id="search_status">
 	                            	<option value="">全部</option>
 	                            	<option value="1">启用</option>
 	                            	<option value="2">停用</option>
 	                            </select>
 	                        </div>
-	                        <div class="col-sm-4" style="text-align:left;">
+	                        <div class="col-sm-2" style="text-align:left;">
 	                            <button type="button" style="margin-left:50px" id="btn_query" class="btn btn-primary" onclick="search();">查询</button>
 	                        </div>
                     	</div>
@@ -40,11 +50,11 @@
 	                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
 	            </button>
 	        </div>
-        	<table id="groupCategorys"></table>
+        	<table id="groupSubcategorys"></table>
     	</div>
 	</div>
-<#include "/visitor/common/footer.ftl">
-<#include "/visitor/common/js.ftl">
+<#include "/manager/common/footer.ftl">
+<#include "/manager/common/js.ftl">
 <script>
 	$(function () {
 	    //1.初始化Table
@@ -68,8 +78,8 @@
 	    var oTableInit = new Object();
 	    //初始化Table
 	    oTableInit.Init = function () {
-	        $('#groupCategorys').bootstrapTable({
-	            url: '/manager/groupcategory/ajaxList.do',  //请求后台的URL（*）
+	        $('#groupSubcategorys').bootstrapTable({
+	            url: '/manager/groupsubcategory/ajaxList.do',  //请求后台的URL（*）
 	            method: 'post',                     //请求方式（*）
 	            toolbar: '#toolbar',                //工具按钮用哪个容器
 	            striped: true,                      //是否显示行间隔色
@@ -89,7 +99,7 @@
 	            showRefresh: true,                  //是否显示刷新按钮
 	            minimumCountColumns: 2,             //最少允许的列数
 	            clickToSelect: false,               //是否启用点击选中行
-	            height: 500,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+	            //height: 500,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
 	            uniqueId: "id",                     //每一行的唯一标识，一般为主键列
 	            showToggle:false,                    //是否显示详细视图和列表视图的切换按钮
 	            cardView: false,                    //是否显示详细视图
@@ -105,9 +115,13 @@
 	                formatter : function (value, row, index) {
 	                	return index+1;
 	         		}
-	    		},{
+	    		}, {
 	                field : 'name',
 	                title : '名称',
+	                align : 'center'
+	            }, {
+	                field : 'groupCategoryName',
+	                title : '分类',
 	                align : 'center'
 	            }, {
 	                field : 'createTime',
@@ -117,7 +131,7 @@
 	                formatter : function (value, row, index){
 	                	return new Date(value).format('yyyy-MM-dd hh:mm:ss');
 	                }
-	            },{
+	            }, {
 	                field : 'status',
 	                title : '状态',
 	                align : 'center',
@@ -149,7 +163,8 @@
 	            size: this.pageSize,   //页面大小
 	            page: this.pageNumber-1,  //页码
 	            name: $("#search_name").val(), 
-	            status: $("#search_status").val()
+	            status: $("#search_status").val(),
+	            groupCategoryId: $("#search_groupCategoryId").val()
 	        };
 	        return temp;
 	    };
@@ -182,12 +197,36 @@
 	}
 
 	function search(){
-		$('#groupCategorys').bootstrapTable('refresh');
+		$('#groupSubcategorys').bootstrapTable('refresh');
+	}
+	
+	function del(){
+		var arr = new Array();
+		$("#groupSubcategorys tr.selected").each(function(){
+			arr.push($(this).attr("data-uniqueid"));
+		});
+		var ids = arr.join(",");
+		if (ids != "" && confirm("确定要进行删除操作吗？")) {
+			$.ajax({
+				url:"/manager/groupcategory/remove.do",
+				data:{
+					id:ids
+				},
+				success:function(){
+					alert("操作成功");
+					search();
+				},
+				error:function(){
+					alert("操作失败");
+				}
+			});
+		}
+		return;
 	}
 </script>
 <div id="include">
-	<#include "/manager/groupcategory/add.ftl">
-	<#include "/manager/groupcategory/edit.ftl">  
+	<#include "/manager/groupsubcategory/add.ftl">
+	<#include "/manager/groupsubcategory/edit.ftl">  
 </div>
 </body>
 </html>

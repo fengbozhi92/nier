@@ -8,11 +8,11 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import javax.transaction.Transactional;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
@@ -25,8 +25,11 @@ import ps.nier.service.groupcategory.GroupCategoryService;
 public class GroupCategoryServiceImp implements GroupCategoryService{
 	@Autowired
 	private GroupCategoryRepository groupCategoryRepository;
+//	@Autowired
+//	private FillService fillService;
+	
 	@Override
-	public Page<GroupCategory> list(GroupCategoryQuery groupCategory, Pageable page) {
+	public Page<GroupCategory> list(GroupCategoryQuery groupCategory) {
 		return groupCategoryRepository.findAll(new Specification<GroupCategory>(){
 			@Override
 			public Predicate toPredicate(Root<GroupCategory> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
@@ -41,7 +44,7 @@ public class GroupCategoryServiceImp implements GroupCategoryService{
 				query.where(predicate.toArray(p)).orderBy(cb.desc(root.get("createTime").as(Date.class)));
 				return query.getRestriction();
 			}
-		}, page);
+		}, groupCategory);
 	}
 
 	@Override
@@ -61,11 +64,24 @@ public class GroupCategoryServiceImp implements GroupCategoryService{
 
 	@Override
 	public boolean update(GroupCategory groupCategory) {
-		// TODO Auto-generated method stub
+		GroupCategory out = get(groupCategory.getId());
+		if (out != null) {
+			if (StringUtils.isNotBlank(groupCategory.getName())) {
+				out.setName(groupCategory.getName());
+			}
+			if (groupCategory.getStatus() != null) {
+				out.setStatus(groupCategory.getStatus());
+			}
+			out.setModifyTime(groupCategory.getModifyTime());
+			out.setModifyUser(groupCategory.getModifyUser());
+			out.setVersion(out.getVersion()+1);
+			return groupCategoryRepository.save(out) != null;
+		}
 		return false;
 	}
 
 	@Override
+	@Transactional
 	public boolean batchRemove(String[] ids) {
 		return groupCategoryRepository.deleteByIdIn(ids) > 0;
 	}

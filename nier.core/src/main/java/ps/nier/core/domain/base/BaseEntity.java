@@ -17,7 +17,7 @@ public class BaseEntity implements Serializable{
 	@Column(name="modify_user")
 	private String 		modifyUser;
 	@Column(name="version")
-	private int 		version;
+	private int 		version = 1;
 	
 	public Date getCreateTime() {
 		return createTime;
