@@ -1,5 +1,8 @@
 package ps.nier.core.domain.menu;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Transient;
@@ -18,9 +21,26 @@ public class Menu extends BaseEntity{
 	private Integer depth;
 	private int sequence;
 	private Integer status;
+	
 	@Transient
 	private String parentName;
+	@Transient
+	private List<Menu> submenus;
 	
+	public Menu() {
+		super();
+	}
+	
+	public Menu(String id, String name, String url, String parentId, Integer depth, List<Menu> submenus) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.url = url;
+		this.parentId = parentId;
+		this.depth = depth;
+		this.submenus = submenus;
+	}
+
 	public String getId() {
 		return id;
 	}
@@ -68,5 +88,17 @@ public class Menu extends BaseEntity{
 	}
 	public void setParentName(String parentName) {
 		this.parentName = parentName;
+	}
+	public List<Menu> getSubmenus() {
+		return submenus;
+	}
+	public void setSubmenus(List<Menu> submenus) {
+		this.submenus = submenus;
+	}
+	public void addSubmenu(Menu submenu){
+		if (this.submenus == null) {
+			this.submenus = new ArrayList<Menu>();
+		}
+		this.submenus.add(submenu);
 	}
 }

@@ -64,6 +64,23 @@ public class MenuController extends BaseController{
 		return renderError();
 	}
 	
+	@RequestMapping(value="/manager/menu/get.do")
+	public ResponseEntity<ResEntity> get(HttpServletRequest req){
+		String id = req.getParameter("id");
+		if (id != null && id.length() == 36) {
+			try {
+				Menu menu = menuService.get(id);
+				if (menu != null) {
+					return renderData(menu);
+				}
+			} catch (Throwable t) {
+				t.printStackTrace();
+				logger.error("MenuController's get is error!", t);
+			}
+		}
+		return renderError();
+	}
+	
 	@RequestMapping(value="/manager/menu/save.do")
 	public ResponseEntity<ResEntity> save(Menu menu){
 		try {
@@ -78,6 +95,36 @@ public class MenuController extends BaseController{
 		} catch (Throwable t) {
 			t.printStackTrace();
 			logger.error("MenuController's save is error!", t);
+		}
+		return renderError();
+	}
+	
+	@RequestMapping(value="/manager/menu/update.do")
+	public ResponseEntity<ResEntity> update(Menu menu){
+		try {
+			if (menuService.update(menu)) {
+				return renderSuccess();
+			}
+		} catch (Throwable t) {
+			t.printStackTrace();
+			logger.error("MenuController's update is error!", t);
+		}
+		return renderError();
+	}
+	
+	@RequestMapping(value="/manager/menu/remove.do")
+	public ResponseEntity<ResEntity> remove(HttpServletRequest req){
+		String id = req.getParameter("id");
+		if (StringUtils.isNotBlank(id)) {
+			try {
+				String[] ids = id.split(",");
+				if (menuService.batchRemove(ids)) {
+					return renderSuccess();
+				}
+			} catch (Throwable t) {
+				t.printStackTrace();
+				logger.error("MenuController's remove is error!", t);
+			}
 		}
 		return renderError();
 	}

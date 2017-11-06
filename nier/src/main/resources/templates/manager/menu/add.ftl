@@ -16,18 +16,20 @@
                      	</div>
                  	</div>
                  	<div class="form-group">
-                		<label class="col-sm-2 lh34 text-right" for="parentId">分类</label>
+                		<label class="col-sm-2 lh34 text-right" for="parentId">父节点</label>
                      	<div class="col-sm-8">
                      		<select class="form-control" id="parentId" name="parentId">
                      			<option value="">根节点</option>
-                     			<#list parentMenus as it>
-                            		<option value="${it.id}" depth="${it.depth}">${it.name}</option>
-	                            </#list>
+                     			<#if parentMenus??>
+	                     			<#list parentMenus as it>
+	                            		<option value="${it.id}" depth="${it.depth}">${it.name}</option>
+		                            </#list>
+		                        </#if>
                      		</select>
                  		</div>
                  	</div>
                  	<div class="form-group">
-                    	<label class="col-sm-2 lh34 text-right" for="url">名称</label>
+                    	<label class="col-sm-2 lh34 text-right" for="url">URL</label>
                      	<div class="col-sm-8">
                      		<input type="text" name="url" class="form-control" id="url" placeholder="链接">
                      	</div>
@@ -55,6 +57,21 @@
     </div>
 </div>
 <script>
+	function addSubmenu(id){
+		 $.ajax({
+		    	url:"/manager/menu/get.do?id="+id,
+		    	type:"POST",
+		    	success:function(res){
+	    		    $('#addModal').modal('show');
+	    		    var data = res.data;
+	    		    $('#addModal').find("#parentId option[value='"+data.id+"']").attr("selected", true);
+		    	},
+		    	error:function(){
+		    		alert("操作失败");
+		    	}
+		 });
+	}
+	
 	function save(){
 		var depth = $('#addModal').find("#parentId option:selected").attr("depth");
 		if (!isNaN(depth)) {

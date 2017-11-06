@@ -3,6 +3,9 @@ package ps.nier.service.menu.imp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -18,12 +21,15 @@ import org.springframework.stereotype.Service;
 import ps.nier.core.common.helper.QueryHelper;
 import ps.nier.core.domain.menu.Menu;
 import ps.nier.core.domain.menu.MenuQuery;
+import ps.nier.service.common.FillService;
 import ps.nier.service.menu.MenuRepository;
 import ps.nier.service.menu.MenuService;
 @Service
 public class MenuServiceImp implements MenuService {
 	@Autowired
 	private MenuRepository menuRepository;
+	@Autowired
+	private FillService fillService;
 	
 	@Override
 	public Page<Menu> list(MenuQuery menu) {
@@ -58,12 +64,22 @@ public class MenuServiceImp implements MenuService {
 
 	@Override
 	public List<Menu> listAll() {
-		return menuRepository.findAll();
+		List<Menu> menus = menuRepository.findAll();
+		Map<String, List<Menu>> map = menus.stream().collect(Collectors.groupingBy(Menu::getParentId));
+		List<Menu> tree =  buildingTree("", map);
+		return tree;
 	}
 	
 	@Override
 	public List<Menu> listByParentId(String parentId) {
-		return menuRepository.findAllByParentId(parentId);
+		List<Menu> menuList = menuRepository.findAllByParentId(parentId);
+		if (menuList != null && !menuList.isEmpty()) {
+			for (Menu item : menuList) {
+				fillService.fillMenu(item);
+			}
+			return menuList;
+		}
+		return null;
 	}
 
 	@Override
@@ -108,6 +124,13 @@ public class MenuServiceImp implements MenuService {
 	@Override
 	public boolean isExistedNameAndDepth(String name, Integer depth) {
 		return menuRepository.findByNameAndDepth(name, depth) != null;
+	}
+	
+	private List<Menu> buildingTree(String parentId, Map<String, List<Menu>> map){	
+		return Optional.ofNullable(map.get(parentId)).orElseGet(()->new ArrayList<Menu>())
+		.stream().filter(item->item.getParentId().equals(parentId))
+		.map(x->{return new Menu(x.getId(), x.getName(), x.getUrl(), x.getParentId(), 
+				x.getDepth(), buildingTree(x.getId(), map));}).collect(Collectors.toList());	
 	}
 
 }

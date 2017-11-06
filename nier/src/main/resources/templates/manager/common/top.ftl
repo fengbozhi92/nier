@@ -39,43 +39,16 @@
 	            	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 	            		<span class="glyphicon glyphicon-user"></span>&nbsp;用户设置<b class="caret"></b>
 	            	</a>
-	            	<ul class="dropdown-menu">
-	                    <li><a href="#">jmeter</a></li>
-	                    <li><a href="#">EJB</a></li>
-	                    <li><a href="#">Jasper Report</a></li>
-	                    <li class="divider"></li>
-	                    <li><a href="#">分离的链接</a></li>
-	                    <li class="divider"></li>
-	                    <li><a href="#">另一个分离的链接</a></li>
-	                </ul>
 	            </li>
 	            <li class="dropdown">
 	                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 	                   	<span class="glyphicon glyphicon-book"></span>&nbsp;博客<b class="caret"></b>
 	                </a>
-	                <ul class="dropdown-menu">
-	                    <li><a href="#">jmeter</a></li>
-	                    <li><a href="#">EJB</a></li>
-	                    <li><a href="#">Jasper Report</a></li>
-	                    <li class="divider"></li>
-	                    <li><a href="#">分离的链接</a></li>
-	                    <li class="divider"></li>
-	                    <li><a href="#">另一个分离的链接</a></li>
-	                </ul>
 	            </li>
 	            <li class="dropdown">
 	                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 	                   	<span class="glyphicon glyphicon-flag"></span>&nbsp;群组<b class="caret"></b>
 	                </a>
-	                <ul class="dropdown-menu">
-	                    <li><a href="#">jmeter</a></li>
-	                    <li><a href="#">EJB</a></li>
-	                    <li><a href="#">Jasper Report</a></li>
-	                    <li class="divider"></li>
-	                    <li><a href="#">分离的链接</a></li>
-	                    <li class="divider"></li>
-	                    <li><a href="#">另一个分离的链接</a></li>
-	                </ul>
 	            </li>
 	        </ul>
 	        <form class="navbar-form navbar-left">
