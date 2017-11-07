@@ -24,7 +24,7 @@ td{
 			<h1>${group.name}</h1>
 		</div>
 		<div class="col-sm-12">
-			<#include "/visitor/post/list.ftl">
+			<#include "/visitor/postthread/list.ftl">
 		</div>
 	</div>
 <#include "/visitor/common/footer.ftl">

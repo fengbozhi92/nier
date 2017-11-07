@@ -7,7 +7,7 @@ import ps.nier.core.domain.group.Group;
 import ps.nier.core.domain.groupcategory.GroupCategory;
 import ps.nier.core.domain.groupsubcategory.GroupSubcategory;
 import ps.nier.core.domain.menu.Menu;
-import ps.nier.core.domain.post.Post;
+import ps.nier.core.domain.postthread.PostThread;
 import ps.nier.core.domain.user.User;
 import ps.nier.service.common.FillService;
 import ps.nier.service.groupcategory.GroupCategoryService;
@@ -59,7 +59,7 @@ public class FillServiceImp implements FillService{
 		}
 	}
 	@Override
-	public void fillPost(Post item) {
+	public void fillPostThread(PostThread item) {
 		if (item != null) {
 			User user = userService.get(item.getUserId());
 			if (user != null) {

@@ -24,7 +24,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         					 "/register/**",
         					 "/home/**",
         					 "/group/**",
-        					 "/post/**").permitAll()
+        					 "/post/**",
+        					 "/postthread/**").permitAll()
         		.antMatchers("/upload/**",
         					 "/person/**",
         					 "/group/add.do").hasRole("USER")

@@ -8,13 +8,13 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-import javax.transaction.Transactional;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import ps.nier.core.common.helper.QueryHelper;
 import ps.nier.core.domain.groupsubcategory.GroupSubcategory;
@@ -105,6 +105,7 @@ public class GroupSubcategoryServiceImp implements GroupSubcategoryService {
 	}
 
 	@Override
+	@Transactional
 	public boolean isExistedName(String name) {
 		return groupSubcategoryRepository.findByName(name) != null;
 	}

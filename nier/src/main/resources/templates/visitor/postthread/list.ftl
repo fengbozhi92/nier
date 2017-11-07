@@ -1,10 +1,10 @@
 	<div class="container" style="height: 1260px">
 		<div class="panel-body" style="padding-bottom:0px;">
-        	<table id="posts" data-use-row-attr-func="true" data-reorderable-rows="true"></table>
+        	<table id="threads" data-use-row-attr-func="true" data-reorderable-rows="true"></table>
     	</div>
     	
     	
-    	<form role="form" id="postForm">
+    	<form role="form" id="threadForm">
            	<div class="col-sm-12 modal-body form-horizontal">
            		<div class="form-group">
            			<div class="col-sm-2"></div>
@@ -48,15 +48,15 @@
 	    //2.初始化Button的点击事件
 	    var oButtonInit = new ButtonInit();
 	    oButtonInit.Init();
-	    $("#posts thead").hide();
+	    $("#threads thead").hide();
 	});
 
 	var TableInit = function () {
 	    var oTableInit = new Object();
 	    //初始化Table
 	    oTableInit.Init = function () {
-	        $('#posts').bootstrapTable({
-	            url: '/post/ajaxList.do',  //请求后台的URL（*）
+	        $('#threads').bootstrapTable({
+	            url: '/postthread/ajaxList.do',  //请求后台的URL（*）
 	            method: 'post',                     //请求方式（*）
 	            toolbar: '#toolbar',                //工具按钮用哪个容器
 	            striped: false,                     //是否显示行间隔色
@@ -94,7 +94,7 @@
 	                formatter : function (value, row, index){
 	                	var result = "";
 	                	if (value != null) {
-	                		result = "<a href='/post/view.do?id="+row.id+"'>"+value+"</a>";
+	                		result = "<a href='/postthread/view.do?id="+row.id+"'>"+value+"</a>";
 	                	}
 	                	return result;
 	                }
@@ -191,11 +191,11 @@
 	}
 	
 	function search(){
-		$('#posts').bootstrapTable('refresh');
+		$('#threads').bootstrapTable('refresh');
 	}
 	
 	function pub(){
-		var userId = $("#postForm").find("input[name='userId']").val();
+		var userId = $("#threadForm").find("input[name='userId']").val();
 		if (userId == "") {
 			alert("请先登录");
 			return false;
@@ -206,10 +206,10 @@
 			}
 		$.ajax({
 			url:"/post/pub.do",
-			data:$("#postForm").serialize() + "&" + $.param(data),
+			data:$("#threadForm").serialize() + "&" + $.param(data),
 			success:function(res){
 				alert("保存成功！"+status);
-				$("#postForm")[0].reset();
+				$("#threadForm")[0].reset();
 				search();
 			},
 			error:function(){
