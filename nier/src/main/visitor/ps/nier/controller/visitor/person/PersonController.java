@@ -20,7 +20,7 @@ public class PersonController {
 	@RequestMapping("/person/setting.do")
 	public String setting(String id, Model model){
 		if (id != null && id.length() == 36) {
-			UserDetail user = userService.getOne(id);
+			UserDetail user = userService.getDetail(id);
 			if (user != null) {
 				model.addAttribute("detail", user);
 				return "/visitor/person/setting";

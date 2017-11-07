@@ -38,4 +38,14 @@ Date.prototype.format=function(fmt) {
         }         
     }         
     return fmt;         
-}       
+} 
+
+function isToday(str){
+    var d = new Date(str);
+    var todaysDate = new Date();
+    if(d.setHours(0,0,0,0) == todaysDate.setHours(0,0,0,0)){
+        return true;
+    } else {
+        return false;
+    }
+}

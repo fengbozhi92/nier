@@ -53,10 +53,15 @@ public class UserServiceImp implements UserService{
 	}
 
 	@Override
-	public UserDetail getOne(String id) {
+	public UserDetail getDetail(String id) {
 		return userDetailRepository.getOne(id);
 	}
-
+	
+	@Override
+	public User get(String id) {
+		return userRepository.getOne(id);
+	}
+	
 	@Override
 	public User save(User user) {
 		return userRepository.save(user);

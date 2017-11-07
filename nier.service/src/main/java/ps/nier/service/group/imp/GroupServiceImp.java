@@ -41,7 +41,10 @@ public class GroupServiceImp implements GroupService {
 					predicate.add(cb.equal(root.get("status").as(Integer.class), group.getStatus()));
 				}
 				if (StringUtils.isNotBlank(group.getCategoryId())) {
-					predicate.add(cb.equal(root.get("groupCategoryId").as(String.class), group.getCategoryId()));
+					predicate.add(cb.equal(root.get("categoryId").as(String.class), group.getCategoryId()));
+				}
+				if (StringUtils.isNotBlank(group.getSubcategoryId())) {
+					predicate.add(cb.equal(root.get("subcategoryId").as(String.class), group.getSubcategoryId()));
 				}
 				Predicate[] p = new Predicate[predicate.size()];
 				query.where(predicate.toArray(p)).orderBy(cb.desc(root.get("createTime").as(Date.class)));

@@ -61,7 +61,12 @@ public class GroupSubcategoryServiceImp implements GroupSubcategoryService {
 	public List<GroupSubcategory> listAll() {
 		return groupSubcategoryRepository.findAll();
 	}
-
+	
+	@Override
+	public List<GroupSubcategory> listByCategoryId(String categoryId) {
+		return groupSubcategoryRepository.findAllByGroupCategoryId(categoryId);
+	}
+	
 	@Override
 	public GroupSubcategory get(String id) {
 		return groupSubcategoryRepository.getOne(id);

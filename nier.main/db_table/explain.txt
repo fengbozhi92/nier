@@ -1,0 +1,5 @@
+table name prefix:
+	s_		System				系统表
+	d_		Dictionary			字典表
+	r_		Relationship		关系表
+	b_		Business			业务表

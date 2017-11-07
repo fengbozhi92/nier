@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -14,6 +15,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import ps.nier.core.dictionary.UserRoleEnum;
 
 @Entity
+@Table(name="s_user")
 public class User implements UserDetails{
 	private static final long serialVersionUID = 1L;
 	

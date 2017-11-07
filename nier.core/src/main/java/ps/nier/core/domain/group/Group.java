@@ -2,15 +2,18 @@ package ps.nier.core.domain.group;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import ps.nier.core.domain.base.BaseEntity;
 @Entity
+@Table(name="b_group")
 public class Group extends BaseEntity{
 	private static final long serialVersionUID = 1L;
 	@Id
 	private String id;
-	private String category;
-	private String subcategory;
+	private String categoryId;
+	private String subcategoryId;
 	private String name;
 	private String description;
 	private String imagePath;
@@ -19,23 +22,28 @@ public class Group extends BaseEntity{
 	private String leaderId;
 	private Integer status;
 	
+	@Transient
+	private String categoryName;
+	@Transient
+	private String subcategoryName;
+	
 	public String getId() {
 		return id;
 	}
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getCategory() {
-		return category;
+	public String getCategoryId() {
+		return categoryId;
 	}
-	public void setCategory(String category) {
-		this.category = category;
+	public void setCategoryId(String categoryId) {
+		this.categoryId = categoryId;
 	}
-	public String getSubcategory() {
-		return subcategory;
+	public String getSubcategoryId() {
+		return subcategoryId;
 	}
-	public void setSubcategory(String subcategory) {
-		this.subcategory = subcategory;
+	public void setSubcategoryId(String subcategoryId) {
+		this.subcategoryId = subcategoryId;
 	}
 	public String getName() {
 		return name;
@@ -78,6 +86,18 @@ public class Group extends BaseEntity{
 	}
 	public void setStatus(Integer status) {
 		this.status = status;
+	}
+	public String getCategoryName() {
+		return categoryName;
+	}
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
+	public String getSubcategoryName() {
+		return subcategoryName;
+	}
+	public void setSubcategoryName(String subcategoryName) {
+		this.subcategoryName = subcategoryName;
 	}
 	
 }

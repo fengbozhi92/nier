@@ -23,7 +23,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         					 "/login/**",
         					 "/register/**",
         					 "/home/**",
-        					 "/group/index.do",
+        					 "/group/**",
         					 "/post/**").permitAll()
         		.antMatchers("/upload/**",
         					 "/person/**",

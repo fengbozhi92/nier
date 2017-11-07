@@ -2,9 +2,12 @@ package ps.nier.core.domain.post;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import ps.nier.core.domain.base.BaseEntity;
 @Entity
+@Table(name="b_post")
 public class Post extends BaseEntity{
 	private static final long serialVersionUID = 1L;
 	@Id
@@ -17,6 +20,9 @@ public class Post extends BaseEntity{
 	private int replyCount;
 	private Integer postType;
 	private Integer status;
+	
+	@Transient
+	private String userNickname;
 	
 	public String getId() {
 		return id;
@@ -71,5 +77,11 @@ public class Post extends BaseEntity{
 	}
 	public void setStatus(Integer status) {
 		this.status = status;
+	}
+	public String getUserNickname() {
+		return userNickname;
+	}
+	public void setUserNickname(String userNickname) {
+		this.userNickname = userNickname;
 	}
 }

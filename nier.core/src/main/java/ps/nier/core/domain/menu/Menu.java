@@ -5,11 +5,13 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import ps.nier.core.domain.base.BaseEntity;
 
 @Entity
+@Table(name="s_menu")
 public class Menu extends BaseEntity{
 	private static final long serialVersionUID = 573226032151260266L;
 	

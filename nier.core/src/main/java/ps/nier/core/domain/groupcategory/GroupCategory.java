@@ -2,9 +2,11 @@ package ps.nier.core.domain.groupcategory;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import ps.nier.core.domain.base.BaseEntity;
 @Entity
+@Table(name="d_group_category")
 public class GroupCategory extends BaseEntity{
 	private static final long serialVersionUID = 8138479219339635308L;
 	@Id

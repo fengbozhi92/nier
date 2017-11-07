@@ -2,7 +2,20 @@
 <html>
 <head>
 <#include "/manager/common/header.ftl">
-<title></title>
+<title>groupmanage</title>
+<style>
+table{
+   
+    table-layout:fixed;/* 只有定义了表格的布局算法为fixed，下面td的定义才能起作用。 */
+}
+td{
+    width:100%;
+    word-break:keep-all;/* 不换行 */
+    white-space:nowrap;/* 不换行 */
+    overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
+    text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
+}
+</style>
 </head>
 <body>
 	<#include "/manager/common/top.ftl">
@@ -17,13 +30,20 @@
 	                        <div class="col-sm-2">
 	                            <input type="text" class="form-control" id="search_name">
 	                        </div>
-	                        <label class="control-label col-sm-1" for="search_groupCategoryId">分类</label>
+	                        <label class="control-label col-sm-1" for="search_categoryId">分类</label>
 	                        <div class="col-sm-2">
-	                            <select class="form-control" id="search_groupCategoryId">
+	                            <select class="form-control" id="search_categoryId" onchange="getSubcategorys();">
 	                            	<option value="">全部</option>
-	                            	<#list groupCategorys as it>
+	                            	<#list categorys as it>
 	                            		<option value="${it.id}">${it.name}</option>
 	                            	</#list>
+	                            </select>
+	                        </div>
+	                        <label class="control-label col-sm-1" for="search_subcategoryId">子分类</label>
+	                        <div class="col-sm-2">
+	                            <select class="form-control" id="search_subcategoryId">
+	                            	<option value="">全部</option>
+	                            	
 	                            </select>
 	                        </div>
                         	<label class="control-label col-sm-1" for="search_status">状态</label>
@@ -34,8 +54,11 @@
 	                            	<option value="2">停用</option>
 	                            </select>
 	                        </div>
-	                        <div class="col-sm-2" style="text-align:left;">
-	                            <button type="button" style="margin-left:50px" id="btn_query" class="btn btn-primary" onclick="search();">查询</button>
+	                       
+                    	</div>
+                    	<div class="form-group">
+                    	 	<div class="col-sm-12" style="text-align:center;">
+	                            <button type="button" style="width:100px" id="btn_query" class="btn btn-primary" onclick="search();">查询</button>
 	                        </div>
                     	</div>
                 	</form>
@@ -120,8 +143,31 @@
 	                title : '名称',
 	                align : 'center'
 	            }, {
-	                field : 'groupCategoryName',
+	                field : 'categoryName',
 	                title : '分类',
+	                align : 'center'
+	            }, {
+	                field : 'subcategoryName',
+	                title : '子分类',
+	                align : 'center'
+	            }, {
+	                field : 'description',
+	                title : '描述',
+	                align : 'center',
+	                formatter : function (value, row, index){
+	                	var result = '-';
+	                	if (value != null) {
+	                		result = '<span data-toggle="tooltip" title="'+value+'">'+value+'</span>';
+	                	}
+	                	return result;
+	                }
+	            },  {
+	                field : 'memberCount',
+	                title : '成员',
+	                align : 'center'
+	            },  {
+	                field : 'postCount',
+	                title : '帖子',
 	                align : 'center'
 	            }, {
 	                field : 'createTime',
@@ -153,7 +199,13 @@
 	                	var result = '<button class="btn btn-default btn-xs edit" type="button" onclick="edit(\''+row.id+'\');"><span class="glyphicon glyphicon-edit"></span>修改</button>';
 	                	return result;
 	                },
-	            },]
+	            },],
+	            formatNoMatches: function(){
+	                return "没有相关的匹配结果";
+	            },
+	            formatLoadingMessage: function(){
+	                return "请稍等，正在加载中。。。";
+	            }
 	        });
 	    }; 
 	  	      
@@ -164,7 +216,8 @@
 	            page: this.pageNumber-1,  //页码
 	            name: $("#search_name").val(), 
 	            status: $("#search_status").val(),
-	            categoryId: $("#search_groupCategoryId").val()
+	            categoryId: $("#search_categoryId").val(),
+	            subcategoryId: $("#search_subcategoryId").val()
 	        };
 	        return temp;
 	    };
@@ -223,10 +276,35 @@
 		}
 		return;
 	}
+	
+	function getSubcategorys(){
+		var categoryId = $("#search_categoryId").val();
+		$.ajax({
+			url:"/manager/groupmanage/getSubcategorys.do?categoryId="+categoryId,
+			success:function(res){
+				refreshSubcategorys(res.data);
+			},
+			error:function(){
+				alert("错误");
+			}
+		});
+	}
+	
+	function refreshSubcategorys(data){
+		$("#search_subcategoryId option").remove();
+		var base = "<option value=''>全部</option>";
+		$("#search_subcategoryId").append(base);
+		if (data.length > 0) {
+			$(data).each(function(index, el){
+				var op = "<option value='"+el.id+"'>"+el.name+"</option>";
+				$("#search_subcategoryId").append(op);
+			});
+		}
+	}
 </script>
 <div id="include">
-	<#include "/manager/groupsubcategory/add.ftl">
-	<#include "/manager/groupsubcategory/edit.ftl">  
+	<#include "/manager/groupmanage/add.ftl">
+	<#include "/manager/groupmanage/edit.ftl">  
 </div>
 </body>
 </html>

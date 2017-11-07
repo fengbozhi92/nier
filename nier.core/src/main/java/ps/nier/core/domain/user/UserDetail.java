@@ -9,7 +9,7 @@ import javax.persistence.Table;
 import ps.nier.core.domain.base.BaseEntity;
 
 @Entity
-@Table(name="user")
+@Table(name="s_user")
 public class UserDetail extends BaseEntity{
 	private static final long serialVersionUID = -3830879916102951270L;
 	

@@ -13,7 +13,8 @@ public interface UserService {
 	
 	User findByUsername(String username);
 	
-	UserDetail getOne(String id);
+	UserDetail getDetail(String id);
+	User get(String id);
 	
 	User save(User user);
 	

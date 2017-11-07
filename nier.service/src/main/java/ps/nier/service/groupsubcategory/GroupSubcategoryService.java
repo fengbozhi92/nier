@@ -12,6 +12,7 @@ public interface GroupSubcategoryService {
 	Page<GroupSubcategory> list(GroupSubcategoryQuery groupSubcategory);
 	
 	List<GroupSubcategory> listAll();
+	List<GroupSubcategory> listByCategoryId(String categoryId);
 	
 	GroupSubcategory get(String id);
 	

@@ -2,12 +2,14 @@ package ps.nier.core.domain.groupsubcategory;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import ps.nier.core.domain.base.BaseEntity;
 @Entity
+@Table(name="d_group_subcategory")
 @JsonIgnoreProperties({ "handler","hibernateLazyInitializer" })
 public class GroupSubcategory extends BaseEntity{
 	private static final long serialVersionUID = -705963853473736023L;
