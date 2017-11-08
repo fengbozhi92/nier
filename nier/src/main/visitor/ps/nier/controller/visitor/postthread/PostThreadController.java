@@ -14,7 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import ps.nier.controller.base.BaseController;
 import ps.nier.core.common.utils.UUIDUtils;
-import ps.nier.core.dictionary.PostTypeEnum;
+import ps.nier.core.dictionary.PostThreadTypeEnum;
+import ps.nier.core.dictionary.StatusEnum;
 import ps.nier.core.domain.base.ResEntity;
 import ps.nier.core.domain.postthread.PostThread;
 import ps.nier.core.domain.postthread.PostThreadQuery;
@@ -41,8 +42,8 @@ public class PostThreadController extends BaseController{
 		try {
 			postThread.setId(UUIDUtils.getId36());
 			postThread.setCreateTime(new Date());
-			postThread.setStatus(new Integer(1));
-			postThread.setPostType(PostTypeEnum.Default.getValue());
+			postThread.setStatus(StatusEnum.Valid.getValue());
+			postThread.setType(PostThreadTypeEnum.Default.getValue());
 			if (postThreadService.save(postThread)) {
 				return renderSuccess();
 			}
@@ -61,12 +62,12 @@ public class PostThreadController extends BaseController{
 				PostThread postThread = postThreadService.get(id);
 				if (postThread != null) {
 					postThreadService.updateViewCount(id);
-					model.addAttribute("postThread", postThread);
+					model.addAttribute("thread", postThread);
 					return "visitor/postthread/view";
 				}
 			} catch (Throwable t) {
 				t.printStackTrace();
-				logger.error("PostThreadController's ajaxList is error!", t);
+				logger.error("PostThreadController's view is error!", t);
 			}
 		}
 		return "visitor/error";

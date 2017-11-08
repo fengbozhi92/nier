@@ -5,8 +5,8 @@ import java.util.List;
 
 public enum PostTypeEnum {
 	Default(1, "普通"), 
-	Hot(2, "热议"), 
-	Essence(3, "精华");
+	Ground(2, "一楼"),
+	DoubleDeck(3, "楼中楼");
 	
 	private int value;
 	private String label;
@@ -30,10 +30,10 @@ public enum PostTypeEnum {
 			result = PostTypeEnum.Default;
 			break;
 		case 2 : 
-			result = PostTypeEnum.Hot;
+			result = PostTypeEnum.Ground;
 			break;
 		case 3 : 
-			result = PostTypeEnum.Essence;
+			result = PostTypeEnum.DoubleDeck;
 			break;
 		}
 		return result;

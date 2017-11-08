@@ -5,23 +5,17 @@ import ps.nier.core.domain.base.PageQuery;
 public class PostQuery extends PageQuery{
 	private static final long serialVersionUID = 6025999513242927900L;
 	
-	private String name;
-	private String searchValue;
+	private String content;
 	private String userId;
 	private String groupId;
+	private String threadId;
 	private Integer status;
 	
-	public String getName() {
-		return name;
+	public String getContent() {
+		return content;
 	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getSearchValue() {
-		return searchValue;
-	}
-	public void setSearchValue(String searchValue) {
-		this.searchValue = searchValue;
+	public void setContent(String content) {
+		this.content = content;
 	}
 	public String getUserId() {
 		return userId;
@@ -34,6 +28,12 @@ public class PostQuery extends PageQuery{
 	}
 	public void setGroupId(String groupId) {
 		this.groupId = groupId;
+	}
+	public String getThreadId() {
+		return threadId;
+	}
+	public void setThreadId(String threadId) {
+		this.threadId = threadId;
 	}
 	public Integer getStatus() {
 		return status;

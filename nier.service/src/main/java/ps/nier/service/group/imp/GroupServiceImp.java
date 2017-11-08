@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import ps.nier.core.common.helper.QueryHelper;
 import ps.nier.core.domain.group.Group;
@@ -81,6 +82,7 @@ public class GroupServiceImp implements GroupService {
 	}
 
 	@Override
+	@Transactional
 	public boolean batchRemove(String[] ids) {
 		return groupRepository.deleteByIdIn(ids) > 0;
 	}

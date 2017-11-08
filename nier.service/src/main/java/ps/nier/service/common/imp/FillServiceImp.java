@@ -7,6 +7,7 @@ import ps.nier.core.domain.group.Group;
 import ps.nier.core.domain.groupcategory.GroupCategory;
 import ps.nier.core.domain.groupsubcategory.GroupSubcategory;
 import ps.nier.core.domain.menu.Menu;
+import ps.nier.core.domain.post.Post;
 import ps.nier.core.domain.postthread.PostThread;
 import ps.nier.core.domain.user.User;
 import ps.nier.service.common.FillService;
@@ -32,9 +33,9 @@ public class FillServiceImp implements FillService{
 			if (groupCategory != null) {
 				item.setGroupCategoryName(groupCategory.getName());
 			}
-		}
-		
+		}		
 	}
+	
 	@Override
 	public void fillMenu(Menu item) {
 		if (item != null) {
@@ -42,9 +43,9 @@ public class FillServiceImp implements FillService{
 			if (menu != null) {
 				item.setParentName(menu.getName());
 			}
-		}
-		
+		}	
 	}
+	
 	@Override
 	public void fillGroup(Group item) {
 		if (item != null) {
@@ -58,6 +59,7 @@ public class FillServiceImp implements FillService{
 			}
 		}
 	}
+	
 	@Override
 	public void fillPostThread(PostThread item) {
 		if (item != null) {
@@ -67,5 +69,11 @@ public class FillServiceImp implements FillService{
 			}
 		}		
 	}
-
+	
+	@Override
+	public void fillPost(Post item) {
+		if (item != null) {
+			item.setUser(userService.get(item.getUserId()));
+		}		
+	}
 }

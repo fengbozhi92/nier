@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import ps.nier.core.domain.base.BaseEntity;
 @Entity
 @Table(name="d_group_subcategory")
-@JsonIgnoreProperties({ "handler","hibernateLazyInitializer" })
+@JsonIgnoreProperties({"handler", "hibernateLazyInitializer"})
 public class GroupSubcategory extends BaseEntity{
 	private static final long serialVersionUID = -705963853473736023L;
 	@Id

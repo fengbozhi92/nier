@@ -15,11 +15,13 @@ public class PostThread extends BaseEntity{
 	private String groupId;
 	private String userId;
 	private String title;
-	private String content;
 	private int viewCount;
 	private int replyCount;
-	private Integer postType;
+	private Integer type;
 	private Integer status;
+	
+	@Transient
+	private String content;
 	
 	@Transient
 	private String userNickname;
@@ -48,12 +50,6 @@ public class PostThread extends BaseEntity{
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getContent() {
-		return content;
-	}
-	public void setContent(String content) {
-		this.content = content;
-	}
 	public int getViewCount() {
 		return viewCount;
 	}
@@ -66,17 +62,23 @@ public class PostThread extends BaseEntity{
 	public void setReplyCount(int replyCount) {
 		this.replyCount = replyCount;
 	}
-	public Integer getPostType() {
-		return postType;
+	public Integer getType() {
+		return type;
 	}
-	public void setPostType(Integer postType) {
-		this.postType = postType;
+	public void setType(Integer type) {
+		this.type = type;
 	}
 	public Integer getStatus() {
 		return status;
 	}
 	public void setStatus(Integer status) {
 		this.status = status;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
 	}
 	public String getUserNickname() {
 		return userNickname;

@@ -3,7 +3,6 @@
         	<table id="threads" data-use-row-attr-func="true" data-reorderable-rows="true"></table>
     	</div>
     	
-    	
     	<form role="form" id="threadForm">
            	<div class="col-sm-12 modal-body form-horizontal">
            		<div class="form-group">
@@ -27,6 +26,7 @@
                    		<textarea name="content" class="form-control" id="content" rows="5"></textarea>
                    	</div>
                	</div>
+               	
                	<div class="form-group">
                		<div class="col-sm-2"></div>
                   	<div class="col-sm-8 text-left">
@@ -205,7 +205,7 @@
 				rand:Math.random()
 			}
 		$.ajax({
-			url:"/post/pub.do",
+			url:"/postthread/pub.do",
 			data:$("#threadForm").serialize() + "&" + $.param(data),
 			success:function(res){
 				alert("保存成功！"+status);

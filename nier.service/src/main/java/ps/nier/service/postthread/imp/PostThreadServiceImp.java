@@ -17,15 +17,22 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ps.nier.core.common.helper.QueryHelper;
+import ps.nier.core.common.utils.UUIDUtils;
+import ps.nier.core.dictionary.PostTypeEnum;
+import ps.nier.core.dictionary.StatusEnum;
+import ps.nier.core.domain.post.Post;
 import ps.nier.core.domain.postthread.PostThread;
 import ps.nier.core.domain.postthread.PostThreadQuery;
 import ps.nier.service.common.FillService;
+import ps.nier.service.post.PostService;
 import ps.nier.service.postthread.PostThreadRepository;
 import ps.nier.service.postthread.PostThreadService;
 @Service
 public class PostThreadServiceImp implements PostThreadService {
 	@Autowired
 	private PostThreadRepository postThreadRepository;
+	@Autowired
+	private PostService postService;
 	@Autowired
 	private FillService fillService;
 	
@@ -35,11 +42,14 @@ public class PostThreadServiceImp implements PostThreadService {
 			@Override
 			public Predicate toPredicate(Root<PostThread> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
 				List<Predicate> predicate = new ArrayList<Predicate>();
-				if (StringUtils.isNotBlank(postThread.getName())) {
-					predicate.add(cb.like(root.get("name").as(String.class), QueryHelper.getFullImplict(postThread.getName())));
+				if (StringUtils.isNotBlank(postThread.getTitle())) {
+					predicate.add(cb.like(root.get("title").as(String.class), QueryHelper.getFullImplict(postThread.getTitle())));
 				}
 				if (postThread.getStatus() != null) {
 					predicate.add(cb.equal(root.get("status").as(Integer.class), postThread.getStatus()));
+				}
+				if (postThread.getType() != null) {
+					predicate.add(cb.equal(root.get("type").as(Integer.class), postThread.getType()));
 				}
 				if (StringUtils.isNotBlank(postThread.getGroupId())) {
 					predicate.add(cb.equal(root.get("groupId").as(String.class), postThread.getGroupId()));
@@ -77,8 +87,23 @@ public class PostThreadServiceImp implements PostThreadService {
 	}
 
 	@Override
-	public boolean save(PostThread post) {
-		return postThreadRepository.save(post) != null;
+	@Transactional
+	public boolean save(PostThread postThread) {
+		if (postThreadRepository.save(postThread) != null) {
+			Post post = new Post();
+			post.setId(UUIDUtils.getId36());
+			post.setGroupId(postThread.getGroupId());
+			post.setThreadId(postThread.getId());
+			post.setUserId(postThread.getUserId());
+			post.setContent(postThread.getContent());
+			post.setType(PostTypeEnum.Ground.getValue());
+			post.setCreateUser(postThread.getCreateUser());
+			post.setCreateTime(postThread.getCreateTime());
+			post.setStatus(StatusEnum.Valid.getValue());
+			postService.save(post);
+			return true;
+		}
+		return false;
 	}
 
 	@Override

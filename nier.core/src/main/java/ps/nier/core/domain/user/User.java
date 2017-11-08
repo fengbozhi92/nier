@@ -12,10 +12,13 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import ps.nier.core.dictionary.UserRoleEnum;
 
 @Entity
 @Table(name="s_user")
+@JsonIgnoreProperties({"handler", "hibernateLazyInitializer"})
 public class User implements UserDetails{
 	private static final long serialVersionUID = 1L;
 	
@@ -26,6 +29,7 @@ public class User implements UserDetails{
 	private int 		roles;				//身份
 	private String 		nickname;			//昵称
 	private String 		email;				//邮箱
+	private String		imagePath;
 
 	public String getId() {
 		return id;
@@ -66,6 +70,12 @@ public class User implements UserDetails{
 		this.roles = roles;
 	}
 	
+	public String getImagePath() {
+		return imagePath;
+	}
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		List<GrantedAuthority> authorityList = new ArrayList<GrantedAuthority>();
