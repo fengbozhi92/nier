@@ -1,9 +1,9 @@
 <div id="title" class="col-sm-12">
 	<div class="row">
-		<div class="col-sm-6">
+		<div class="col-sm-8">
 			<h3>${thread.title}</h3>
 		</div>
-		<div class="col-sm-6 text-right" style="line-height:63px">
+		<div class="col-sm-4 text-right" style="line-height:63px">
 			<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-eye-open"></span>&nbsp;只看楼主</button>&nbsp;
 			<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-tag"></span>&nbsp;收藏</button>&nbsp;
 			<button type="button" class="btn btn-default"  onclick="javascript:document.getElementById('pub_post').scrollIntoView(true);return false;">
@@ -11,8 +11,8 @@
 		</div>
 	</div>
 </div>
-<div class="panel-body" style="padding-bottom:0; padding-top: 0">
-	<table id="posts"></table>
+<div class="panel-body" style="padding-bottom:0px;">
+	<table id="posts" data-use-row-attr-func="true" data-reorderable-rows="true"></table>
 </div>
 <#include "/manager/common/js.ftl">
 <script>
@@ -43,7 +43,7 @@
 	            sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
 	            pageNumber:1,                       //初始化加载第一页，默认第一页
 	            pageSize: 10,                       //每页的记录行数（*）
-	            pageList: [],         				//可供选择的每页的行数（*）
+	            pageList: [10, 20, 30, 50],         //可供选择的每页的行数（*）
 	            search: false,                      //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
 	            strictSearch: true,
 	            responseHandler: responseHandler,
@@ -67,7 +67,6 @@
 	                title : '',
 	                width : 150,
 	                align : 'center',
-	                class : "p-left",
 	                formatter : function (value, row, index){
 	                	var head = '<img src="/nier/images/system/sys-def-head.png" width="100" style="padding:2px;border:1px solid #b0b0b0;">';
 	                	if (row.user.imagePath != null && row.user.imagePath.length > 36) {
@@ -113,75 +112,40 @@
 	                	if (row.userId = '${thread.userId}') {
 	                		lord = "楼主"
 	                	}
-	                	
-	                	var replyList = '';
-	                	var replyContent = 'display:none;';
-	                	var replyTarget = "<a href=\"#\" onclick=\"reply(this,'"+row.id+"');return false;\">回复</a>"+
-										  "<a href=\"#\" onclick=\"reply(this,'"+row.id+"');return false;\" style=\"display:none\">收起回复</a>";
-	                	if (row.existedReply) {
-	                		replyContent = '';
-	                		replyTarget = "<a href=\"#\" onclick=\"reply(this,'"+row.id+"');return false;\" style=\"display:none\">回复</a>"+
-							  			  "<a href=\"#\" onclick=\"reply(this,'"+row.id+"');return false;\">收起回复</a>";
-				  			
-							$.each(row.replys, function(i, item){
-								var rep_user = '';
-								if (item.replyUserNickname !=null) {
-									rep_user = '回复 <a href="#">'+item.replyUserNickname+'</a> : ';
-						 		}
-								replyList += '<div class="col-sm-12" style="min-height:50px; padding:2px;">'+
-	                							 '<div class="row">'+
-			                						 '<div class="col-sm-12">'+
-			                						 	'<div class="col-sm-1">'+
-			                						 		'<img src="/nier/images/system/sys-def-head.png" width="32" style="padding:2px;border:1px solid #b0b0b0;">'+
-			                						 	'</div>'+
-			                						 	'<div class="col-sm-11">'+
-			                						 		'<p><a href="#">'+item.userNickname+'</a> : '+
-			                						 		rep_user+
-			                						 		item.content+'</p>'+
-			                						 		'<p class="text-right" style="color:#b0b0b0">'+new Date(item.createTime).format('yyyy-MM-dd HH:mm')+
-			                						 			'&nbsp;<a href="#" onclick=\"addName(\''+row.id+'\',\''+item.userNickname+'\');return false;\">回复</a>'+
-			                						 		'</p>'+
-			                						 	'</div>'+
-			                						 '</div>'+
-			                					 '</div>'+
-	                						 '</div>';
-	                		})
-	                	}
-	                	var	result = '<div class="col-sm-12"">'+
+	                	var	result = '<div class="col-sm-12">'+
 	                					'<div class="row">'+
 		                			     	'<div class="col-sm-12" style="min-height:150px;">'+
 		                				    	'<div>'+row.content+'</div>'+
 		                				   	'</div>'+
-		                				   	
 		                				   	'<div class="col-sm-12 lh34" class="panel-group">'+
 		                				   		'<div class="row">'+
-		                				   			'<div class="col-lg-4 col-md-2 hidden-sm">'+
+		                				   			'<div class="col-sm-6">'+
 	                				    			'</div>'+
-	                				    			'<div class="col-lg-8 col-md-10 col-sm-12 text-right">'+
+	                				    			'<div class="col-sm-6 text-right">'+
 	                				    				'<div class="row" style="color:#b0b0b0;">'+
-			                				    			'<div class="col-sm-4 col-xs-4">'+
+			                				    			'<div class="col-sm-4">'+
 		                				    					tool+
 		                				    				'</div>'+
-			                				    			'<div class="col-sm-1 col-xs-1" style="padding:0">'+
+			                				    			'<div class="col-sm-2">'+
 				            				    				'<span>'+row.sequence+'楼</span>'+
 				            				    			'</div>'+
-				            				    			'<div class="col-sm-4 col-xs-4" style="padding:0">'+
+				            				    			'<div class="col-sm-4">'+
 		            				    						'<span>'+date+'</span>'+
 	            				    						'</div>'+
-			            				    				'<div class="col-sm-3 col-xs-3">'+
-			            				    					replyTarget+
+			            				    				'<div class="col-sm-2">'+
+		            				    						"<a href=\"#\" onclick=\"reply(this,'"+row.id+"');return false;\">回复</a>"+
+		            				    						"<a href=\"#\" onclick=\"reply(this,'"+row.id+"');return false;\" style=\"display:none\">收起回复</a>"+
 		            				    					'</div>'+
 	            				    					'</div>'+
 	            				    				'</div>'+
 	                				    		'</div>'+
 	                				   		'</div>'+
 	    	
-                				   			'<div class="col-sm-12" style="'+replyContent+' border-top:1px solid #F0F0F0; padding-top:5px; background-color:#F0F0F0; border-radius:5px;" id="'+row.id+'">'+
+                				   			'<div class="col-sm-12" style="display:none; border-top:1px solid #ddd; padding-top:5px; background-color:#ddd; border-radius:5px;" id="'+row.id+'">'+
                 				   				'<div class="row">'+
-                				   					replyList+
-                				   				'</div>'+
-                				   				'<div class="row">'+
-	                				   				'<div class="col-sm-12">'+
+	                				   				'<div class="col-sm-4">'+
+	                				   				'</div>'+
+	                				   				'<div class="col-sm-8">'+
 	                				   					'<textarea id="rep_content'+row.id+'" class="form-control" style="resize:none;min-height:50px;"></textarea>'+
 	                				   				'</div>'+
 	                				   			'</div>'+
@@ -189,11 +153,10 @@
                 				   					'<div class="col-sm-8">'+
                 				   					'</div>'+
 	                				   				'<div class="col-sm-4 text-right">'+
-	                				   					'<button type="button" class="btn btn-default btn-sm" onclick="pub_rep(\''+row.id+'\',\'\')">发表</button>'+
+	                				   					'<button type="button" class="btn btn-default btn-sm" onclick="pub_rep(\''+row.id+'\')">发表</button>'+
 	                				   				'</div>'+
                 				   				'</div>'+
                 				   			'</div>'+
-                				   			
 	                				   	'</div>'+  	
 	                				 '</div>';
 	                	return result;
@@ -249,32 +212,15 @@
 		$(el).siblings().show();
 	}
 
-	function pub_rep(postId, userId){
-		var content = $("#rep_content"+postId).val();
+	function pub_rep(rowId){
+		var content = $("#rep_content"+rowId).val();
 		if (content.trim() == '') {
 			alert("请输入内容");
 			return false;
 		} else {
 			content = content.replace(/\n/g,"<br/>").replace(/\s/g,"&nbsp;");
 		}
-		alert(content);
-		$.ajax({
-			url:"/postreply/pub.do",
-			data:{
-				postId:postId,
-				content:content,
-				replyUserId:userId,
-				createUser:'${(Session.SPRING_SECURITY_CONTEXT.authentication.principal.id)!""}'
-			},
-			success:function(res){
-				alert("成功！");
-			},
-			error:function(){
-				alert("失败");
-			}
-		});
+		alert(content);		
 	}
-	function addName(postId, nickname){
-		$("#rep_content"+postId).val("回复  "+nickname+" :");
-	}
+	
 </script>

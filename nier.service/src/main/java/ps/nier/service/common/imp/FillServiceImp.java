@@ -1,6 +1,7 @@
 package ps.nier.service.common.imp;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
 import ps.nier.core.domain.group.Group;
@@ -8,12 +9,15 @@ import ps.nier.core.domain.groupcategory.GroupCategory;
 import ps.nier.core.domain.groupsubcategory.GroupSubcategory;
 import ps.nier.core.domain.menu.Menu;
 import ps.nier.core.domain.post.Post;
+import ps.nier.core.domain.postreply.PostReply;
+import ps.nier.core.domain.postreply.PostReplyQuery;
 import ps.nier.core.domain.postthread.PostThread;
 import ps.nier.core.domain.user.User;
 import ps.nier.service.common.FillService;
 import ps.nier.service.groupcategory.GroupCategoryService;
 import ps.nier.service.groupsubcategory.GroupSubcategoryService;
 import ps.nier.service.menu.MenuService;
+import ps.nier.service.postreply.PostReplyService;
 import ps.nier.service.user.UserService;
 @Component
 public class FillServiceImp implements FillService{
@@ -25,6 +29,8 @@ public class FillServiceImp implements FillService{
 	private MenuService menuService;
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private PostReplyService postReplyService;
 	
 	@Override
 	public void fillGroupSubcategory(GroupSubcategory item) {
@@ -74,6 +80,29 @@ public class FillServiceImp implements FillService{
 	public void fillPost(Post item) {
 		if (item != null) {
 			item.setUser(userService.get(item.getUserId()));
+			Page<PostReply> page = postReplyService.list(new PostReplyQuery(item.getId()));
+			if (page != null && page.getContent() != null && !page.getContent().isEmpty()) {
+				item.setReplys(page.getContent());
+				item.setExistedReply(true);
+			} else {
+				item.setExistedReply(false);
+			}
+		}		
+	}
+	
+	@Override
+	public void fillPostReply(PostReply item) {
+		if (item != null) {
+			if (item.getReplyUserId() != null && item.getReplyUserId().length() == 36) {
+				User replyUser = userService.get(item.getReplyUserId());
+				if (replyUser != null) {
+					item.setReplyUserNickname(replyUser.getNickname());
+				}
+			}
+			User createUser = userService.get(item.getCreateUser());	
+			if (createUser != null) {
+				item.setUserNickname(createUser.getNickname());
+			}
 		}		
 	}
 }

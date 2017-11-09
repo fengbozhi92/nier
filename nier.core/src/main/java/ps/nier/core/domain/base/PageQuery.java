@@ -9,8 +9,8 @@ public class PageQuery implements Pageable, Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
-	public int page;
-	public int size;
+	public int page = 0;
+	public int size = 10;
 	
 	public Sort sort;
 	

@@ -35,7 +35,7 @@ public class PostController extends BaseController{
 	}
 	
 	@RequestMapping(value="/post/pub.do")
-	public ResponseEntity<ResEntity> save(Post post){
+	public ResponseEntity<ResEntity> pub(Post post){
 		try {
 			post.setId(UUIDUtils.getId36());
 			post.setCreateTime(new Date());
