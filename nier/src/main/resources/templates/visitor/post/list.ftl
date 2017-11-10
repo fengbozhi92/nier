@@ -30,7 +30,7 @@
 	    //初始化Table
 	    oTableInit.Init = function () {
 	        $('#posts').bootstrapTable({
-	            url: '/post/ajaxList.do',  //请求后台的URL（*）
+	            url: '/post/ajaxList.do',  			//请求后台的URL（*）
 	            method: 'post',                     //请求方式（*）
 	            toolbar: '#title',                  //工具按钮用哪个容器
 	            toolbarAlign: 'center',

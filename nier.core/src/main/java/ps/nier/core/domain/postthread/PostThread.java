@@ -25,6 +25,8 @@ public class PostThread extends BaseEntity{
 	
 	@Transient
 	private String userNickname;
+	@Transient
+	private String groupName;
 	
 	public String getId() {
 		return id;
@@ -85,5 +87,11 @@ public class PostThread extends BaseEntity{
 	}
 	public void setUserNickname(String userNickname) {
 		this.userNickname = userNickname;
+	}
+	public String getGroupName() {
+		return groupName;
+	}
+	public void setGroupName(String groupName) {
+		this.groupName = groupName;
 	}
 }

@@ -69,7 +69,9 @@ public class PostThreadServiceImp implements PostThreadService {
 
 	@Override
 	public PostThread get(String id) {
-		return postThreadRepository.findOne(id);
+		PostThread thread = postThreadRepository.findOne(id);
+		fillService.fillPostThread(thread);
+		return thread;
 	}
 
 	@Override

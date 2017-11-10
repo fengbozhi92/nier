@@ -22,7 +22,7 @@ td{
 	<div class="container" style="min-height:1260px;">
 		<div class="col-md-12">
 			<div class="col-md-12">
-				<a href="#">&lt;返回${thread.title}</a>
+				<a href="#">&lt;返回${thread.groupName!""}</a>
 			</div>
 		</div>
 		<div class="col-md-9" style="padding-right:0">

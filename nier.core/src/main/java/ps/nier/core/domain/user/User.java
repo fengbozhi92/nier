@@ -29,7 +29,7 @@ public class User implements UserDetails{
 	private int 		roles;				//身份
 	private String 		nickname;			//昵称
 	private String 		email;				//邮箱
-	private String		imagePath;
+	private String		imagePath;			//头像
 
 	public String getId() {
 		return id;

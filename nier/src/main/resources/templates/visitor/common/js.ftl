@@ -1,13 +1,19 @@
-<script type="text/javascript" src="/third-party/vue/vue.min.js"></script>
-<script type="text/javascript" src="/third-party/axios/axios.min.js"></script>
 <script type="text/javascript" src="/third-party/jquery/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="/third-party/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/third-party/bootstrap-typeahead/js/bootstrap-typeahead.min.js"></script>
-<script type="text/javascript" src="/third-party/bootstrap-select/js/bootstrap-select.min.js"></script>
 <script type="text/javascript" src="/third-party/bootstrap-table/js/bootstrap-table.min.js"></script>
 <script type="text/javascript" src="/third-party/bootstrap-table/i18n/bootstrap-table-zh-CN.min.js"></script>
 <script type="text/javascript" src="/third-party/bootstrap-validator/js/bootstrap-validator.min.js"></script>
-<script type="text/javascript" src="/third-party/cropper/js/cropper.js"></script>
-<script type="text/javascript" src="/third-party/wang-editor/wangEditor.js"></script>
 <script type="text/javascript" src="/nier/js/scrolltopcontrol.js"></script>
 <script type="text/javascript" src="/nier/js/nier-core.js"></script>
+<#macro loadJS third nier>
+	<#if third != "">
+		<#list third?split(",") as it>
+			<script type="text/javascript" src="/third-party/${it}/js/${it}.min.js"></script>
+		</#list>
+	</#if>
+	<#if nier != "">
+		<#list nier?split(",") as it>
+			<script type="text/javascript" src="/nier/js/${it}.js"></script>
+		</#list>
+	</#if>
+</#macro>

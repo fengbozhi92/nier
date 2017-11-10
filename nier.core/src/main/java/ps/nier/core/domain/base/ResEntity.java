@@ -5,12 +5,12 @@ import ps.nier.core.dictionary.ResCodeEnum;
 public class ResEntity {
 	
 	private int code;
-    private String msg;
+    private String message;
     private Object data;
 
     public ResEntity(ResCodeEnum respCode) {
         this.code = respCode.getCode();
-        this.msg = respCode.getMsg();
+        this.message = respCode.getMsg();
     }
 
     public ResEntity(ResCodeEnum respCode, Object data) {
@@ -26,12 +26,12 @@ public class ResEntity {
 		this.code = code;
 	}
 
-	public String getMsg() {
-		return msg;
+	public String getMessage() {
+		return message;
 	}
 
-	public void setMsg(String msg) {
-		this.msg = msg;
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
 	public Object getData() {

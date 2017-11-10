@@ -14,6 +14,7 @@ import ps.nier.core.domain.postreply.PostReplyQuery;
 import ps.nier.core.domain.postthread.PostThread;
 import ps.nier.core.domain.user.User;
 import ps.nier.service.common.FillService;
+import ps.nier.service.group.GroupService;
 import ps.nier.service.groupcategory.GroupCategoryService;
 import ps.nier.service.groupsubcategory.GroupSubcategoryService;
 import ps.nier.service.menu.MenuService;
@@ -21,6 +22,8 @@ import ps.nier.service.postreply.PostReplyService;
 import ps.nier.service.user.UserService;
 @Component
 public class FillServiceImp implements FillService{
+	@Autowired
+	private GroupService groupService;
 	@Autowired
 	private GroupCategoryService groupCategoryService;
 	@Autowired
@@ -70,8 +73,12 @@ public class FillServiceImp implements FillService{
 	public void fillPostThread(PostThread item) {
 		if (item != null) {
 			User user = userService.get(item.getUserId());
+			Group group = groupService.get(item.getGroupId());
 			if (user != null) {
 				item.setUserNickname(user.getNickname());
+			}
+			if (group != null) {
+				item.setGroupName(group.getName());
 			}
 		}		
 	}

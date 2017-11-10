@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import ps.nier.controller.base.BaseController;
@@ -33,9 +34,32 @@ public class GroupController extends BaseController{
 			model.addAttribute("categorys", groupCategoryService.listAll());
 		} catch (Throwable t) {
 			t.printStackTrace();
-			logger.error("GroupController's list is error!", t);
+			logger.error("GroupController's index is error!", t);
 		}
 		return "visitor/group/index";
+	}
+
+	@RequestMapping(value="/group/list.do")
+	public String list(Model model, HttpServletRequest req){
+		String name = req.getParameter("name");
+		try {
+			model.addAttribute("searchName", name);
+			model.addAttribute("categorys", groupCategoryService.listAll());
+		} catch (Throwable t) {
+			t.printStackTrace();
+			logger.error("GroupController's list is error!", t);
+		}
+		return "visitor/group/list";
+	}
+	
+	@RequestMapping(value="/group/ajaxList.do")
+	public ResponseEntity<ResEntity> ajaxList(@RequestBody GroupQuery query){
+		try {
+		} catch (Throwable t) {
+			t.printStackTrace();
+			logger.error("GroupController's ajaxList is error!", t);
+		}
+		return renderData(groupService.list(query));
 	}
 	
 	@RequestMapping(value="/group/view.do")

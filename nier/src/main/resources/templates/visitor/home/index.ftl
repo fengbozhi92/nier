@@ -1,29 +1,30 @@
+<#include "/visitor/common/macro/default.ftl">
 <!DOCTYPE html>
 <html>
 <head>
 <#include "/visitor/common/header.ftl">
 <title>home</title>
-		<style type="text/css">
-			.avatar-btns button {
-			    height: 35px;
-			}
-			
-		</style>
-		<link href="/third-party/cropper/css/sitelogo.css" rel="stylesheet">
-		<link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/font-awesome.4.6.0.css">
+<style type="text/css">
+	.avatar-btns button {
+	    height: 35px;
+	}
+</style>
+<link href="/third-party/cropper/css/sitelogo.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/font-awesome.4.6.0.css">
 		
 </head>
 <body>
-	<#include "/visitor/common/top.ftl">
+	<#include "/visitor/common/layout/top.ftl">
 	<div class="container">
 		<div class="jumbotron">
-			${(Session.SPRING_SECURITY_CONTEXT.authentication.principal.username)!""}
+			${currentUser!""}
 		</div>
+		
 		<div class="jumbotron">
 			
 			<button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#avatar-modal" style="margin: 10px;">
 				修改头像
-		</button>
+			</button>
 		<div class="user_pic" style="margin: 10px;">
 			<img src=""/>
 		</div>
@@ -108,81 +109,81 @@
 		11
 		</div>
 		<div class="jumbotron">
-		<div id="editor">
-				</div>
+			<div id="editor">
 			</div>
 		</div>
+		</div>
 	</div>
-<#include "/visitor/common/footer.ftl">
-<#include "/visitor/common/js.ftl">
+<#include "/visitor/common/layout/footer.ftl">
+<#import "/visitor/common/js.ftl" as mac>
+<@mac.loadJS third="bootstrap" nier=""/>
 <script src="/third-party/cropper/js/sitelogo.js"></script>
-<script src="/third-party/cropper/js/html2canvas.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/third-party/cropper/js/html2canvas.min.js"></script>
 <script>
-
-var E = window.wangEditor;
-var editor = new E("#editor");
-editor.customConfig.debug = true;
-editor.customConfig.uploadFileName = 'myFileName';
-editor.customConfig.showLinkImg = false
-editor.customConfig.uploadImgServer = '/upload/image.do';  // 上传图片到服务器
-//editor.customConfig.uploadImgShowBase64 = true
-editor.create();
-
-//做个下简易的验证  大小 格式 
-$('#avatarInput').on('change', function(e) {
-	var filemaxsize = 1024 * 5;//5M
-	var target = $(e.target);
-	var Size = target[0].files[0].size / 1024;
-	if(Size > filemaxsize) {
-		alert('图片过大，请重新选择!');
-		$(".avatar-wrapper").childre().remove;
-		return false;
-	}
-	if(!this.files[0].type.match(/image.*/)) {
-		alert('请选择正确的图片!')
-	} else {
-		var filename = document.querySelector("#avatar-name");
-		var texts = document.querySelector("#avatarInput").value;
-		var teststr = texts; //你这里的路径写错了
-		testend = teststr.match(/[^\\]+\.[^\(]+/i); //直接完整文件名的
-		filename.innerHTML = testend;
-	}
-
-});
-
-$(".avatar-save").on("click", function() {
-	var img_lg = document.getElementById('imageHead');
-	// 截图小的显示框内的内容
-	html2canvas(img_lg, {
-		allowTaint: true,
-		taintTest: false,
-		onrendered: function(canvas) {
-			canvas.id = "mycanvas";
-			//生成base64图片数据
-			var dataUrl = canvas.toDataURL("image/jpeg");
-			var newImg = document.createElement("img");
-			newImg.src = dataUrl;
-			imagesAjax(dataUrl)
+	var E = window.wangEditor;
+	var editor = new E("#editor");
+	editor.customConfig.debug = true;
+	editor.customConfig.uploadFileName = 'myFileName';
+	editor.customConfig.showLinkImg = false
+	editor.customConfig.uploadImgServer = '/upload/image.do';  // 上传图片到服务器
+	//editor.customConfig.uploadImgShowBase64 = true
+	editor.create();
+	
+	//做个下简易的验证  大小 格式 
+	$('#avatarInput').on('change', function(e) {
+		var filemaxsize = 1024 * 5;//5M
+		var target = $(e.target);
+		var Size = target[0].files[0].size / 1024;
+		if(Size > filemaxsize) {
+			alert('图片过大，请重新选择!');
+			$(".avatar-wrapper").childre().remove;
+			return false;
 		}
+		if(!this.files[0].type.match(/image.*/)) {
+			alert('请选择正确的图片!')
+		} else {
+			var filename = document.querySelector("#avatar-name");
+			var texts = document.querySelector("#avatarInput").value;
+			var teststr = texts; //你这里的路径写错了
+			testend = teststr.match(/[^\\]+\.[^\(]+/i); //直接完整文件名的
+			filename.innerHTML = testend;
+		}
+	
 	});
-})
 
-function imagesAjax(src) {
-	var data = {};
-	data.img = src;
-	data.jid = $('#jid').val();
-	$.ajax({
-		url: "/upload/image.do",
-		data: data,
-		type: "POST",
-		dataType: 'json',
-		success: function(re) {
-			if(re.status == '1') {
-				$('.user_pic img').attr('src',src );
+	$(".avatar-save").on("click", function() {
+		var img_lg = document.getElementById('imageHead');
+		// 截图小的显示框内的内容
+		html2canvas(img_lg, {
+			allowTaint: true,
+			taintTest: false,
+			onrendered: function(canvas) {
+				canvas.id = "mycanvas";
+				//生成base64图片数据
+				var dataUrl = canvas.toDataURL("image/jpeg");
+				var newImg = document.createElement("img");
+				newImg.src = dataUrl;
+				imagesAjax(dataUrl)
 			}
-		}
-	});
-}
+		});
+	})
+
+	function imagesAjax(src) {
+		var data = {};
+		data.img = src;
+		data.jid = $('#jid').val();
+		$.ajax({
+			url: "/upload/image.do",
+			data: data,
+			type: "POST",
+			dataType: 'json',
+			success: function(re) {
+				if(re.status == '1') {
+					$('.user_pic img').attr('src',src );
+				}
+			}
+		});
+	}
 </script>
 </body>
 </html>
