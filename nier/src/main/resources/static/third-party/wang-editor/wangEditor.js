@@ -571,7 +571,7 @@ var config = {
 
     // 上传图片的自定义header
     uploadImgHeaders: {
-        // 'Accept': 'text/x-json'
+         //'Accept': 'text/x-json'
     },
 
     // 配置 XHR withCredentials
@@ -1924,19 +1924,11 @@ Emoticon.prototype = {
         var _this = this;
 
         // 拼接表情字符串
-        var faceHtml = '';
-        var faceStr = '😀 😃 😄 😁 😆 😅 😂  😊 😇 🙂 🙃 😉 😌 😍 😘 😗 😙 😚 😋 😜 😝 😛 🤑 🤗 🤓 😎 😏 😒 😞 😔 😟 😕 🙁  😣 😖 😫 😩 😤 😠 😡 😶 😐 😑 😯 😦 😧 😮 😲 😵 😳 😱 😨 😰 😢 😥 😭 😓 😪 😴 🙄 🤔 😬 🤐';
-        faceStr.split(/\s/).forEach(function (item) {
+        var tiebaFaceHtml = '';
+        var tiebaFaceStr = '17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,39,40,41,42,43,44,45,46,47,48,49,50,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16';
+        tiebaFaceStr.split(",").forEach(function (item) {
             if (item) {
-                faceHtml += '<span class="w-e-item">' + item + '</span>';
-            }
-        });
-
-        var handHtml = '';
-        var handStr = '🙌 👏 👋 👍 👎 👊 ✊ ️👌 ✋ 👐 💪 🙏 ️👆 👇 👈 👉 🖕 🖐 🤘 🖖';
-        handStr.split(/\s/).forEach(function (item) {
-            if (item) {
-                handHtml += '<span class="w-e-item">' + item + '</span>';
+            	tiebaFaceHtml += '<span class="w-e-item"><img src="/nier/emoji/' + item + '.png"></span>';
             }
         });
 
@@ -1946,38 +1938,21 @@ Emoticon.prototype = {
             // 一个 Panel 包含多个 tab
             tabs: [{
                 // 标题
-                title: '表情',
+                title: '贴吧表情',
                 // 模板
-                tpl: '<div class="w-e-emoticon-container">' + faceHtml + '</div>',
+                tpl: '<div class="w-e-emoticon-container">' + tiebaFaceHtml + '</div>',
                 // 事件绑定
                 events: [{
-                    selector: 'span.w-e-item',
+                    selector: 'img',
                     type: 'click',
                     fn: function fn(e) {
                         var target = e.target;
-                        _this._insert(target.innerHTML);
+                        _this._insert(target.parentNode.innerHTML);
                         // 返回 true，表示该事件执行完之后，panel 要关闭。否则 panel 不会关闭
                         return true;
                     }
                 }]
-            }, // first tab end
-            {
-                // 标题
-                title: '手势',
-                // 模板
-                tpl: '<div class="w-e-emoticon-container">' + handHtml + '</div>',
-                // 事件绑定
-                events: [{
-                    selector: 'span.w-e-item',
-                    type: 'click',
-                    fn: function fn(e) {
-                        var target = e.target;
-                        _this._insert(target.innerHTML);
-                        // 返回 true，表示该事件执行完之后，panel 要关闭。否则 panel 不会关闭
-                        return true;
-                    }
-                }]
-            } // second tab end
+            },
             ] // tabs end
         });
 
@@ -3901,6 +3876,7 @@ UploadImg.prototype = {
                         } else {
                             // 将图片插入编辑器
                             var data = result.data || [];
+                            
                             data.forEach(function (link) {
                                 _this3.insertLinkImg(link);
                             });

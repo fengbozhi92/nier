@@ -19,6 +19,7 @@ public class ApplicationStart {
 	        container.addErrorPages(error401Page, error403Page, error404Page, error500Page);
 	   });
 	}
+	 
 	public static void main(String[] args) {
 		SpringApplication.run(ApplicationStart.class, args);
 	}

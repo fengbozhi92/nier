@@ -20,13 +20,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         		.antMatchers("/nier/**",
         					 "/third-party/**",
         					 "/",
+        					 "/file/**",
         					 "/login/**",
         					 "/register/**",
         					 "/home/**",
         					 "/group/**",
         					 "/post/**",
         					 "/postthread/**").permitAll()
-        		.antMatchers("/upload/**",
+        		.antMatchers(
         					 "/person/**",
         					 "/group/add.do").hasRole("USER")
         		.antMatchers("/manager/**").hasRole("MANAGER")

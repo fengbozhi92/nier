@@ -8,5 +8,4 @@
 <link rel="stylesheet" type="text/css" href="/third-party/bootstrap-select/css/bootstrap-select.min.css"/>
 <link rel="stylesheet" type="text/css" href="/third-party/bootstrap-table/css/bootstrap-table.min.css"/>
 <link rel="stylesheet" type="text/css" href="/third-party/bootstrap-validator/css/bootstrap-validator.min.css"/>
-<link rel="stylesheet" type="text/css" href="/third-party/cropper/css/cropper.min.css"/>
 <link rel="stylesheet" type="text/css" href="/nier/css/nier-core.css"/>
