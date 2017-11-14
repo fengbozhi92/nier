@@ -5,7 +5,7 @@
 var ZYFILE = {
 		fileInput : null,             // 选择文件按钮dom对象
 		uploadInput : null,           // 上传文件按钮dom对象
-		dragDrop: null,				  //拖拽敏感区域
+		dragDrop: null,				  // 拖拽敏感区域
 		url : "",  					  // 上传action路径
 		uploadFile : [],  			  // 需要上传的文件数组
 		lastUploadFile : [],          // 上一次选择的文件数组，方便继续上传使用
@@ -145,7 +145,7 @@ var ZYFILE = {
 			var self = this;  // 在each中this指向没个v  所以先将this保留
 			
 			var formdata = new FormData();
-			formdata.append("fileList", file);	         		
+			formdata.append("imageFile", file);	         		
 			var xhr = new XMLHttpRequest();
 			// 绑定上传事件
 			// 进度

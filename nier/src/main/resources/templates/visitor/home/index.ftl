@@ -2,99 +2,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-<#include "/visitor/common/header.ftl">
+
 <title>home</title>
-<style type="text/css">
-	.avatar-btns button {
-	    height: 35px;
-	}
-</style>
+<link rel="stylesheet" type="text/css" href="/third-party/bootstrap/css/bootstrap.min.css"/>
 <link href="/third-party/wang-editor/css/wang-editor.min.css" rel="stylesheet">		
 <link href="/third-party/jquery/zyUpload.css" rel="stylesheet">
+<link href="/nier/css/emoji.css" rel="stylesheet">
+<style type="text/css">
+.h5 * {
+  -webkit-box-sizing: content-box;
+     -moz-box-sizing: content-box;
+          box-sizing: content-box;
+}
+.h5 *:before,
+.h5 *:after {
+  -webkit-box-sizing: content-box;
+     -moz-box-sizing: content-box;
+          box-sizing: content-box;
+}
+</style>
 </head>
 <body>
 	<#include "/visitor/common/layout/top.ftl">
 	<div class="container">
 		<div class="jumbotron">
-			${currentUser!""}
-		</div>
-		
-		<div class="jumbotron">
-			
-			<button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#avatar-modal" style="margin: 10px;">
-				修改头像
-			</button>
-		<div class="user_pic" style="margin: 10px;">
-			<img src=""/>
-		</div>
-
-		<div class="modal fade" id="avatar-modal" aria-hidden="true" aria-labelledby="avatar-modal-label" role="dialog" tabindex="-1">
-			<div class="modal-dialog modal-lg">
-				<div class="modal-content">
-					<!--<form class="avatar-form" action="upload-logo.php" enctype="multipart/form-data" method="post">-->
-					<form class="avatar-form">
-						<div class="modal-header">
-							<button class="close" data-dismiss="modal" type="button">&times;</button>
-							<h4 class="modal-title" id="avatar-modal-label">上传图片</h4>
-						</div>
-						<div class="modal-body">
-							<div class="avatar-body">
-								<div class="avatar-upload">
-									<input class="avatar-src" name="avatar_src" type="hidden">
-									<input class="avatar-data" name="avatar_data" type="hidden">
-									<label for="avatarInput" style="line-height: 35px;">图片上传</label>
-									<button class="btn btn-danger"  type="button" style="height: 35px;" onclick="$('input[id=avatarInput]').click();">请选择图片</button>
-									<span id="avatar-name"></span>
-									<input class="avatar-input hide" id="avatarInput" name="avatar_file" type="file"></div>
-								<div class="row">
-									<div class="col-md-9">
-										<div class="avatar-wrapper"></div>
-									</div>
-									<div class="col-md-3">
-										<div class="avatar-preview preview-lg" id="imageHead"></div>
-										<!--<div class="avatar-preview preview-md"></div>
-								<div class="avatar-preview preview-sm"></div>-->
-									</div>
-								</div>
-								<div class="row avatar-btns">
-									<div class="col-md-4">
-										<div class="btn-group">
-											<button class="btn btn-danger fa fa-undo" data-method="rotate" data-option="-90" type="button" title="Rotate -90 degrees"> 向左旋转</button>
-										</div>
-										<div class="btn-group">
-											<button class="btn  btn-danger fa fa-repeat" data-method="rotate" data-option="90" type="button" title="Rotate 90 degrees"> 向右旋转</button>
-										</div>
-									</div>
-									<div class="col-md-5" style="text-align: right;">								
-										<button class="btn btn-danger fa fa-arrows" data-method="setDragMode" data-option="move" type="button" title="移动">
-							            <span class="docs-tooltip" data-toggle="tooltip" title="" data-original-title="$().cropper(&quot;setDragMode&quot;, &quot;move&quot;)">
-							            </span>
-							          </button>
-							          <button type="button" class="btn btn-danger fa fa-search-plus" data-method="zoom" data-option="0.1" title="放大图片">
-							            <span class="docs-tooltip" data-toggle="tooltip" title="" data-original-title="$().cropper(&quot;zoom&quot;, 0.1)">
-							              <!--<span class="fa fa-search-plus"></span>-->
-							            </span>
-							          </button>
-							          <button type="button" class="btn btn-danger fa fa-search-minus" data-method="zoom" data-option="-0.1" title="缩小图片">
-							            <span class="docs-tooltip" data-toggle="tooltip" title="" data-original-title="$().cropper(&quot;zoom&quot;, -0.1)">
-							              <!--<span class="fa fa-search-minus"></span>-->
-							            </span>
-							          </button>
-							          <button type="button" class="btn btn-danger fa fa-refresh" data-method="reset" title="重置图片">
-								            <span class="docs-tooltip" data-toggle="tooltip" title="" data-original-title="$().cropper(&quot;reset&quot;)" aria-describedby="tooltip866214">
-								       </button>
-							        </div>
-									<div class="col-md-3">
-										<button class="btn btn-danger btn-block avatar-save fa fa-save" type="button" data-dismiss="modal"> 保存修改</button>
-									</div>
-								</div>
-							</div>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-			<div class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
+			${currentUser!""}<div class="emoji_tieba17"></div>
 		</div>
 		<div >
 			<img alt="" src="/nier/images/butterfly.png">
@@ -113,7 +45,7 @@
 			<div id="ttt" style="height: 800px">
 			<h1 style="text-align:center;">Html5 Upload示例</h1>
 	
-			<div id="demo" class="demo"></div>
+			<div id="demo" class="h5"></div>
 			</div>
 		</div>
 	</div>
@@ -125,13 +57,12 @@
 <script src="/third-party/wang-editor/js/wang-editor.min.js"></script>
 <script src="/third-party/jquery/zyUpload.js"></script>
 <script src="/third-party/jquery/zyFile.js"></script>
-<script src="/third-party/jquery/jq22.js"></script>
 <script>
 
 	var E = window.wangEditor;
 	var editor = new E("#editor1");
 	editor.customConfig.debug = true;
-	editor.customConfig.uploadFileName = 'myFileName';
+	editor.customConfig.uploadFileName = 'imageFile';
 	editor.customConfig.showLinkImg = false;
 	editor.customConfig.uploadImgServer = '/file/image/upload.do?t='+Math.random();  // 上传图片到服务器
 	editor.customConfig.menus = [
@@ -182,7 +113,46 @@
 			alert("内容不能为空");
 		}
 	}
-
+	
+	$(function(){
+		// 初始化插件
+		$("#demo").zyUpload({
+			width            :   "650px",                 // 宽度
+			height           :   "400px",                 // 宽度
+			itemWidth        :   "120px",                 // 文件项的宽度
+			itemHeight       :   "100px",                 // 文件项的高度
+			url              :   "/file/image/upload.do",  // 上传文件的路径
+			multiple         :   true,                    // 是否可以多个文件上传
+			dragDrop         :   true,                    // 是否可以拖动上传文件
+			del              :   true,                    // 是否可以删除文件
+			finishDel        :   false,  				  // 是否在上传文件完成后删除预览
+			/* 外部获得的回调接口 */
+			onSelect: function(files, allFiles){                    // 选择文件的回调方法
+				console.info("当前选择了以下文件：");
+				console.info(files);
+				console.info("之前没上传的文件：");
+				console.info(allFiles);
+			},
+			onDelete: function(file, surplusFiles){                     // 删除一个文件的回调方法
+				console.info("当前删除了此文件：");
+				console.info(file);
+				console.info("当前剩余的文件：");
+				console.info(surplusFiles);
+			},
+			onSuccess: function(file){                    // 文件上传成功的回调方法
+				console.info("此文件上传成功：");
+				console.info(file);
+			},
+			onFailure: function(file){                    // 文件上传失败的回调方法
+				console.info("此文件上传失败：");
+				console.info(file);
+			},
+			onComplete: function(responseInfo){           // 上传完成的回调方法
+				console.info("文件上传完成");
+				console.info(responseInfo);
+			}
+		});
+	});
 </script>
 </body>
 </html>

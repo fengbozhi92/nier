@@ -14,7 +14,7 @@ public class DefaultEntity implements Serializable{
 	private Date 	modifyTime;		//修改时间
 	private String 	createUser;		//创建用户
 	private String 	modifyUser;		//修改用户
-	private Integer status = 2;		//状态(1.启用, 2.禁用)
+	private Integer status = 1;		//状态(1.启用, 2.禁用)
 	private int 	version = 1;	//版本号
 
 	public String getId() {
