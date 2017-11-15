@@ -58,7 +58,7 @@
 					html += '			<div class="upload_choose">';
 	            	html += '				<div class="convent_choice">';
 	            	html += '					<div class="andArea">';
-	            	html += '						<div class="filePicker">点击选择文件</div>';
+	            	html += '						<div class="filePicker">添加图片</div>';
 	            	html += '						<input id="fileImage" type="file" size="30" name="fileselect[]" '+multiple+'>';
 	            	html += '					</div>';
 	            	html += '				</div>';
@@ -90,15 +90,15 @@
 		            html += '				<div id="status_info" class="info">选中0张文件，共0B。</div>';
 		            html += '				<div class="btns">';
 		            html += '					<input id="fileImage" type="file" size="30" name="fileselect[]" '+multiple+'>';
-		            html += '					<div class="webuploader_pick">选择文件</div>';
+		            html += '					<div class="webuploader_pick">批量添加</div>';
 		            html += '					<div class="upload_btn">开始上传</div>';
 		            html += '				</div>';
 		            html += '			</div>';
 		            html += '			<div id="preview" class="upload_preview">';
 				    html += '				<div class="add_upload">';
-				    html += '					<a style="height:'+para.itemHeight+';width:'+para.itemWidth+';" title="点击添加文件" id="rapidAddImg" class="add_imgBox" href="javascript:void(0)">';
+				    html += '					<a style="height:'+para.itemHeight+';width:'+para.itemWidth+';" title="添加图片" id="rapidAddImg" class="add_imgBox" href="javascript:void(0)">';
 				    html += '						<div class="uploadImg" style="width:'+imgWidth+'px">';
-				    html += '							<img class="upload_image" src="control/images/add_img.png" style="width:expression(this.width > '+imgWidth+' ? '+imgWidth+'px : this.width)" />';
+				    html += '							<img class="upload_image" src="/third-party/jquery/images/add_img.png" style="width:expression(this.width > '+imgWidth+' ? '+imgWidth+'px : this.width)" />';
 				    html += '						</div>';
 				    html += '					</a>';
 				    html += '				</div>';

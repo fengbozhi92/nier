@@ -234,7 +234,8 @@
     text-align: center;
     vertical-align: middle;
     border: 1px solid #DFDFDF;
-    background: url("./images/bg.png") no-repeat scroll center 0px transparent;
+
+    border-radius: 5px;
 }
 .upload_append_list img {
 	border: solid 1px #66f;
@@ -268,6 +269,7 @@
 	-moz-transition: border 0.2s;
 	-webkit-transition: border 0.2s;
 	-o-transition: border 0.2s;
+	border-radius: 5px;
 }
 .add_imgBox:hover{
 	border: 1px solid #BBB;

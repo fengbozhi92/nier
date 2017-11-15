@@ -15,7 +15,7 @@
 </style>
 </head>
 <body>
-	<#include "/visitor/common/top.ftl">
+	<#include "/visitor/common/layout/top.ftl">
 	<div class="container" style="min-height: 1600px;">
 		<div class="col-sm-10">
 			<input class="form-control" type="text" id="search" data-provide="typeahead" data-items="4" autocomplete="off">

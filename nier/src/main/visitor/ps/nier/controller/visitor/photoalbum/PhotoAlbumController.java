@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import ps.nier.controller.base.BaseController;
 import ps.nier.core.common.utils.UUIDUtils;
-import ps.nier.core.dictionary.PostTypeEnum;
 import ps.nier.core.dictionary.StatusEnum;
 import ps.nier.core.domain.base.ResEntity;
 import ps.nier.core.domain.photoalbum.PhotoAlbum;

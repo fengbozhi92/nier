@@ -20,11 +20,11 @@ import ps.nier.core.domain.photo.PhotoQuery;
 import ps.nier.service.common.FillService;
 import ps.nier.service.photo.PhotoRepository;
 import ps.nier.service.photo.PhotoService;
-import ps.nier.service.photoalbum.PhotoAlbumRepository;
+import ps.nier.service.photoalbum.PhotoAlbumService;
 @Service
 public class PhotoServiceImp implements PhotoService {
 	@Autowired
-	private PhotoAlbumRepository photoAlbumRepository;
+	private PhotoAlbumService photoAlbumService;
 	@Autowired
 	private PhotoRepository photoRepository;
 	@Autowired
@@ -72,12 +72,12 @@ public class PhotoServiceImp implements PhotoService {
 	}
 
 	@Override
-	public boolean save(Photo group) {
-		return photoRepository.save(group) != null;
+	public boolean save(Photo photo) {
+		return photoRepository.save(photo) != null;
 	}
 
 	@Override
-	public boolean update(Photo group) {
+	public boolean update(Photo photo) {
 		// TODO Auto-generated method stub
 		return false;
 	}

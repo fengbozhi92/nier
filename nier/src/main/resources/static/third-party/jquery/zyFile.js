@@ -145,7 +145,7 @@ var ZYFILE = {
 			var self = this;  // 在each中this指向没个v  所以先将this保留
 			
 			var formdata = new FormData();
-			formdata.append("imageFile", file);	         		
+			formdata.append("photoFile", file);	         		
 			var xhr = new XMLHttpRequest();
 			// 绑定上传事件
 			// 进度

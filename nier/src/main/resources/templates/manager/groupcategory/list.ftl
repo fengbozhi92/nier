@@ -62,7 +62,6 @@
 	    $("#btn_delete").on("click",function(){
 	    	del();
 	    });
-	    
 	});
 
 	var TableInit = function () {

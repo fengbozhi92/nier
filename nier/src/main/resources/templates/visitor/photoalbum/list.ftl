@@ -52,10 +52,9 @@
 					var src = "/nier/images/system/sys-nier.png";
 					if (item.imagePath != null) {
 						src = item.imagePath;
-						alert(src);
 					}
 					var a = "<div style=\"background-color:white; padding:5px; margin:5px; width:200px;height:220px;float:left;\">"+
-							"<div class=\"text-center\"><img src=\""+src+"\"></div>"+
+							"<div class=\"text-center\"><a href=\"/photo/list.do?aId="+item.id+"\"><img src=\""+src+"\" width=\"156px\"></a></div>"+
 							"<div class=\"text-center\"><h4>"+item.title+"</h4></div>"+
 							"</div>";
 					$("#album").append(a);

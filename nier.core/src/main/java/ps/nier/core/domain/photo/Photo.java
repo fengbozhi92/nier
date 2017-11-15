@@ -16,7 +16,7 @@ public class Photo extends BaseEntity{
 	private String name;
 	private String description;
 	private int sequence;
-	private String type;
+	private Integer type;
 	private Integer status;
 	
 	private int likeCount;
@@ -57,10 +57,10 @@ public class Photo extends BaseEntity{
 	public void setSequence(int sequence) {
 		this.sequence = sequence;
 	}
-	public String getType() {
+	public Integer getType() {
 		return type;
 	}
-	public void setType(String type) {
+	public void setType(Integer type) {
 		this.type = type;
 	}
 	public int getLikeCount() {
