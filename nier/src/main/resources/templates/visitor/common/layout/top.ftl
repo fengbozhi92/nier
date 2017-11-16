@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse" role="navigation">
+<nav class="navbar navbar-inverse noradius" role="navigation" >
     <div class="container-fluid">
 	    <div class="navbar-header">
 	        <a class="navbar-brand" href="#">Nier</a>

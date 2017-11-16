@@ -76,8 +76,26 @@ public class GroupServiceImp implements GroupService {
 	}
 
 	@Override
+	@Transactional
 	public boolean update(Group group) {
-		// TODO Auto-generated method stub
+		Group out = get(group.getId());
+		if (out != null) {
+			if (group.getCategoryId() != null && group.getCategoryId().length() == 36
+				&& group.getSubcategoryId() != null && group.getSubcategoryId().length() == 36) {
+				out.setCategoryId(group.getCategoryId());
+				out.setSubcategoryId(group.getSubcategoryId());
+			}
+			if (StringUtils.isNotBlank(group.getDescription())) {
+				out.setDescription(group.getDescription());
+			}
+			if (group.getImagePath() != null && group.getImagePath().length() > 49) {
+				out.setImagePath(group.getImagePath());
+			}
+			out.setModifyTime(group.getCreateTime());
+			out.setModifyUser(group.getModifyUser());
+			out.setVersion(out.getVersion() + 1);
+			return save(out);
+		}
 		return false;
 	}
 

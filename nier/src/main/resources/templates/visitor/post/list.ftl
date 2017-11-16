@@ -125,8 +125,8 @@
 				  			
 							$.each(row.replys, function(i, item){
 								var rep_user = '';
-								if (item.replyUserNickname !=null) {
-									rep_user = '回复 <a href="#">'+item.replyUserNickname+'</a> : ';
+								if (item.targetUserNickname !=null) {
+									rep_user = '回复 <a href="#">'+item.targetUserNickname+'</a> : ';
 						 		}
 								replyList += '<div class="col-sm-12" style="min-height:50px; padding:2px;">'+
 	                							 '<div class="row">'+
@@ -249,7 +249,7 @@
 		$(el).siblings().show();
 	}
 
-	function pub_rep(postId, userId){
+	function pub_rep(targetId, tragetUserId){
 		var content = $("#rep_content"+postId).val();
 		if (content.trim() == '') {
 			alert("请输入内容");
@@ -261,9 +261,9 @@
 		$.ajax({
 			url:"/postreply/pub.do",
 			data:{
-				postId:postId,
+				targetId:targetId,
+				tragetUserId:tragetUserId,
 				content:content,
-				replyUserId:userId,
 				createUser:'${(Session.SPRING_SECURITY_CONTEXT.authentication.principal.id)!""}'
 			},
 			success:function(res){
@@ -274,7 +274,7 @@
 			}
 		});
 	}
-	function addName(postId, nickname){
+	function addName(targetId, nickname){
 		$("#rep_content"+postId).val("回复  "+nickname+" :");
 	}
 </script>

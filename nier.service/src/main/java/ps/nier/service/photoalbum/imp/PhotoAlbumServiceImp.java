@@ -9,12 +9,14 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import ps.nier.core.common.helper.QueryHelper;
 import ps.nier.core.domain.photoalbum.PhotoAlbum;
 import ps.nier.core.domain.photoalbum.PhotoAlbumQuery;
 import ps.nier.service.common.FillService;
@@ -22,6 +24,7 @@ import ps.nier.service.photoalbum.PhotoAlbumRepository;
 import ps.nier.service.photoalbum.PhotoAlbumService;
 @Service
 public class PhotoAlbumServiceImp implements PhotoAlbumService {
+	
 	@Autowired
 	private PhotoAlbumRepository photoAlbumRepository;
 	@Autowired
@@ -33,18 +36,15 @@ public class PhotoAlbumServiceImp implements PhotoAlbumService {
 			@Override
 			public Predicate toPredicate(Root<PhotoAlbum> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
 				List<Predicate> predicate = new ArrayList<Predicate>();
-//				if (StringUtils.isNotBlank(group.getName())) {
-//					predicate.add(cb.like(root.get("name").as(String.class), QueryHelper.getFullImplict(group.getName())));
-//				}
-//				if (group.getStatus() != null) {
-//					predicate.add(cb.equal(root.get("status").as(Integer.class), group.getStatus()));
-//				}
-//				if (StringUtils.isNotBlank(group.getCategoryId())) {
-//					predicate.add(cb.equal(root.get("categoryId").as(String.class), group.getCategoryId()));
-//				}
-//				if (StringUtils.isNotBlank(group.getSubcategoryId())) {
-//					predicate.add(cb.equal(root.get("subcategoryId").as(String.class), group.getSubcategoryId()));
-//				}
+				if (StringUtils.isNotBlank(photoAlbum.getTitle())) {
+					predicate.add(cb.like(root.get("title").as(String.class), QueryHelper.getFullImplict(photoAlbum.getTitle())));
+				}
+				if (photoAlbum.getStatus() != null) {
+					predicate.add(cb.equal(root.get("status").as(Integer.class), photoAlbum.getStatus()));
+				}
+				if (StringUtils.isNotBlank(photoAlbum.getUserId())) {
+					predicate.add(cb.equal(root.get("createUser").as(String.class), photoAlbum.getUserId()));
+				}
 				Predicate[] p = new Predicate[predicate.size()];
 				query.where(predicate.toArray(p)).orderBy(cb.desc(root.get("createTime").as(Date.class)));
 				return query.getRestriction();
@@ -52,7 +52,7 @@ public class PhotoAlbumServiceImp implements PhotoAlbumService {
 		}, photoAlbum);
 		if (list.getContent() != null && !list.getContent().isEmpty()) {
 			for(PhotoAlbum item : list.getContent()) {
-				
+				fillService.fillPhotoAlbum(item);
 			}
 		}
 		return list;
@@ -69,13 +69,31 @@ public class PhotoAlbumServiceImp implements PhotoAlbumService {
 	}
 
 	@Override
-	public boolean save(PhotoAlbum group) {
-		return photoAlbumRepository.save(group) != null;
+	public boolean save(PhotoAlbum photoAlbum) {
+		return photoAlbumRepository.save(photoAlbum) != null;
 	}
 
 	@Override
-	public boolean update(PhotoAlbum group) {
-		// TODO Auto-generated method stub
+	public boolean update(PhotoAlbum photoAlbum) {
+		PhotoAlbum out = photoAlbumRepository.getOne(photoAlbum.getId());
+		if (out != null) {
+			if (StringUtils.isNotBlank(photoAlbum.getTitle())) {
+				out.setTitle(photoAlbum.getTitle());
+			}
+			if (StringUtils.isNotBlank(photoAlbum.getDescription())) {
+				out.setDescription(photoAlbum.getDescription());
+			}
+			if (photoAlbum.getImagePath() != null && photoAlbum.getImagePath().length() > 49) {
+				out.setImagePath(photoAlbum.getImagePath());
+			}
+			if (photoAlbum.getSequence() > 0) {
+				out.setSequence(photoAlbum.getSequence());
+			}
+			out.setModifyTime(photoAlbum.getModifyTime());
+			out.setModifyUser(photoAlbum.getModifyUser());
+			out.setVersion(out.getVersion() + 1);
+			return save(out);
+		}
 		return false;
 	}
 

@@ -13,7 +13,6 @@ public class PostThread extends BaseEntity{
 	@Id
 	private String id;
 	private String groupId;
-	private String userId;
 	private String title;
 	private int viewCount;
 	private int replyCount;
@@ -39,12 +38,6 @@ public class PostThread extends BaseEntity{
 	}
 	public void setGroupId(String groupId) {
 		this.groupId = groupId;
-	}
-	public String getUserId() {
-		return userId;
-	}
-	public void setUserId(String userId) {
-		this.userId = userId;
 	}
 	public String getTitle() {
 		return title;

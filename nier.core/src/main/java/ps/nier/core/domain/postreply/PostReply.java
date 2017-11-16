@@ -17,13 +17,13 @@ public class PostReply extends BaseEntity{
 	private String id;
 	private String groupId;
 	private String threadId;
-	private String postId;
-	private String replyUserId;
+	private String targetId;
+	private String targetUserId;
 	private String content;
 	private Integer status;
 	
 	@Transient
-	private String replyUserNickname;
+	private String targetUserNickname;
 	@Transient
 	private String userNickname;
 	
@@ -45,17 +45,17 @@ public class PostReply extends BaseEntity{
 	public void setThreadId(String threadId) {
 		this.threadId = threadId;
 	}
-	public String getPostId() {
-		return postId;
+	public String getTargetId() {
+		return targetId;
 	}
-	public void setPostId(String postId) {
-		this.postId = postId;
+	public void setTargetId(String targetId) {
+		this.targetId = targetId;
 	}
-	public String getReplyUserId() {
-		return replyUserId;
+	public String getTargetUserId() {
+		return targetUserId;
 	}
-	public void setReplyUserId(String replyUserId) {
-		this.replyUserId = replyUserId;
+	public void setTargetUserId(String targetUserId) {
+		this.targetUserId = targetUserId;
 	}
 	public String getContent() {
 		return content;
@@ -69,11 +69,12 @@ public class PostReply extends BaseEntity{
 	public void setStatus(Integer status) {
 		this.status = status;
 	}
-	public String getReplyUserNickname() {
-		return replyUserNickname;
+
+	public String getTargetUserNickname() {
+		return targetUserNickname;
 	}
-	public void setReplyUserNickname(String replyUserNickname) {
-		this.replyUserNickname = replyUserNickname;
+	public void setTargetUserNickname(String targetUserNickname) {
+		this.targetUserNickname = targetUserNickname;
 	}
 	public String getUserNickname() {
 		return userNickname;

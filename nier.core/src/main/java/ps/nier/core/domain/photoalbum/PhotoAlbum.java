@@ -15,7 +15,7 @@ public class PhotoAlbum extends BaseEntity{
 	private String description;
 	private String imagePath;
 	private int sequence;
-	private int count;
+	private int photoCount;
 	private Integer type;
 	private Integer status;
 	
@@ -49,11 +49,11 @@ public class PhotoAlbum extends BaseEntity{
 	public void setSequence(int sequence) {
 		this.sequence = sequence;
 	}
-	public int getCount() {
-		return count;
+	public int getPhotoCount() {
+		return photoCount;
 	}
-	public void setCount(int count) {
-		this.count = count;
+	public void setPhotoCount(int photoCount) {
+		this.photoCount = photoCount;
 	}
 	public Integer getType() {
 		return type;

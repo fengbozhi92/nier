@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import ps.nier.core.common.helper.QueryHelper;
 import ps.nier.core.domain.menu.Menu;
@@ -93,6 +94,7 @@ public class MenuServiceImp implements MenuService {
 	}
 
 	@Override
+	@Transactional
 	public boolean update(Menu menu) {
 		Menu out = get(menu.getId());
 		if (out != null) {
@@ -111,7 +113,7 @@ public class MenuServiceImp implements MenuService {
 			out.setModifyTime(menu.getModifyTime());
 			out.setModifyUser(menu.getModifyUser());
 			out.setVersion(out.getVersion()+1);
-			return menuRepository.save(out) != null;
+			return save(out);
 		}
 		return false;
 	}

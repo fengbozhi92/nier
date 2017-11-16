@@ -9,12 +9,14 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import ps.nier.core.common.helper.QueryHelper;
 import ps.nier.core.domain.photo.Photo;
 import ps.nier.core.domain.photo.PhotoQuery;
 import ps.nier.service.common.FillService;
@@ -36,18 +38,15 @@ public class PhotoServiceImp implements PhotoService {
 			@Override
 			public Predicate toPredicate(Root<Photo> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
 				List<Predicate> predicate = new ArrayList<Predicate>();
-//				if (StringUtils.isNotBlank(group.getName())) {
-//					predicate.add(cb.like(root.get("name").as(String.class), QueryHelper.getFullImplict(group.getName())));
-//				}
-//				if (group.getStatus() != null) {
-//					predicate.add(cb.equal(root.get("status").as(Integer.class), group.getStatus()));
-//				}
-//				if (StringUtils.isNotBlank(group.getCategoryId())) {
-//					predicate.add(cb.equal(root.get("categoryId").as(String.class), group.getCategoryId()));
-//				}
-//				if (StringUtils.isNotBlank(group.getSubcategoryId())) {
-//					predicate.add(cb.equal(root.get("subcategoryId").as(String.class), group.getSubcategoryId()));
-//				}
+				if (StringUtils.isNotBlank(photo.getName())) {
+					predicate.add(cb.like(root.get("name").as(String.class), QueryHelper.getFullImplict(photo.getName())));
+				}
+				if (photo.getStatus() != null) {
+					predicate.add(cb.equal(root.get("status").as(Integer.class), photo.getStatus()));
+				}
+				if (StringUtils.isNotBlank(photo.getAlbumId())) {
+					predicate.add(cb.equal(root.get("albumId").as(String.class), photo.getAlbumId()));
+				}
 				Predicate[] p = new Predicate[predicate.size()];
 				query.where(predicate.toArray(p)).orderBy(cb.desc(root.get("createTime").as(Date.class)));
 				return query.getRestriction();
@@ -55,7 +54,7 @@ public class PhotoServiceImp implements PhotoService {
 		}, photo);
 		if (list.getContent() != null && !list.getContent().isEmpty()) {
 			for(Photo item : list.getContent()) {
-				
+				fillService.fillPhoto(item);
 			}
 		}
 		return list;
@@ -78,7 +77,25 @@ public class PhotoServiceImp implements PhotoService {
 
 	@Override
 	public boolean update(Photo photo) {
-		// TODO Auto-generated method stub
+		Photo out = photoRepository.getOne(photo.getId());
+		if (out != null) {
+			if (photo.getAlbumId() != null && photo.getAlbumId().length() == 36) {
+				out.setAlbumId(photo.getAlbumId());
+			}
+			if (StringUtils.isNotBlank(photo.getName())) {
+				out.setName(photo.getName());
+			}
+			if (StringUtils.isNotBlank(photo.getDescription())) {
+				out.setDescription(photo.getDescription());
+			}
+			if (photo.getSequence() > 0) {
+				out.setSequence(photo.getSequence());
+			}
+			out.setModifyTime(photo.getCreateTime());
+			out.setModifyUser(photo.getCreateUser());
+			out.setVersion(out.getVersion() + 1);
+			return save(out);
+		}
 		return false;
 	}
 

@@ -3,6 +3,7 @@ package ps.nier.core.domain.base;
 import java.io.File;
 
 public class FilePathResult {
+	
 	private String rootPath;
 	private String type;
 	private String date;

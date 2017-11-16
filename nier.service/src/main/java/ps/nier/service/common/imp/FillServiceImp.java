@@ -8,6 +8,8 @@ import ps.nier.core.domain.group.Group;
 import ps.nier.core.domain.groupcategory.GroupCategory;
 import ps.nier.core.domain.groupsubcategory.GroupSubcategory;
 import ps.nier.core.domain.menu.Menu;
+import ps.nier.core.domain.photo.Photo;
+import ps.nier.core.domain.photoalbum.PhotoAlbum;
 import ps.nier.core.domain.post.Post;
 import ps.nier.core.domain.postreply.PostReply;
 import ps.nier.core.domain.postreply.PostReplyQuery;
@@ -72,7 +74,7 @@ public class FillServiceImp implements FillService{
 	@Override
 	public void fillPostThread(PostThread item) {
 		if (item != null) {
-			User user = userService.get(item.getUserId());
+			User user = userService.get(item.getCreateUser());
 			Group group = groupService.get(item.getGroupId());
 			if (user != null) {
 				item.setUserNickname(user.getNickname());
@@ -86,7 +88,7 @@ public class FillServiceImp implements FillService{
 	@Override
 	public void fillPost(Post item) {
 		if (item != null) {
-			item.setUser(userService.get(item.getUserId()));
+			item.setUser(userService.get(item.getCreateUser()));
 			Page<PostReply> page = postReplyService.list(new PostReplyQuery(item.getId()));
 			if (page != null && page.getContent() != null && !page.getContent().isEmpty()) {
 				item.setReplys(page.getContent());
@@ -100,10 +102,10 @@ public class FillServiceImp implements FillService{
 	@Override
 	public void fillPostReply(PostReply item) {
 		if (item != null) {
-			if (item.getReplyUserId() != null && item.getReplyUserId().length() == 36) {
-				User replyUser = userService.get(item.getReplyUserId());
+			if (item.getTargetUserId() != null && item.getTargetUserId().length() == 36) {
+				User replyUser = userService.get(item.getTargetUserId());
 				if (replyUser != null) {
-					item.setReplyUserNickname(replyUser.getNickname());
+					item.setTargetUserNickname(replyUser.getNickname());
 				}
 			}
 			User createUser = userService.get(item.getCreateUser());	
@@ -111,5 +113,25 @@ public class FillServiceImp implements FillService{
 				item.setUserNickname(createUser.getNickname());
 			}
 		}		
+	}
+
+	@Override
+	public void fillPhotoAlbum(PhotoAlbum item) {
+		if (item != null) {
+			User user = userService.get(item.getCreateUser());
+			if (user != null) {
+				item.setCreateUserNickname(user.getNickname());
+			}
+		}
+	}
+
+	@Override
+	public void fillPhoto(Photo item) {
+		if (item != null) {
+			User user = userService.get(item.getCreateUser());
+			if (user != null) {
+				item.setCreateUserNickname(user.getNickname());
+			}
+		}
 	}
 }

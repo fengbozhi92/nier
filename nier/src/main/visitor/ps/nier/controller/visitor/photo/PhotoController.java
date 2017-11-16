@@ -19,7 +19,9 @@ import ps.nier.service.photo.PhotoService;
 import ps.nier.service.photoalbum.PhotoAlbumService;
 @Controller
 public class PhotoController extends BaseController{
+	
 	private static final Logger logger = org.slf4j.LoggerFactory.getLogger(PhotoController.class);
+	
 	@Autowired
 	private PhotoAlbumService photoAlbumService;
 	@Autowired

@@ -39,10 +39,10 @@ public class PostReplyController extends BaseController{
 	
 	@RequestMapping(value="/postreply/pub.do")
 	public ResponseEntity<ResEntity> pub(PostReply postReply){
-		String postId = postReply.getPostId();
-		if (postId != null && postId.length() == 36) {
+		String targetId = postReply.getTargetId();
+		if (targetId != null && targetId.length() == 36) {
 			try {
-				Post post = postService.get(postId);
+				Post post = postService.get(targetId);
 				if (post != null) {
 					postReply.setGroupId(post.getGroupId());
 					postReply.setThreadId(post.getThreadId());

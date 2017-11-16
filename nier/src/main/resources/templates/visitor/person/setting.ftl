@@ -374,7 +374,7 @@
 			</div>
 		</div>
 	</div>
-<#include "/visitor/common/footer.ftl">
+<#include "/visitor/common/layout/footer.ftl">
 <#include "/visitor/common/js.ftl">
 <script type="text/javascript">
 	new Vue({

@@ -5,6 +5,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.Transient;
 @MappedSuperclass 
 public class BaseEntity implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -18,6 +19,11 @@ public class BaseEntity implements Serializable{
 	private String 		modifyUser;
 	@Column(name="version")
 	private int 		version = 1;
+	
+	@Transient
+	private String createUserNickname;
+	@Transient
+	private String modifyUserNickname;
 	
 	public Date getCreateTime() {
 		return createTime;
@@ -48,6 +54,18 @@ public class BaseEntity implements Serializable{
 	}
 	public void setVersion(int version) {
 		this.version = version;
+	}
+	public String getCreateUserNickname() {
+		return createUserNickname;
+	}
+	public void setCreateUserNickname(String createUserNickname) {
+		this.createUserNickname = createUserNickname;
+	}
+	public String getModifyUserNickname() {
+		return modifyUserNickname;
+	}
+	public void setModifyUserNickname(String modifyUserNickname) {
+		this.modifyUserNickname = modifyUserNickname;
 	}
 	
 }

@@ -17,7 +17,6 @@ public class HomeController {
 	@RequestMapping(value="/home/index.do")
 	public String index(HttpServletRequest req){
 		Object context = SecurityContextHolder.getContext();
-		System.out.println(context);
 		return "visitor/home/index";
 	}
 }

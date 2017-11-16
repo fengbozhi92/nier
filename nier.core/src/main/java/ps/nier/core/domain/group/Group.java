@@ -19,7 +19,7 @@ public class Group extends BaseEntity{
 	private String imagePath;
 	private int memberCount;
 	private int postCount;
-	private String leaderId;
+	private String ownerId;
 	private Integer status;
 	
 	@Transient
@@ -75,11 +75,11 @@ public class Group extends BaseEntity{
 	public void setPostCount(int postCount) {
 		this.postCount = postCount;
 	}
-	public String getLeaderId() {
-		return leaderId;
+	public String getOwnerId() {
+		return ownerId;
 	}
-	public void setLeaderId(String leaderId) {
-		this.leaderId = leaderId;
+	public void setOwnerId(String ownerId) {
+		this.ownerId = ownerId;
 	}
 	public Integer getStatus() {
 		return status;

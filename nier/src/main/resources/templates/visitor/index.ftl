@@ -74,7 +74,7 @@
 			<div class="col-md-3">
 			</div>
 			<div class="col-md-6 text-center menu" style="z-index: 9999">
-				<div class=""><a href="javascript:void(0);" class="item a1">进入主页</a></div>
+				<div class=""><a href="/home/index.do" class="item a1">进入主页</a></div>
 				<div><a href="javascript:void(0);" class="item a2">随便看看</a></div>
 				<div><a href="javascript:void(0);" class="item a3">首页</a></div>
 				<div><a href="javascript:void(0);" class="item a4">关于</a></div>

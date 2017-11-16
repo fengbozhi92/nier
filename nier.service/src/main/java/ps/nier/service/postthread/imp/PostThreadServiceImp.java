@@ -96,7 +96,6 @@ public class PostThreadServiceImp implements PostThreadService {
 			post.setId(UUIDUtils.getId36());
 			post.setGroupId(postThread.getGroupId());
 			post.setThreadId(postThread.getId());
-			post.setUserId(postThread.getUserId());
 			post.setContent(postThread.getContent());
 			post.setType(PostTypeEnum.Ground.getValue());
 			post.setCreateUser(postThread.getCreateUser());

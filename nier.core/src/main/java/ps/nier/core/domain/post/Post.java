@@ -18,7 +18,6 @@ public class Post extends BaseEntity{
 	private String id;
 	private String groupId;
 	private String threadId;
-	private String userId;
 	private Integer type;
 	private String content;
 	private int sequence		= 1;
@@ -57,15 +56,6 @@ public class Post extends BaseEntity{
 	public void setThreadId(String threadId) {
 		this.threadId = threadId;
 	}
-
-	public String getUserId() {
-		return userId;
-	}
-
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
-
 	public Integer getType() {
 		return type;
 	}

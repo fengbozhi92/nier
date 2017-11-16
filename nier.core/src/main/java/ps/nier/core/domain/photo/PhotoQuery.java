@@ -8,6 +8,7 @@ public class PhotoQuery extends PageQuery{
 	
 	private String albumId;
 	private String name;
+	private Integer status;
 	
 	public String getAlbumId() {
 		return albumId;
@@ -20,6 +21,12 @@ public class PhotoQuery extends PageQuery{
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public Integer getStatus() {
+		return status;
+	}
+	public void setStatus(Integer status) {
+		this.status = status;
 	}
 	
 }

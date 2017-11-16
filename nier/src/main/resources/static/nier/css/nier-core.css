@@ -1,6 +1,9 @@
 .lh34{
 	line-height: 34px;
 }
+.h34{
+	height: 34px;
+}
 .lh20{
 	line-height: 20px;
 }
@@ -22,6 +25,85 @@
 .mt50{
 	margin-top: 50px;
 }
+.mt15{
+	margin-top: 15px;
+}
+.noradius{
+	border-radius: 0;
+}
+
+/*nier-nav*/
+.nier-nav{
+	height: 34px;
+	line-height: 34px;
+	background-color: #20B2AA;
+	color: white;
+}
+.nier-nav .left{
+	min-width: 100px;
+	max-width: 200px;
+	width: 10%;
+	text-align: left;
+	float: left;
+}
+.nier-nav .right{
+	min-width: 100px;
+	max-width: 300px;
+	width: 20%;
+	text-align: right;
+	float: right;
+}
+.nier-nav .right .u{
+	text-align: right;
+	float: right;
+	margin-right: 10px;
+}
+
+.nier-nav .right .l{
+	text-align: right;
+	float: right;
+}
+.nier-nav a{
+	color: #E0FFFF;
+}
+.nier-nav a:hover{
+
+}
+.nier-nav h2{
+	font-family: "Microsoft YaHei";
+	font-size: 22px;
+	font-weight: bold;
+	margin: 0;
+	padding: 0;
+	line-height: 34px;
+}
+.nier-nav .un{
+	color: white;
+	font-size: 16px;
+}
+.nier-nav .msg{
+	color: #F0FFFF;
+	font-size: 12px;
+}
+/*nier-nav*/
+
+/*nier-footer*/
+
+.nier-footer{
+	height: 68px;
+	line-height: 34px;
+	background-color: #20B2AA;
+	color: white;
+}
+.nier-footer a{
+	color: white;
+}
+.nier-footer cite{
+	color: #F0FFFF;
+}
+/*nier-footer*/
+
+
 /*bootstrap menu*/
 .dropdown-submenu {  
     position: relative;  

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import ps.nier.controller.base.BaseController;
 import ps.nier.core.common.utils.UUIDUtils;
+import ps.nier.core.constant.SystemConstants;
 import ps.nier.core.dictionary.StatusEnum;
 import ps.nier.core.domain.base.ResEntity;
 import ps.nier.core.domain.photoalbum.PhotoAlbum;
@@ -60,8 +61,8 @@ public class PhotoAlbumController extends BaseController{
 			photoAlbum.setId(UUIDUtils.getId36());
 			photoAlbum.setCreateTime(new Date());
 			photoAlbum.setStatus(StatusEnum.Valid.getValue());
-			photoAlbum.setCount(1);
-			photoAlbum.setSequence(1);
+			photoAlbum.setPhotoCount(SystemConstants.INT_ZERO);
+			photoAlbum.setSequence(SystemConstants.INT_ONE);
 			if (photoAlbumService.save(photoAlbum)) {
 				return renderSuccess();
 			}

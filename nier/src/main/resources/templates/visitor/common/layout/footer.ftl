@@ -1,27 +1,11 @@
-<footer class="footer nav" style="background-color: #333; color: white">
-	<div class="container">
-		<div class="col-md-3 text-center">
-			<h3><a href="#">1111</a></h3>
-			<p><a href="#">1111</a></p>
-			<p><a href="#">1111</a></p>
-		</div>
-		<div class="col-md-3 text-center">
-			<h3><a href="#">1111</a></h3>
-			<p><a href="#">1111</a></p>
-			<p><a href="#">1111</a></p>
-		</div>
-		<div class="col-md-3 text-center">
-			<h3><a href="#">1111</a></h3>
-			<p><a href="#">1111</a></p>
-			<p><a href="#">1111</a></p>
-		</div>
-		<div class="col-md-3 text-center">
-			<h3><a href="#">1111</a></h3>
-			<p><a href="#">1111</a></p>
-			<p><a href="#">1111</a></p>
+<footer class="nier-footer">
+	<div class="container-fluid">
+		<div class="col-md-12 text-center">
+			<a href="#"><span class="glyphicon glyphicon-envelope"></span>1194659171@qq.com</a>
+			<a href="#"><span class="glyphicon glyphicon-phone"></span>13366789313</a>
 		</div>
 		<div class="col-md-12 text-center">
-			<p>Copyright &copy; 2017, Nier, All Rights Reserved<p>
+			<cite>Copyright &copy; <span>2017</span> <a href="#">Nier</a> All Rights Reserved</cite>
 		</div>
 	</div>
 </footer>
