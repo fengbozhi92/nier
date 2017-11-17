@@ -1,5 +1,5 @@
-<nav class="nier-nav" role="navigation" >
-    <div class="container-fluid">
+<nav class="nav" role="navigation" >
+    <div class="pl15 pr15">
 	    <div class="left">
 	        <h2>Nier</h2>
 	    </div>

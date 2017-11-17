@@ -1,5 +1,5 @@
-<footer class="nier-footer">
-	<div class="container-fluid">
+<footer class="footer">
+	<div class="">
 		<div class="col-md-12 text-center">
 			<a href="#"><span class="glyphicon glyphicon-envelope"></span>1194659171@qq.com</a>
 			<a href="#"><span class="glyphicon glyphicon-phone"></span>13366789313</a>

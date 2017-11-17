@@ -9,6 +9,7 @@ import ps.nier.core.domain.base.BaseEntity;
 @Entity
 @Table(name="b_group")
 public class Group extends BaseEntity{
+	
 	private static final long serialVersionUID = 1L;
 	@Id
 	private String id;
