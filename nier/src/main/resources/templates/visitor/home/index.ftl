@@ -25,11 +25,11 @@
 			</ul>	
 		</div>
 	</div>
-	<div class="content">
-		<div class="full">
+	<div class="content" style="min-height: 1260px">
+		<div class="clearfix" style="width: 100%">
 	        <ul class="ul-h">
-	            <li class="active"><a href="#">iOS</a></li>
-	            <li><a href="#">SVN</a></li>
+	            <li class="active"><a href="#">热门</a></li>
+	            <li><a href="#">推荐</a></li>
 	            <li><a href="#">Java</a></li>
 	            <li><a href="#">Java</a></li>
 	            <li><a href="#">Java</a></li>
@@ -40,8 +40,8 @@
 	            <li><a href="#">Java</a></li>
 	        </ul>
 		</div>
-		<div class="col-sm-12 hidden-xs">
-			<div style="border-top: 1px solid #F8F8FF; padding-top:5px;padding-bottom:5px; border-bottom: 1px solid #F8F8FF;">
+		<div class="">
+			<div style="border-top: 1px solid #20B2AA; border-bottom: 1px solid #20B2AA;">
 				<#list 1..15 as i> 
 					<a href="#"><span class="tag">水电费</span></a>
 					<a href="#"><span class="tag">大师法规</span></a>
@@ -50,11 +50,26 @@
 				</#list>
 			</div>
 		</div>
-		<div class="col-sm-12" style="padding-top:5px;padding-bottom:5px;">
-			<div class="row col-sm-8">
-				
+		<div class="clearfix" style="">
+			<div class="fl" style="min-height: 1000px; width: 200px;">
+				<div class="topic-box">
+					<div class="topic-header">热门榜单</div>
+					<ul class="topic-list">
+						<#list 1..15 as i>
+							<li class="topic-item">
+								<#if i lt 4>
+									<span class="topic-tag hot">${i}</span>
+									<#else>
+									<span class="topic-tag">${i}</span>
+								</#if>
+								<a href="#">nier大获成功！</a>
+								<span class="topic-num">13594</span>
+							</li>
+						</#list>
+					</ul>
+				</div>
 			</div>
-			<div class="row col-sm-4">
+			<div class="fl">
 				aa
 			</div>
 		</div>
@@ -62,6 +77,7 @@
 <#include "/visitor/common/layout/footer.ftl">
 <#include "/visitor/common/js.ftl">
 <script src="/third-party/carousel/js/carousel.js"></script>
+<script src="/nier/js/nier-style.js"></script>
 <script>
 	var cUser = '${(currentUser.id)!""}';
 	$(".yx-rotaion").yx_rotaion({

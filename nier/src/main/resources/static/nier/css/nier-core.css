@@ -88,6 +88,7 @@
   padding-right: 1rem;
   width: 100%;
   max-width: 1000px;
+  min-width:768px;
   background-color: white;
 }
 .banner{
@@ -102,10 +103,73 @@
 }
 
 ul.ul-h{
-	width: 100%;
-	list-style: none;
+  width: 100%;
+  list-style: none;
+  font-size: 1.8rem;
 }
+
 ul.ul-h li{
-	display: block;
-	position: relative;
+  float: left;
+  height: 34px;
+  line-height: 34px;
+}
+
+ul.ul-h>li>a{
+  padding-left: 10px;
+  padding-right: 10px;
+  display: block;
+  color: #333;
+}
+
+ul.ul-h>li>a:hover{
+  background-color: #27d8ce;
+  color: white;
+}
+
+ul.ul-h>li.active>a{
+  background-color: #20B2AA;
+  color: white;
+}
+
+ul.ul-h>li>a:focus {
+  outline: none;
+}
+
+ul.topic-list{
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+ul.topic-list li.topic-item{
+  font-size: 1.3rem;
+  text-align: left;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+ul.topic-list>li.topic-item>span.topic-tag{
+  width: 20px;
+  display: inline-block;
+  text-align: center;
+}
+
+ul.topic-list>li.topic-item>span.topic-tag.hot{
+  background-color: #FF7F42;
+  color: white;
+}
+
+ul.topic-list>li.topic-item>span.topic-num{
+  float: right;
+  color: #999;	
+}
+
+div.topic-header{
+  font-size: 1.8rem;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+div.topic-box{
+  padding-top: 5px;
+  padding-bottom: 5px;
 }

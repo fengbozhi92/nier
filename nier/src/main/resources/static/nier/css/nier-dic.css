@@ -1,51 +1,45 @@
-.lh34{
-	line-height: 34px;
+.lh34			{ line-height: 34px;}
+
+.h34			{ height: 34px;}
+
+.lh20			{ line-height: 20px;}
+
+.h20			{ height: 20px;}
+
+.pl15			{ padding-left: 15px;}
+
+.pr15			{ padding-right: 15px;}
+
+.pl0			{ padding-left: 0;}
+
+.pr0			{ padding-right: 0;}
+
+.mt50			{ margin-top: 50px;}
+
+.mt15			{ margin-top: 15px;}
+
+.mb15			{ margin-bottom: 15px;}
+
+.min-w768		{ min-width: 768px;}
+
+.radius-none	{ border-radius: 0;}
+
+.fl				{ float: left;}
+
+.fr				{ float: right;}
+
+.text-center	{ text-align: center;}
+
+.text-left		{ text-align: left;}
+
+.text-right		{ text-align: right;}
+
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
 }
-.h34{
-	height: 34px;
-}
-.lh20{
-	line-height: 20px;
-}
-.h20{
-	height: 20px;
-}
-.pl15{
-	padding-left: 15px;
-}
-.pr15{
-	padding-right: 15px;
-}
-.pl0{
-	padding-left: 0;
-}
-.pr0{
-	padding-right: 0;
-}
-.mt50{
-	margin-top: 50px;
-}
-.mt15{
-	margin-top: 15px;
-}
-.min-w768{
-	min-width: 768px;
-}
-.radius-none{
-	border-radius: 0;
-}
-.fl{
-	float: left;
-}
-.fr{
-	float: right;
-}
-.text-center{
-	text-align: center;
-}
-.text-left{
-	text-align: left;
-}
-.text-right{
-	text-align: right;
-}
+
+.bg-red			{ background-color: red;}
