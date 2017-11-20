@@ -27,8 +27,9 @@
 			
 		</div>
 	</div>
-<#include "/visitor/common/footer.ftl">
+<#include "/visitor/common/layout/footer.ftl">
 <#include "/visitor/common/js.ftl">
+<script src="/third-party/bootstrap-typeahead/js/bootstrap-typeahead.min.js"></script>
 <script>
 	$("#search").typeahead({
 		source: function (query, process) {

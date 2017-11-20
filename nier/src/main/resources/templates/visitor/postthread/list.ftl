@@ -36,10 +36,7 @@
            	</div>
         </form>
 	</div>
-<#include "/manager/common/js.ftl">
-<script type="text/javascript" src="/third-party/bootstrap-table/js/bootstrap-table-reorder-rows.min.js"></script>
-<script type="text/javascript" src="/third-party/bootstrap-table/js/jquery.tablednd.min.js"></script>
-<script type="text/javascript" src="/third-party/bootstrap-table/js/bootstrap-table-editable.min.js"></script>
+<#include "/visitor/common/js.ftl">
 <script>
 	$(function () {
 	    //1.初始化Table

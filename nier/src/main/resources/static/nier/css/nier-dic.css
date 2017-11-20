@@ -1,45 +1,85 @@
 .lh34			{ line-height: 34px;}
-
-.h34			{ height: 34px;}
-
 .lh20			{ line-height: 20px;}
 
+.h34			{ height: 34px;}
 .h20			{ height: 20px;}
 
+.w100			{ width: 100px;}
+.w200			{ width: 200px;}
+
+.fs12			{ font-size: 12px;}
+.fs14			{ font-size: 14px;}
+.fs16			{ font-size: 16px;}
+.fs18			{ font-size: 18px;}
+.fs20			{ font-size: 20px;}
+
 .pl15			{ padding-left: 15px;}
-
-.pr15			{ padding-right: 15px;}
-
 .pl0			{ padding-left: 0;}
 
+.pr15			{ padding-right: 15px;}
 .pr0			{ padding-right: 0;}
 
+.p0				{ padding: 0;}
+
 .mt50			{ margin-top: 50px;}
-
 .mt15			{ margin-top: 15px;}
+.mt10			{ margin-top: 10px;}
 
+.mb50			{ margin-bottom: 50px;}
 .mb15			{ margin-bottom: 15px;}
+.mb10			{ margin-bottom: 10px;}
 
-.min-w768		{ min-width: 768px;}
+.m0				{ margin: 0;}
 
 .radius-none	{ border-radius: 0;}
+.radius			{ border-radius: 6px;}
 
 .fl				{ float: left;}
 
 .fr				{ float: right;}
 
+.block			{ display: block;}
+.inline-block	{ display: inline-block;}
+
 .text-center	{ text-align: center;}
-
 .text-left		{ text-align: left;}
-
 .text-right		{ text-align: right;}
 
-.clearfix:after {
-  content: ".";
-  display: block;
-  height: 0;
-  clear: both;
-  visibility: hidden;
-}
+.clearfix:after { content: "."; display: block; height: 0; clear: both; visibility: hidden;}
 
-.bg-red			{ background-color: red;}
+.hide			{ display: none;}
+
+/*===========================================================================*/
+/*================================字体色=======================================*/
+/*===========================================================================*/
+.aliceblue			{ background-color: #F0F8FF;}	/*爱丽丝蓝*/
+.aquamarine			{ background-color: #7FFFD4;}	/*海蓝宝石*/
+.azure				{ background-color: #F0FFFF;}	/*天空蓝*/
+.beige				{ background-color: #F5F5DC;}	/*米黄色*/
+.blueviolet			{ background-color: #8A2BE2;}	/*蓝紫色*/
+.cadetblue			{ background-color: #5F9EA0;}	/*军蓝色*/
+.chocolate			{ background-color: #D2691E;}	/*巧克力*/
+.coral				{ background-color: #FF7F50;}	/*珊瑚*/
+.cornflowerblue		{ background-color: #6495ED;}	/*矢车菊蓝*/
+.cornsilk			{ background-color: #FFF8DC;}	/*玉米雌穗花丝*/
+.crimson			{ background-color: #DC143C;}	/*深红色*/
+.deepskyblue		{ background-color: #00BFFF;}	/*深天空蓝*/
+.dimgray			{ background-color: #696969;}	/*暗灰色*/
+.dodgerblue			{ background-color: #1E90FF;}	/*闪蓝色*/
+/*===========================================================================*/
+/*================================背景色=======================================*/
+/*===========================================================================*/
+.bg-aliceblue		{ background-color: #F0F8FF;}	/*爱丽丝蓝*/
+.bg-aquamarine		{ background-color: #7FFFD4;}	/*海蓝宝石*/
+.bg-azure			{ background-color: #F0FFFF;}	/*天空蓝*/
+.bg-beige			{ background-color: #F5F5DC;}	/*米黄色*/
+.bg-blueviolet		{ background-color: #8A2BE2;}	/*蓝紫色*/
+.bg-cadetblue		{ background-color: #5F9EA0;}	/*军蓝色*/
+.bg-chocolate		{ background-color: #D2691E;}	/*巧克力*/
+.bg-coral			{ background-color: #FF7F50;}	/*珊瑚*/
+.bg-cornflowerblue	{ background-color: #6495ED;}	/*矢车菊蓝*/
+.bg-cornsilk		{ background-color: #FFF8DC;}	/*玉米雌穗花丝*/
+.bg-crimson			{ background-color: #DC143C;}	/*深红色*/
+.bg-deepskyblue		{ background-color: #00BFFF;}	/*深天空蓝*/
+.bg-dimgray			{ background-color: #696969;}	/*暗灰色*/
+.bg-dodgerblue		{ background-color: #1E90FF;}	/*闪蓝色*/

@@ -39,11 +39,11 @@ public class PostReplyServiceImp implements PostReplyService {
 //				if (post.getStatus() != null) {
 //					predicate.add(cb.equal(root.get("status").as(Integer.class), post.getStatus()));
 //				}
-				if (StringUtils.isNotBlank(post.getReplyUserId())) {
-					predicate.add(cb.equal(root.get("replyUserId").as(String.class), post.getReplyUserId()));
+				if (StringUtils.isNotBlank(post.getTargetUserId())) {
+					predicate.add(cb.equal(root.get("targetUserId").as(String.class), post.getTargetUserId()));
 				}
-				if (StringUtils.isNotBlank(post.getPostId())) {
-					predicate.add(cb.equal(root.get("postId").as(String.class), post.getPostId()));
+				if (StringUtils.isNotBlank(post.getTargetId())) {
+					predicate.add(cb.equal(root.get("targetId").as(String.class), post.getTargetId()));
 				}
 				Predicate[] p = new Predicate[predicate.size()];
 				query.where(predicate.toArray(p)).orderBy(cb.asc(root.get("createTime").as(Date.class)));

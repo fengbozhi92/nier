@@ -14,7 +14,7 @@
 <div class="panel-body" style="padding-bottom:0; padding-top: 0">
 	<table id="posts"></table>
 </div>
-<#include "/manager/common/js.ftl">
+<#include "/visitor/common/js.ftl">
 <script>
 	$(function () {
 	    //1.初始化Table
@@ -101,7 +101,7 @@
 	                	}*/
 	                	date = new Date(row.createTime).format('yyyy-MM-dd HH:mm');
 	                	var tool;
-	                	if ('${thread.userId}' == '${(Session.SPRING_SECURITY_CONTEXT.authentication.principal.id)!""}'){
+	                	if ('${thread.createUser}' == '${(Session.SPRING_SECURITY_CONTEXT.authentication.principal.id)!""}'){
 	                		tool = '<a href="#" style="color:#b0b0b0">禁言</a>&nbsp;|&nbsp;<a href="#" style="color:#b0b0b0">删除</a>';
 	                	}
 	                	else if (row.userId == '${(Session.SPRING_SECURITY_CONTEXT.authentication.principal.id)!""}') {
@@ -110,7 +110,7 @@
 	                		tool = '<a href="#" style="color:#b0b0b0">举报</a>';
 	                	}
 	                	var lord;
-	                	if (row.userId = '${thread.userId}') {
+	                	if (row.userId = '${thread.createUser}') {
 	                		lord = "楼主"
 	                	}
 	                	
@@ -250,7 +250,7 @@
 	}
 
 	function pub_rep(targetId, tragetUserId){
-		var content = $("#rep_content"+postId).val();
+		var content = $("#rep_content"+targetId).val();
 		if (content.trim() == '') {
 			alert("请输入内容");
 			return false;
@@ -275,6 +275,6 @@
 		});
 	}
 	function addName(targetId, nickname){
-		$("#rep_content"+postId).val("回复  "+nickname+" :");
+		$("#rep_content"+targetId).val("回复  "+nickname+" :");
 	}
 </script>

@@ -5,7 +5,7 @@ var scrolltotop={
 		scrollduration:400, //滚动过渡时间
 		fadeduration:[500,100] //淡出淡现消失
 	},
-	controlHTML:'<img src="/nier/icon/up.png" style="width:54px; height:30px; border:0; z-index:9999"/>', //返回顶部按钮
+	//controlHTML:'<div class="back-top"/>', //返回顶部按钮
 	controlattrs:{offsetx:30,offsety:80},//返回按钮固定位置
 	anchorkeyword:"#top",
 	state:{
@@ -48,7 +48,7 @@ var scrolltotop={
 			var iebrws=document.all;
 			mainobj.cssfixedsupport=!iebrws||iebrws&&document.compatMode=="CSS1Compat"&&window.XMLHttpRequest;
 			mainobj.$body=(window.opera)?(document.compatMode=="CSS1Compat"?$("html"):$("body")):$("html,body");
-			mainobj.$control=$('<div id="topcontrol">'+mainobj.controlHTML+"</div>").css({position:mainobj.cssfixedsupport?"fixed":"absolute",bottom:mainobj.controlattrs.offsety,right:mainobj.controlattrs.offsetx,opacity:0,cursor:"pointer"}).attr({title:"返回顶部"}).click(function(){mainobj.scrollup();return false;}).appendTo("body");if(document.all&&!window.XMLHttpRequest&&mainobj.$control.text()!=""){mainobj.$control.css({width:mainobj.$control.width()});}mainobj.togglecontrol();
+			mainobj.$control=$('<div id="topcontrol" class="backtop"></div>').click(function(){mainobj.scrollup();return false;}).appendTo("body");if(document.all&&!window.XMLHttpRequest&&mainobj.$control.text()!=""){mainobj.$control.css({width:mainobj.$control.width()});}mainobj.togglecontrol();
 			$('a[href="'+mainobj.anchorkeyword+'"]').click(function(){mainobj.scrollup();return false;});
 			$(window).bind("scroll resize",function(e){mainobj.togglecontrol();});
 		});

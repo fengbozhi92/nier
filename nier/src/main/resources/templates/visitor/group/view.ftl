@@ -18,7 +18,7 @@ td{
 </style>
 </head>
 <body>
-	<#include "/visitor/common/top.ftl">
+	<#include "/visitor/common/layout/top.ftl">
 	<div class="container" style="min-height: 1600px;">
 		<div class="col-sm-12">
 			<h1>${group.name}</h1>
@@ -27,5 +27,7 @@ td{
 			<#include "/visitor/postthread/list.ftl">
 		</div>
 	</div>
-<#include "/visitor/common/footer.ftl">
+<#include "/visitor/common/layout/footer.ftl">
 <#include "/visitor/common/js.ftl">
+</body>
+</html>

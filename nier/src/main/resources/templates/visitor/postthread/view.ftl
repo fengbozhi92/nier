@@ -18,7 +18,7 @@ td{
 </style>
 </head>
 <body>
-	<#include "/visitor/common/top.ftl">
+	<#include "/visitor/common/layout/top.ftl">
 	<div class="container" style="min-height:1260px;">
 		<div class="col-md-12">
 			<div class="col-md-12">
@@ -65,8 +65,8 @@ td{
 	     	</div>
 	     </div>
 	</div>
-<#include "/visitor/common/footer.ftl">
-<#include "/manager/common/js.ftl">>
+<#include "/visitor/common/layout/footer.ftl">
+<#include "/visitor/common/js.ftl">>
 <script>
 	function pub(){
 		var userId = $("#postForm").find("input[name='userId']").val();

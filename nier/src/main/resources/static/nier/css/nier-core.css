@@ -86,9 +86,7 @@
   margin-right: auto;
   padding-left: 1rem;
   padding-right: 1rem;
-  width: 100%;
-  max-width: 1000px;
-  min-width:768px;
+  width: 1000px;
   background-color: white;
 }
 .banner{
@@ -172,4 +170,177 @@ div.topic-header{
 div.topic-box{
   padding-top: 5px;
   padding-bottom: 5px;
+}
+
+div.left-sec{
+  float: left;
+  min-height: 1000px; 
+  width: 200px;
+}
+
+div.middle-sec{
+  float: left;
+  min-height: 1000px; 
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 556px;
+}
+
+div.right-sec{
+  float: left;
+  min-height: 1000px; 
+  width: 200px;
+  border: 1px solid #ddd;
+}
+
+div.n-refresh{
+  display: block;
+  height: 30px;
+  width: 556px;
+  text-align: center;
+  border: 1px solid #ddd;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+div.n-refresh:hover{
+  background-color: #ddd;
+}
+
+ul.n-list{
+  width: 536px;
+  display: block;
+  margin: 20px 10px;
+}
+
+ul.n-list>li.n-item{
+  padding-bottom: 20px;
+}
+
+ul.n-list>li.n-item a:hover{
+  text-decoration: underline;
+  color: #20B2AA;
+}
+
+ul.n-list>li.n-item>div.g-name{
+  font-size: 1.8rem;
+  margin-bottom: 5px;
+}
+
+ul.n-list>li.n-item>div.t-txt{
+  padding-top: 5px;
+}
+
+ul.n-list>li.n-item>div.t-name a{
+  font-size: 1.8rem;
+  color: #20B2AA;
+}
+
+ul.n-list>li.n-item>ul.t-img{
+  margin: 10px 0;
+}
+
+ul.n-list>li.n-item>ul.t-img>li>img{
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+ul.n-list>li.n-item>div.n-reply{
+  color: #999;
+}
+div.share{
+    width: 24px;
+    height: 88px;
+    position: fixed;
+    right: 0;
+    top: 50%;
+    margin-top: -40px;
+    z-index: 99;
+    background-image: url("/nier/icon/share.png");
+    background-repeat: no-repeat;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+}
+
+div.share:hover{
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  cursor: pointer;
+}
+
+div.share>div.share-main{
+  position: absolute;
+  left: -44px;
+  top: 0;
+  border: 1px solid #ddd;	
+}
+
+.share-item.icon-1{
+  background-image: url("/nier/icon/tieba.png");
+  background-position: 0 0;
+}
+
+.share-item.icon-1:hover{
+  background-position: 0 -34px;;
+}
+
+.share-item.icon-2{
+  background-image: url("/nier/icon/tieba.png");
+  background-position: -42px 0;
+}
+
+.share-item.icon-2:hover{
+  background-position: -42px -34px;;
+}
+
+.share-item.icon-3{
+  background-image: url("/nier/icon/tieba.png");
+  background-position: -84px 0;
+}
+
+.share-item.icon-3:hover{
+  background-position: -84px -34px;;
+}
+
+.share-item.icon-4{
+  background-image: url("/nier/icon/tieba.png");
+  background-position: -126px 0;
+}
+
+.share-item.icon-4:hover{
+  background-position: -126px -34px;;
+}
+
+.share-item.icon-5{
+  background-image: url("/nier/icon/tieba.png");
+  background-position: -168px 0;
+}
+
+.share-item.icon-5:hover{
+  background-position: -168px -34px;;
+}
+
+.share-item{
+  width: 32px;
+  height: 32px;
+  display: block;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.backtop{
+  background-image: url("/nier/icon/tieba-m.png");
+  background-position: 0 0;
+  width: 45px;
+  height: 45px;
+  display: block;
+  position: fixed;
+  bottom:100px;
+  left: 50%;
+  margin-left: 520px;
+}
+
+.backtop:hover{
+  background-position: -165px -110px;
+  cursor: pointer;
 }

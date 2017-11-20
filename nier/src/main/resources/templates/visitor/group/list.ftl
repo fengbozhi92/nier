@@ -5,7 +5,7 @@
 <title>group</title>
 </head>
 <body>
-	<#include "/visitor/common/top.ftl">	
+	<#include "/visitor/common/layout/top.ftl">	
 	<div class="container" style="min-height: 1260px">
 		<div class="col-md-8">
 			<div class="panel-body" style="padding-bottom:0px;">
@@ -26,8 +26,8 @@
     	</div>
     	<div class="col-md-4"></div>
 	</div>
-<#include "/visitor/common/footer.ftl">
-<#include "/manager/common/js.ftl">
+<#include "/visitor/common/layout/footer.ftl">
+<#include "/visitor/common/js.ftl">
 <script>
 	$(function () {
 	    //1.初始化Table

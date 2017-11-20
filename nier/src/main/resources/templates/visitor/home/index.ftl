@@ -1,19 +1,13 @@
-<#include "/visitor/common/macro/default.ftl">
+<#include "/visitor/common/import/init.ftl">
 <!DOCTYPE html>
 <html>
 <head>
 <title>home</title>
-<link rel="stylesheet" type="text/css" href="/third-party/carousel/css/carousel.css"/>
-<link href="/nier/css/nier-core.css" rel="stylesheet">
-<link href="/nier/css/nier.css" rel="stylesheet">
-<link href="/nier/css/nier-dic.css" rel="stylesheet">
-<link rel="icon" href="/nier/images/system/sys-nier.ico" type="image/x-icon"/>  
-<style type="text/css">
-
-</style>
+<#include "/visitor/common/import/header.ftl">
+<link rel="stylesheet" type="text/css" href="/third-party/carousel/css/carousel.css"/> 
 </head>
 <body>
-	<#include "/visitor/common/layout/top2.ftl">
+	<#include "/visitor/common/layout/top.ftl">
 	<div class="banner">
 		<div class="yx-rotaion">
 			<ul class="rotaion_list">
@@ -50,8 +44,8 @@
 				</#list>
 			</div>
 		</div>
-		<div class="clearfix" style="">
-			<div class="fl" style="min-height: 1000px; width: 200px;">
+		<div class="clearfix">
+			<div class="left-sec">
 				<div class="topic-box">
 					<div class="topic-header">热门榜单</div>
 					<ul class="topic-list">
@@ -69,17 +63,67 @@
 					</ul>
 				</div>
 			</div>
-			<div class="fl">
-				aa
+			
+			<div class="middle-sec">
+				<div class="n-refresh">
+					更新内容
+				</div>
+				<ul class="n-list">
+					<#list 1..15 as i>
+						<li class="n-item">
+							<div class="g-name"><a href="#">java吧</a></div>
+							<div class="t-name"><a href="#">第三方萨达</a></div>
+							<div class="t-txt">
+								巴拉巴拉大割发代首噶尔噶大师法师打发斯蒂芬多发发的说法
+								巴拉巴拉大割发代首噶尔噶大师法师打发斯蒂芬多发发的说法...</div>
+							<ul class="t-img">
+								<li>
+									<img src="/nier/images/nier.png" width="150px" height="100px">
+								</li>
+							</ul>
+							<div class="n-reply">
+								<span><a href="#">nier</a></span>
+								<span>2017-11-20 13:33</span>
+							</div>
+						</li>
+					</#list>
+				</ul>
+			</div>
+			<div class="right-sec">
 			</div>
 		</div>
 	</div>
-<#include "/visitor/common/layout/footer.ftl">
-<#include "/visitor/common/js.ftl">
+	<!-- ########## PENDANT START ########## -->
+	<div class="share">
+		<div class="share-main" style="display: none;">
+			<div>
+				<ul>
+					<li>
+						<div class="share-item icon-1"></div>
+					</li>
+					<li>
+						<div class="share-item icon-2"></div>
+					</li>
+					<li>
+						<div class="share-item icon-3"></div>
+					</li>
+					<li>
+						<div class="share-item icon-4"></div>
+					</li>
+					<li>
+						<div class="share-item icon-5"></div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!-- ########## PENDANT END ########## -->
+	<#include "/visitor/common/layout/footer.ftl">
+	<#include "/visitor/common/import/js.ftl">
 <script src="/third-party/carousel/js/carousel.js"></script>
-<script src="/nier/js/nier-style.js"></script>
 <script>
-	var cUser = '${(currentUser.id)!""}';
+	const cuid = '${(cuser.id)!""}';
+	
 	$(".yx-rotaion").yx_rotaion({
 		/**轮换间隔时间，单位毫秒*/
         during:3000,
