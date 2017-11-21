@@ -37,8 +37,8 @@ public class PostServiceImp implements PostService {
 				if (StringUtils.isNotBlank(post.getContent())) {
 					predicate.add(cb.like(root.get("content").as(String.class), QueryHelper.getFullImplict(post.getContent())));
 				}
-				if (post.getStatus() != null) {
-					predicate.add(cb.equal(root.get("status").as(Integer.class), post.getStatus()));
+				if (post.getDeleted() != null) {
+					predicate.add(cb.equal(root.get("deleted").as(Integer.class), post.getDeleted()));
 				}
 				if (StringUtils.isNotBlank(post.getGroupId())) {
 					predicate.add(cb.equal(root.get("groupId").as(String.class), post.getGroupId()));
@@ -71,20 +71,20 @@ public class PostServiceImp implements PostService {
 
 	@Override
 	@Transactional
-	public void updateReplyCount(String id) {
-		postRepository.updateReplyCountById(id);	
+	public void updateReplyNum(String id) {
+		postRepository.updateReplyNumById(id);	
 	}
 
 	@Override
 	@Transactional
-	public void updateLikeCount(String id) {
-		postRepository.updateLikeCountById(id);	
+	public void updateLikeNum(String id) {
+		postRepository.updateLikeNumById(id);	
 	}
 	
 	@Override
 	@Transactional
-	public void updateDislikeCount(String id) {
-		postRepository.updateDislikeCountById(id);	
+	public void updateDislikeNum(String id) {
+		postRepository.updateDislikeNumById(id);	
 	}
 	
 	@Override

@@ -39,7 +39,7 @@ public class GroupSubcategoryServiceImp implements GroupSubcategoryService {
 					predicate.add(cb.like(root.get("name").as(String.class), QueryHelper.getFullImplict(groupSubcategory.getName())));
 				}
 				if (groupSubcategory.getStatus() != null) {
-					predicate.add(cb.equal(root.get("status").as(Integer.class), groupSubcategory.getStatus()));
+					predicate.add(cb.equal(root.get("deleted").as(Integer.class), groupSubcategory.getStatus()));
 				}
 				if (StringUtils.isNotBlank(groupSubcategory.getGroupCategoryId())) {
 					predicate.add(cb.equal(root.get("groupCategoryId").as(String.class), groupSubcategory.getGroupCategoryId()));
@@ -84,8 +84,8 @@ public class GroupSubcategoryServiceImp implements GroupSubcategoryService {
 			if (StringUtils.isNotBlank(groupSubcategory.getName())) {
 				out.setName(groupSubcategory.getName());
 			}
-			if (groupSubcategory.getStatus() != null) {
-				out.setStatus(groupSubcategory.getStatus());
+			if (groupSubcategory.getDeleted() != null) {
+				out.setDeleted(groupSubcategory.getDeleted());
 			}
 			if (StringUtils.isNotBlank(groupSubcategory.getGroupCategoryId())) {
 				out.setGroupCategoryId(groupSubcategory.getGroupCategoryId());

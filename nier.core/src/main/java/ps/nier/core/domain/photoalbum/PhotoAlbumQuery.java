@@ -8,7 +8,7 @@ public class PhotoAlbumQuery extends PageQuery{
 	
 	private String userId;
 	private String title;
-	private Integer status;
+	private Integer deleted;
 	
 	public String getUserId() {
 		return userId;
@@ -22,11 +22,11 @@ public class PhotoAlbumQuery extends PageQuery{
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public Integer getStatus() {
-		return status;
+	public Integer getDeleted() {
+		return deleted;
 	}
-	public void setStatus(Integer status) {
-		this.status = status;
+	public void setDeleted(Integer deleted) {
+		this.deleted = deleted;
 	}
 
 }

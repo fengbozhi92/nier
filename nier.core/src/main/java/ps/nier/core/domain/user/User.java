@@ -20,6 +20,7 @@ import ps.nier.core.dictionary.UserRoleEnum;
 @Table(name="s_user")
 @JsonIgnoreProperties({"handler", "hibernateLazyInitializer"})
 public class User implements UserDetails{
+	
 	private static final long serialVersionUID = 1L;
 	
 	@Id

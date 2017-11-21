@@ -22,11 +22,8 @@ import ps.nier.core.domain.photo.PhotoQuery;
 import ps.nier.service.common.FillService;
 import ps.nier.service.photo.PhotoRepository;
 import ps.nier.service.photo.PhotoService;
-import ps.nier.service.photoalbum.PhotoAlbumService;
 @Service
 public class PhotoServiceImp implements PhotoService {
-	@Autowired
-	private PhotoAlbumService photoAlbumService;
 	@Autowired
 	private PhotoRepository photoRepository;
 	@Autowired
@@ -41,8 +38,8 @@ public class PhotoServiceImp implements PhotoService {
 				if (StringUtils.isNotBlank(photo.getName())) {
 					predicate.add(cb.like(root.get("name").as(String.class), QueryHelper.getFullImplict(photo.getName())));
 				}
-				if (photo.getStatus() != null) {
-					predicate.add(cb.equal(root.get("status").as(Integer.class), photo.getStatus()));
+				if (photo.getDeleted() != null) {
+					predicate.add(cb.equal(root.get("deleted").as(Integer.class), photo.getDeleted()));
 				}
 				if (StringUtils.isNotBlank(photo.getAlbumId())) {
 					predicate.add(cb.equal(root.get("albumId").as(String.class), photo.getAlbumId()));

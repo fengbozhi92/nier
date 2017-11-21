@@ -9,11 +9,13 @@ import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import ps.nier.controller.base.BaseController;
 import ps.nier.core.common.utils.UUIDUtils;
+import ps.nier.core.dictionary.DeletedEnum;
 import ps.nier.core.domain.base.ResEntity;
 import ps.nier.core.domain.groupcategory.GroupCategory;
 import ps.nier.core.domain.groupcategory.GroupCategoryQuery;
@@ -27,7 +29,8 @@ public class GroupCategoryController extends BaseController{
 	private GroupCategoryService groupCategoryService;
 	
 	@RequestMapping(value="/manager/groupcategory/list.do")
-	public String list(){
+	public String list(Model model){
+		model.addAttribute("deleted", DeletedEnum.getEnumValues());
 		return "manager/groupcategory/list";
 	}
 	

@@ -1,39 +1,30 @@
 package ps.nier.core.domain.group;
 
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import ps.nier.core.domain.base.BaseEntity;
+import ps.nier.core.domain.base.DefaultEntity;
 @Entity
 @Table(name="b_group")
-public class Group extends BaseEntity{
+public class Group extends DefaultEntity{
 	
 	private static final long serialVersionUID = 1L;
-	@Id
-	private String id;
+
 	private String categoryId;
 	private String subcategoryId;
 	private String name;
 	private String description;
 	private String imagePath;
-	private int memberCount;
-	private int postCount;
+	private int memberNum;
+	private int postNum;
 	private String ownerId;
-	private Integer status;
 	
 	@Transient
 	private String categoryName;
 	@Transient
 	private String subcategoryName;
 	
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
 	public String getCategoryId() {
 		return categoryId;
 	}
@@ -64,29 +55,23 @@ public class Group extends BaseEntity{
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
 	}
-	public int getMemberCount() {
-		return memberCount;
+	public int getMemberNum() {
+		return memberNum;
 	}
-	public void setMemberCount(int memberCount) {
-		this.memberCount = memberCount;
+	public void setMemberNum(int memberNum) {
+		this.memberNum = memberNum;
 	}
-	public int getPostCount() {
-		return postCount;
+	public int getPostNum() {
+		return postNum;
 	}
-	public void setPostCount(int postCount) {
-		this.postCount = postCount;
+	public void setPostNum(int postNum) {
+		this.postNum = postNum;
 	}
 	public String getOwnerId() {
 		return ownerId;
 	}
 	public void setOwnerId(String ownerId) {
 		this.ownerId = ownerId;
-	}
-	public Integer getStatus() {
-		return status;
-	}
-	public void setStatus(Integer status) {
-		this.status = status;
 	}
 	public String getCategoryName() {
 		return categoryName;

@@ -3,13 +3,14 @@ package ps.nier.core.domain.postthread;
 import ps.nier.core.domain.base.PageQuery;
 
 public class PostThreadQuery extends PageQuery{
+	
 	private static final long serialVersionUID = 6025999513242927900L;
 	
 	private String title;
 	private String userId;
 	private String groupId;
 	private Integer type;
-	private Integer status;
+	private Integer deleted;
 	
 	public String getTitle() {
 		return title;
@@ -35,11 +36,11 @@ public class PostThreadQuery extends PageQuery{
 	public void setType(Integer type) {
 		this.type = type;
 	}
-	public Integer getStatus() {
-		return status;
+	public Integer getDeleted() {
+		return deleted;
 	}
-	public void setStatus(Integer status) {
-		this.status = status;
+	public void setDeleted(Integer deleted) {
+		this.deleted = deleted;
 	}
 
 }

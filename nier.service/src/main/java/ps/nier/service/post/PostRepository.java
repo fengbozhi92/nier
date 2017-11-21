@@ -15,14 +15,15 @@ public interface PostRepository extends JpaRepository<Post, String>{
 	
 	
 	@Modifying
-	@Query(nativeQuery = true, value="update b_post set reply_count = reply_count+1 where id = ?1")
-	int updateReplyCountById(String id);
+	@Query(nativeQuery = true, value="update b_post set reply_num = reply_num+1 where id = ?1")
+	int updateReplyNumById(String id);
 	@Modifying
-	@Query(nativeQuery = true, value="update b_post set like_count = like_count+1 where id = ?1")
-	int updateLikeCountById(String id);
+	@Query(nativeQuery = true, value="update b_post set like_num = like_num+1 where id = ?1")
+	int updateLikeNumById(String id);
 	@Modifying
-	@Query(nativeQuery = true, value="update b_post set dislike_count = dislike_count+1 where id = ?1")
-	int updateDislikeCountById(String id);
+	@Query(nativeQuery = true, value="update b_post set dislike_num = dislike_num+1 where id = ?1")
+	int updateDislikeNumById(String id);
+	
 	@Query(nativeQuery = true, value="select sequence from b_post where type = 1 and thread_id = ?1 order by sequence desc limit 1")
 	int getLastSequenceByThreadId(String threadId);
 	

@@ -41,8 +41,8 @@ public class MenuServiceImp implements MenuService {
 				if (StringUtils.isNotBlank(menu.getName())) {
 					predicate.add(cb.like(root.get("name").as(String.class), QueryHelper.getFullImplict(menu.getName())));
 				}
-				if (menu.getStatus() != null) {
-					predicate.add(cb.equal(root.get("status").as(Integer.class), menu.getStatus()));
+				if (menu.getDeleted() != null) {
+					predicate.add(cb.equal(root.get("deleted").as(Integer.class), menu.getDeleted()));
 				}
 				if (menu.getDepth() != null) {
 					predicate.add(cb.equal(root.get("depth").as(Integer.class), menu.getDepth()));
@@ -101,8 +101,8 @@ public class MenuServiceImp implements MenuService {
 			if (StringUtils.isNotBlank(menu.getName())) {
 				out.setName(menu.getName());
 			}
-			if (menu.getStatus() != null) {
-				out.setStatus(menu.getStatus());
+			if (menu.getDeleted() != null) {
+				out.setDeleted(menu.getDeleted());
 			}
 			if (StringUtils.isNotBlank(menu.getParentId())) {
 				out.setParentId(menu.getParentId());

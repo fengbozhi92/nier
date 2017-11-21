@@ -16,7 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import ps.nier.core.common.helper.FilePathHelper;
 import ps.nier.core.common.utils.UUIDUtils;
-import ps.nier.core.dictionary.StatusEnum;
+import ps.nier.core.dictionary.DeletedEnum;
 import ps.nier.core.domain.base.FilePathResult;
 import ps.nier.core.domain.base.UploadResEntity;
 import ps.nier.core.domain.photo.Photo;
@@ -59,9 +59,9 @@ public class PhotoFileController {
 				photo.setPath(path);
 				photo.setName("无题");
 				photo.setType(new Integer(1));
-				photo.setLikeCount(0);
+				photo.setLikeNum(0);
 				photo.setSequence(0);
-				photo.setStatus(StatusEnum.Valid.getValue());
+				photo.setDeleted(DeletedEnum.NotDelete.getValue());
 				photoService.save(photo);
 				return new UploadResEntity(0, new Object[]{path});
 			} catch (Throwable t) {

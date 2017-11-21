@@ -205,7 +205,7 @@
 			url:"/postthread/pub.do",
 			data:$("#threadForm").serialize() + "&" + $.param(data),
 			success:function(res){
-				alert("保存成功！"+status);
+				alert("保存成功！");
 				$("#threadForm")[0].reset();
 				search();
 			},

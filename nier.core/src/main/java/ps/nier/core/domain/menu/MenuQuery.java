@@ -3,10 +3,11 @@ package ps.nier.core.domain.menu;
 import ps.nier.core.domain.base.PageQuery;
 
 public class MenuQuery extends PageQuery{
+	
 	private static final long serialVersionUID = -1620619438203151447L;
 	
 	private String name;
-	private Integer status;
+	private Integer deleted;
 	private String parentId;
 	private Integer depth;
 	
@@ -16,11 +17,11 @@ public class MenuQuery extends PageQuery{
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Integer getStatus() {
-		return status;
+	public Integer getDeleted() {
+		return deleted;
 	}
-	public void setStatus(Integer status) {
-		this.status = status;
+	public void setDeleted(Integer deleted) {
+		this.deleted = deleted;
 	}
 	public String getParentId() {
 		return parentId;

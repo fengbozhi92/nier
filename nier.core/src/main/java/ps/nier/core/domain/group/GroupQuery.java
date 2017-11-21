@@ -8,7 +8,7 @@ public class GroupQuery extends PageQuery{
 	private String name;
 	private String categoryId;
 	private String subcategoryId;
-	private Integer status;
+	private Integer deleted;
 	
 	public String getName() {
 		return name;
@@ -28,10 +28,10 @@ public class GroupQuery extends PageQuery{
 	public void setSubcategoryId(String subcategoryId) {
 		this.subcategoryId = subcategoryId;
 	}
-	public Integer getStatus() {
-		return status;
+	public Integer getDeleted() {
+		return deleted;
 	}
-	public void setStatus(Integer status) {
-		this.status = status;
+	public void setDeleted(Integer deleted) {
+		this.deleted = deleted;
 	}
 }

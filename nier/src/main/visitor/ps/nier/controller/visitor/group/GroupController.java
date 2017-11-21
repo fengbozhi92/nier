@@ -16,13 +16,10 @@ import ps.nier.core.domain.group.Group;
 import ps.nier.core.domain.group.GroupQuery;
 import ps.nier.service.group.GroupService;
 import ps.nier.service.groupcategory.GroupCategoryService;
-import ps.nier.service.groupsubcategory.GroupSubcategoryService;
 
 @Controller
 public class GroupController extends BaseController{
 	private static final Logger logger = org.slf4j.LoggerFactory.getLogger(GroupController.class);
-	@Autowired
-	private GroupSubcategoryService groupSubcategoryService;
 	@Autowired
 	private GroupCategoryService groupCategoryService;
 	@Autowired

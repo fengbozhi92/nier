@@ -15,15 +15,6 @@
                      		<input type="text" name="name" class="form-control" id="name" placeholder="名称">
                      	</div>
                  	</div>
-                	<div class="form-group">
-                		<label class="col-sm-2 lh34 text-right" for="status">状态</label>
-                     	<div class="col-sm-8">
-                     		<select class="form-control" id = "status" name="status">
-                     			<option value="1">启用</option>
-                     			<option value="2">停用</option>
-                     		</select>
-                 		</div>
-                 	</div>
              	</div>
             </form>
             <div class="modal-footer">
@@ -47,8 +38,8 @@
 			url:"/manager/groupcategory/save.do",
 			type:"POST",
 			data:$("#addForm").serialize() + "&" + $.param(data),
-			success:function(res, status){
-				alert("保存成功！"+status);
+			success:function(res){
+				alert("保存成功！");
 				$("#addForm")[0].reset();
 				search();
 			},

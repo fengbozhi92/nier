@@ -11,8 +11,8 @@ public interface PostThreadService {
 	
 	PostThread get(String id);
 	
-	void updateViewCount(String id);
-	void updateReplyCount(String id);
+	void updateViewNum(String id);
+	void updateReplyNum(String id);
 	
 	boolean save(PostThread postThread);
 	

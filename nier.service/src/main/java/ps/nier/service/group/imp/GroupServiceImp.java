@@ -38,8 +38,8 @@ public class GroupServiceImp implements GroupService {
 				if (StringUtils.isNotBlank(group.getName())) {
 					predicate.add(cb.like(root.get("name").as(String.class), QueryHelper.getFullImplict(group.getName())));
 				}
-				if (group.getStatus() != null) {
-					predicate.add(cb.equal(root.get("status").as(Integer.class), group.getStatus()));
+				if (group.getDeleted() != null) {
+					predicate.add(cb.equal(root.get("deleted").as(Integer.class), group.getDeleted()));
 				}
 				if (StringUtils.isNotBlank(group.getCategoryId())) {
 					predicate.add(cb.equal(root.get("categoryId").as(String.class), group.getCategoryId()));

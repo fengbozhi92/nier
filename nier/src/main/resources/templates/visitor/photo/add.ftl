@@ -73,8 +73,8 @@
 			url:"/photoalbum/save.do",
 			type:"POST",
 			data:$("#addForm").serialize() + "&" + $.param(data),
-			success:function(res, status){
-				alert("保存成功！"+status);
+			success:function(res){
+				alert("保存成功！");
 				$("#addForm")[0].reset();
 				$(".avatar-view img").attr("src","/nier/images/system/sys-nier.png");
 				refresh(0,10);

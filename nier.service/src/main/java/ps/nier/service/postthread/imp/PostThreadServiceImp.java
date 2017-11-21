@@ -18,8 +18,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ps.nier.core.common.helper.QueryHelper;
 import ps.nier.core.common.utils.UUIDUtils;
+import ps.nier.core.dictionary.DeletedEnum;
 import ps.nier.core.dictionary.PostTypeEnum;
-import ps.nier.core.dictionary.StatusEnum;
 import ps.nier.core.domain.post.Post;
 import ps.nier.core.domain.postthread.PostThread;
 import ps.nier.core.domain.postthread.PostThreadQuery;
@@ -45,8 +45,8 @@ public class PostThreadServiceImp implements PostThreadService {
 				if (StringUtils.isNotBlank(postThread.getTitle())) {
 					predicate.add(cb.like(root.get("title").as(String.class), QueryHelper.getFullImplict(postThread.getTitle())));
 				}
-				if (postThread.getStatus() != null) {
-					predicate.add(cb.equal(root.get("status").as(Integer.class), postThread.getStatus()));
+				if (postThread.getDeleted() != null) {
+					predicate.add(cb.equal(root.get("deleted").as(Integer.class), postThread.getDeleted()));
 				}
 				if (postThread.getType() != null) {
 					predicate.add(cb.equal(root.get("type").as(Integer.class), postThread.getType()));
@@ -76,15 +76,15 @@ public class PostThreadServiceImp implements PostThreadService {
 
 	@Override
 	@Transactional
-	public void updateViewCount(String id) {
-		postThreadRepository.updateViewCountById(id);
+	public void updateViewNum(String id) {
+		postThreadRepository.updateViewNumById(id);
 		
 	}
 
 	@Override
 	@Transactional
-	public void updateReplyCount(String id) {
-		postThreadRepository.updateReplyCountById(id);
+	public void updateReplyNum(String id) {
+		postThreadRepository.updateReplyNumById(id);
 		
 	}
 
@@ -100,7 +100,7 @@ public class PostThreadServiceImp implements PostThreadService {
 			post.setType(PostTypeEnum.Ground.getValue());
 			post.setCreateUser(postThread.getCreateUser());
 			post.setCreateTime(postThread.getCreateTime());
-			post.setStatus(StatusEnum.Valid.getValue());
+			post.setDeleted(DeletedEnum.NotDelete.getValue());
 			postService.save(post);
 			return true;
 		}

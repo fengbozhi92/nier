@@ -26,14 +26,6 @@
 	                            	</#list>
 	                            </select>
 	                        </div>
-                        	<label class="control-label col-sm-1" for="search_status">状态</label>
-	                        <div class="col-sm-2">
-	                            <select class="form-control" id="search_status">
-	                            	<option value="">全部</option>
-	                            	<option value="1">启用</option>
-	                            	<option value="2">停用</option>
-	                            </select>
-	                        </div>
 	                        <div class="col-sm-2" style="text-align:left;">
 	                            <button type="button" style="margin-left:50px" id="btn_query" class="btn btn-primary" onclick="search();">查询</button>
 	                        </div>
@@ -132,19 +124,6 @@
 	                	return new Date(value).format('yyyy-MM-dd hh:mm:ss');
 	                }
 	            }, {
-	                field : 'status',
-	                title : '状态',
-	                align : 'center',
-	                formatter : function (value, row, index){
-	                	var result = '';
-	                	if (value == '1') {
-	                		result = '<button class="btn btn-success btn-xs" type="button">启用</button>';
-	                	} else if (value == '2'){
-	                		result = '<button class="btn btn-danger btn-xs" type="button">停用</button>';
-	                	} 
-	                	return result;
-	                }
-	            }, {
 	                field : '',
 	                title : '操作',
 	                width : 100,
@@ -163,7 +142,6 @@
 	            size: this.pageSize,   //页面大小
 	            page: this.pageNumber-1,  //页码
 	            name: $("#search_name").val(), 
-	            status: $("#search_status").val(),
 	            groupCategoryId: $("#search_groupCategoryId").val()
 	        };
 	        return temp;

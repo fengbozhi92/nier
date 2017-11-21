@@ -1,30 +1,22 @@
 package ps.nier.core.domain.photoalbum;
 
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
-import ps.nier.core.domain.base.BaseEntity;
+import ps.nier.core.domain.base.DefaultEntity;
 @Entity
 @Table(name="b_photo_album")
-public class PhotoAlbum extends BaseEntity{
+public class PhotoAlbum extends DefaultEntity{
+	
 	private static final long serialVersionUID = 1L;
-	@Id
-	private String id;
+
 	private String title;
 	private String description;
 	private String imagePath;
 	private int sequence;
-	private int photoCount;
+	private int photoNum;
 	private Integer type;
-	private Integer status;
 	
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
 	public String getTitle() {
 		return title;
 	}
@@ -49,11 +41,11 @@ public class PhotoAlbum extends BaseEntity{
 	public void setSequence(int sequence) {
 		this.sequence = sequence;
 	}
-	public int getPhotoCount() {
-		return photoCount;
+	public int getPhotoNum() {
+		return photoNum;
 	}
-	public void setPhotoCount(int photoCount) {
-		this.photoCount = photoCount;
+	public void setPhotoNum(int photoNum) {
+		this.photoNum = photoNum;
 	}
 	public Integer getType() {
 		return type;
@@ -61,10 +53,5 @@ public class PhotoAlbum extends BaseEntity{
 	public void setType(Integer type) {
 		this.type = type;
 	}
-	public Integer getStatus() {
-		return status;
-	}
-	public void setStatus(Integer status) {
-		this.status = status;
-	}
+
 }

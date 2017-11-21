@@ -2,6 +2,8 @@
 <html>
 <head>
 <#include "/manager/common/header.ftl">
+<#import "/manager/common/macro.ftl" as m>
+
 <title></title>
 </head>
 <body>
@@ -17,14 +19,10 @@
 	                        <div class="col-sm-3">
 	                            <input type="text" class="form-control" id="search_name">
 	                        </div>
-                        	<label class="control-label col-sm-1" for="search_status">状态</label>
-	                        <div class="col-sm-3">
-	                            <select class="form-control" id="search_status">
-	                            	<option value="">全部</option>
-	                            	<option value="1">启用</option>
-	                            	<option value="2">停用</option>
-	                            </select>
-	                        </div>
+	                        <label class="control-label col-sm-1" for="search_deleted">状态</label>
+	                       	<div class="col-sm-3">
+							   <@m.select data = deleted id="search_deleted" key="value" text="label" headKey="" headValue="全部"/>
+							</div>
 	                        <div class="col-sm-4" style="text-align:left;">
 	                            <button type="button" style="margin-left:50px" id="btn_query" class="btn btn-primary" onclick="search();">查询</button>
 	                        </div>
@@ -46,8 +44,10 @@
 	</div>
 <#include "/manager/common/footer.ftl">
 <#include "/manager/common/js.ftl">
+
 <script>
 	$(function () {
+		
 	    //1.初始化Table
 	    var oTable = new TableInit();
 	    oTable.Init();
@@ -95,6 +95,18 @@
 	            cardView: false,                    //是否显示详细视图
 	            detailView: false,                  //是否显示父子表
 	            editable:true,
+	            rowStyle: function (row, index) {
+	                //这里有5个取值代表5中颜色['active', 'success', 'info', 'warning', 'danger'];
+	                var strclass = "";
+	                if (row.deleted == 1) {
+	                    strclass = 'danger';//还有一个active
+	                } else if (row.deleted == 2) {
+	                    strclass = 'success';
+	                } else {
+	                    return {};
+	                }
+	                return { classes: strclass }
+	            },
 	            columns: [{
 	                checkbox: true
 	            }, {
@@ -117,19 +129,6 @@
 	                formatter : function (value, row, index){
 	                	return new Date(value).format('yyyy-MM-dd hh:mm:ss');
 	                }
-	            },{
-	                field : 'status',
-	                title : '状态',
-	                align : 'center',
-	                formatter : function (value, row, index){
-	                	var result = '';
-	                	if (value == '1') {
-	                		result = '<button class="btn btn-success btn-xs" type="button">启用</button>';
-	                	} else if (value == '2'){
-	                		result = '<button class="btn btn-danger btn-xs" type="button">停用</button>';
-	                	} 
-	                	return result;
-	                }
 	            }, {
 	                field : '',
 	                title : '操作',
@@ -149,7 +148,7 @@
 	            size: this.pageSize,   //页面大小
 	            page: this.pageNumber-1,  //页码
 	            name: $("#search_name").val(), 
-	            status: $("#search_status").val()
+	            deleted:$("#search_deleted").val(),
 	        };
 	        return temp;
 	    };

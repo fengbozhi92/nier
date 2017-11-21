@@ -39,8 +39,8 @@ public class PhotoAlbumServiceImp implements PhotoAlbumService {
 				if (StringUtils.isNotBlank(photoAlbum.getTitle())) {
 					predicate.add(cb.like(root.get("title").as(String.class), QueryHelper.getFullImplict(photoAlbum.getTitle())));
 				}
-				if (photoAlbum.getStatus() != null) {
-					predicate.add(cb.equal(root.get("status").as(Integer.class), photoAlbum.getStatus()));
+				if (photoAlbum.getDeleted() != null) {
+					predicate.add(cb.equal(root.get("deleted").as(Integer.class), photoAlbum.getDeleted()));
 				}
 				if (StringUtils.isNotBlank(photoAlbum.getUserId())) {
 					predicate.add(cb.equal(root.get("createUser").as(String.class), photoAlbum.getUserId()));

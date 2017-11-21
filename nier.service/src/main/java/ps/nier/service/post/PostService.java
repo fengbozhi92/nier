@@ -12,9 +12,9 @@ public interface PostService {
 	Post get(String id);
 	int getLastSequenceByThreadId(String id);
 	
-	void updateReplyCount(String id);
-	void updateLikeCount(String id);
-	void updateDislikeCount(String id);
+	void updateReplyNum(String id);
+	void updateLikeNum(String id);
+	void updateDislikeNum(String id);
 	
 	boolean save(Post post);
 	

@@ -37,8 +37,8 @@ public class GroupCategoryServiceImp implements GroupCategoryService{
 				if (StringUtils.isNotBlank(groupCategory.getName())) {
 					predicate.add(cb.like(root.get("name").as(String.class), QueryHelper.getFullImplict(groupCategory.getName())));
 				}
-				if (groupCategory.getStatus() != null) {
-					predicate.add(cb.equal(root.get("status").as(Integer.class), groupCategory.getStatus()));
+				if (groupCategory.getDeleted() != null) {
+					predicate.add(cb.equal(root.get("deleted").as(Integer.class), groupCategory.getDeleted()));
 				}
 				Predicate[] p = new Predicate[predicate.size()];
 				query.where(predicate.toArray(p)).orderBy(cb.desc(root.get("createTime").as(Date.class)));
@@ -69,8 +69,8 @@ public class GroupCategoryServiceImp implements GroupCategoryService{
 			if (StringUtils.isNotBlank(groupCategory.getName())) {
 				out.setName(groupCategory.getName());
 			}
-			if (groupCategory.getStatus() != null) {
-				out.setStatus(groupCategory.getStatus());
+			if (groupCategory.getDeleted() != null) {
+				out.setDeleted(groupCategory.getDeleted());
 			}
 			out.setModifyTime(groupCategory.getModifyTime());
 			out.setModifyUser(groupCategory.getModifyUser());

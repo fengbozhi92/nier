@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import ps.nier.controller.base.BaseController;
 import ps.nier.core.common.utils.UUIDUtils;
+import ps.nier.core.dictionary.DeletedEnum;
 import ps.nier.core.dictionary.PostTypeEnum;
-import ps.nier.core.dictionary.StatusEnum;
 import ps.nier.core.domain.base.ResEntity;
 import ps.nier.core.domain.post.Post;
 import ps.nier.core.domain.post.PostQuery;
@@ -39,7 +39,7 @@ public class PostController extends BaseController{
 		try {
 			post.setId(UUIDUtils.getId36());
 			post.setCreateTime(new Date());
-			post.setStatus(StatusEnum.Valid.getValue());
+			post.setDeleted(DeletedEnum.NotDelete.getValue());
 			post.setType(PostTypeEnum.Default.getValue());
 			int sequence = postService.getLastSequenceByThreadId(post.getThreadId()) + 1;
 			post.setSequence(sequence);

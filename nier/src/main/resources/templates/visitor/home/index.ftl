@@ -5,6 +5,8 @@
 <title>home</title>
 <#include "/visitor/common/import/header.ftl">
 <link rel="stylesheet" type="text/css" href="/third-party/carousel/css/carousel.css"/> 
+<link rel="stylesheet" type="text/css" href="/third-party/load-mask/css/load-mask.css"/>
+<link href="/third-party/icheck/css/green.css" rel="stylesheet">
 </head>
 <body>
 	<#include "/visitor/common/layout/top.ftl">
@@ -66,7 +68,9 @@
 			
 			<div class="middle-sec">
 				<div class="n-refresh">
-					更新内容
+					<input type="radio" class="icheck" name="iCheck">
+					
+					<input type="radio" class="icheck" name="iCheck" checked>
 				</div>
 				<ul class="n-list">
 					<#list 1..15 as i>
@@ -121,8 +125,38 @@
 	<#include "/visitor/common/layout/footer.ftl">
 	<#include "/visitor/common/import/js.ftl">
 <script src="/third-party/carousel/js/carousel.js"></script>
+<script src="/third-party/load-mask/js/load-mask.js"></script>
+<script src="/nier/js/icheck.js"></script>
 <script>
+$('input.icheck').iCheck({ 
+	  labelHover : false, 
+	  cursor : true, 
+	  checkboxClass : 'icheckbox_flat-green', 
+	  radioClass : 'iradio_flat-green', 
+	  increaseArea : '20%' 
+	}); 
 	const cuid = '${(cuser.id)!""}';
+	$(".n-refresh").click(function(){
+		
+	$(".n-list").mask("正在执行操作，请稍候.....");
+	
+/*		$(this).block({
+			message: "please", //取 growlUI div 中内容作为消息  
+            fadeIn: 700, //渐入式显示  
+            fadeOut: 700, //渐出式消失  
+            timeout: 2000, //2 秒后消失  
+            showOverlay: false, //不显示遮罩层  
+            centerY: false, //Y 方向上不居中  
+            css: {  
+                width: '350px',   
+                border:'0',
+                borderRadius:'6px',
+                backgroundColor: '#000', //注意样式名的写法  
+                opacity: .6,  
+                color: '#fff'  
+            } 
+		});*/
+	})
 	
 	$(".yx-rotaion").yx_rotaion({
 		/**轮换间隔时间，单位毫秒*/

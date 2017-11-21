@@ -1,33 +1,25 @@
 package ps.nier.core.domain.groupsubcategory;
 
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import ps.nier.core.domain.base.BaseEntity;
+import ps.nier.core.domain.base.DictionaryEntity;
 @Entity
 @Table(name="d_group_subcategory")
 @JsonIgnoreProperties({"handler", "hibernateLazyInitializer"})
-public class GroupSubcategory extends BaseEntity{
+public class GroupSubcategory extends DictionaryEntity{
+
 	private static final long serialVersionUID = -705963853473736023L;
-	@Id
-	private String id;
+
 	private String groupCategoryId;
 	private String name;
 	private int sequence;
-	private Integer status;
 	@Transient
 	private String groupCategoryName;
 	
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
 	public String getGroupCategoryId() {
 		return groupCategoryId;
 	}
@@ -45,12 +37,6 @@ public class GroupSubcategory extends BaseEntity{
 	}
 	public void setSequence(int sequence) {
 		this.sequence = sequence;
-	}
-	public Integer getStatus() {
-		return status;
-	}
-	public void setStatus(Integer status) {
-		this.status = status;
 	}
 	public String getGroupCategoryName() {
 		return groupCategoryName;

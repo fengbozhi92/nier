@@ -16,15 +16,6 @@
                       		<input type="text" name="name" class="form-control" id="name" placeholder="名称">
                       	</div>
                   	</div>
-                  	<div class="form-group">
-                    	<label class="col-sm-2 lh34 text-right" for="status">状态</label>
-                      	<div class="col-sm-8">
-                      		<select class="form-control" id = "status" name="status">
-                      			<option value="1">启用</option>
-                      			<option value="2">停用</option>
-                      		</select>
-                  		</div>
-                  	</div>
               	</div>
              </form>
              <div class="modal-footer">
@@ -48,7 +39,6 @@
     		    var data = res.data;
     		    $('#editModal').find("input[name='id']").val(data.id);
     		    $('#editModal').find("input[name='name']").val(data.name);
-    		    $('#editModal').find("#status option[value='"+data.status+"']").attr("selected", true);
 	    	},
 	    	error:function(){
 	    		alert("操作失败");

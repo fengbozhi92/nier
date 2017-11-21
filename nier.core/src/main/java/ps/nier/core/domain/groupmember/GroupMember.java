@@ -1,23 +1,16 @@
 package ps.nier.core.domain.groupmember;
 
-import ps.nier.core.domain.base.BaseEntity;
+import ps.nier.core.domain.base.DefaultEntity;
 
-public class GroupMember extends BaseEntity{
+public class GroupMember extends DefaultEntity{
+	
 	private static final long serialVersionUID = 1L;
 	
-	private String id;
 	private String userId;
 	private Integer level = 1;
 	private Integer roleType;
 	private int exp = 0;
-	private Integer status;
 	
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
 	public String getUserId() {
 		return userId;
 	}
@@ -41,12 +34,6 @@ public class GroupMember extends BaseEntity{
 	}
 	public void setExp(int exp) {
 		this.exp = exp;
-	}
-	public Integer getStatus() {
-		return status;
-	}
-	public void setStatus(Integer status) {
-		this.status = status;
 	}
 	
 }

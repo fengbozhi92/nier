@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import ps.nier.controller.base.BaseController;
 import ps.nier.core.common.utils.UUIDUtils;
-import ps.nier.core.dictionary.StatusEnum;
+import ps.nier.core.dictionary.DeletedEnum;
 import ps.nier.core.domain.base.ResEntity;
 import ps.nier.core.domain.post.Post;
 import ps.nier.core.domain.postreply.PostReply;
@@ -48,7 +48,7 @@ public class PostReplyController extends BaseController{
 					postReply.setThreadId(post.getThreadId());
 					postReply.setId(UUIDUtils.getId36());
 					postReply.setCreateTime(new Date());
-					postReply.setStatus(StatusEnum.Valid.getValue());
+					postReply.setDeleted(DeletedEnum.NotDelete.getValue());
 					if (postReplyService.save(postReply)) {
 						return renderSuccess();
 					}

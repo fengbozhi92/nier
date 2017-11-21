@@ -87,13 +87,13 @@ public class UserServiceImp implements UserService{
 	}
 
 	@Override
-	public boolean updateFansCount(String id) {
+	public boolean updateFansNum(String id) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean updateFollowedCount(String id) {
+	public boolean updateFollowedNum(String id) {
 		// TODO Auto-generated method stub
 		return false;
 	}

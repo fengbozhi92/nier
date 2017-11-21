@@ -14,10 +14,10 @@ public interface PostThreadRepository extends JpaRepository<PostThread, String>{
 	Page<PostThread> findAll(Specification<PostThread> spec, Pageable page);
 	
 	@Modifying
-	@Query(value="update PostThread set view_count = view_count+1 where id = ?1")
-	int updateViewCountById(String id);
+	@Query(value="update PostThread set view_num = view_num+1 where id = ?1")
+	int updateViewNumById(String id);
 	@Modifying
-	@Query(value="update PostThread set reply_count = reply_count+1 where id = ?1")
-	int updateReplyCountById(String id);
+	@Query(value="update PostThread set reply_num = reply_num+1 where id = ?1")
+	int updateReplyNumById(String id);
 	
 }

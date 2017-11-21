@@ -4,8 +4,7 @@
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <title>Pisual Mouse</title>
-<#include "/visitor/common/header.ftl">
-<link rel="stylesheet" type="text/css" href="/nier/css/jq22.css">
+<#include "/visitor/common/import/header.ftl">
 <!--[if lte IE 8]><style>.main{display:none;} .support-note .note-ie{display:block;}</style><![endif]-->
 <style>
 @font-face {
@@ -125,7 +124,7 @@
 			您的浏览器不支持 audio 标签。
 		</audio>
 	</div>
-<#include "/visitor/common/js.ftl">
+<#include "/visitor/common/import/js.ftl">
 <script src="/nier/js/canvas_clock.js"></script>
 <script type="text/javascript" src="/nier/js/sketch.min.js"></script>
 <script>

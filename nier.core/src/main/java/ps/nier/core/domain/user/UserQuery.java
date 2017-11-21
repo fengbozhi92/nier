@@ -1,7 +1,11 @@
 package ps.nier.core.domain.user;
 
-public class UserQuery {
-	
+import ps.nier.core.domain.base.PageQuery;
+
+public class UserQuery extends PageQuery{
+
+	private static final long serialVersionUID = 5167390040457439330L;
+
 	private String username;
 	private String nickname;
 	

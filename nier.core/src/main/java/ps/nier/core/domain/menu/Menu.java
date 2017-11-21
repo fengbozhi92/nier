@@ -4,26 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import ps.nier.core.domain.base.BaseEntity;
+import ps.nier.core.domain.base.DefaultEntity;
 
 @Entity
 @Table(name="s_menu")
-public class Menu extends BaseEntity{
+public class Menu extends DefaultEntity{
+	
 	private static final long serialVersionUID = 573226032151260266L;
 	
-	@Id
-	private String id;
 	private String name;
 	private String url;
 	private String parentId;
 	private Integer depth;
-	private int sequence;
-	private Integer status;
-	
+	private int sequence;	
 	@Transient
 	private String parentName;
 	@Transient
@@ -35,7 +31,7 @@ public class Menu extends BaseEntity{
 	
 	public Menu(String id, String name, String url, String parentId, Integer depth, List<Menu> submenus) {
 		super();
-		this.id = id;
+		super.id = id;
 		this.name = name;
 		this.url = url;
 		this.parentId = parentId;
@@ -43,12 +39,6 @@ public class Menu extends BaseEntity{
 		this.submenus = submenus;
 	}
 
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
 	public String getName() {
 		return name;
 	}
@@ -78,12 +68,6 @@ public class Menu extends BaseEntity{
 	}
 	public void setSequence(int sequence) {
 		this.sequence = sequence;
-	}
-	public Integer getStatus() {
-		return status;
-	}
-	public void setStatus(Integer status) {
-		this.status = status;
 	}
 	public String getParentName() {
 		return parentName;

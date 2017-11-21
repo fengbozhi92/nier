@@ -16,26 +16,21 @@ import ps.nier.core.domain.base.ResEntity;
 import ps.nier.core.domain.photo.Photo;
 import ps.nier.core.domain.photo.PhotoQuery;
 import ps.nier.service.photo.PhotoService;
-import ps.nier.service.photoalbum.PhotoAlbumService;
 @Controller
 public class PhotoController extends BaseController{
 	
 	private static final Logger logger = org.slf4j.LoggerFactory.getLogger(PhotoController.class);
-	
-	@Autowired
-	private PhotoAlbumService photoAlbumService;
+
 	@Autowired
 	private PhotoService photoService;
 	
 	@RequestMapping(value="/photo/list1.do")
 	public String list1(HttpServletRequest req, Model model){
-
 		return "visitor/photo/list1";
 	}
 	
 	@RequestMapping(value="/photo/list2.do")
 	public String list2(HttpServletRequest req, Model model){
-
 		return "visitor/photo/list2";
 	}
 	

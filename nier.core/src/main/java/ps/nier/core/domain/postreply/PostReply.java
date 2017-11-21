@@ -1,38 +1,29 @@
 package ps.nier.core.domain.postreply;
 
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import ps.nier.core.domain.base.BaseEntity;
+import ps.nier.core.domain.base.DefaultEntity;
 @Entity
 @Table(name="b_post_reply")
 @JsonIgnoreProperties({"handler", "hibernateLazyInitializer"})
-public class PostReply extends BaseEntity{
+public class PostReply extends DefaultEntity{
+	
 	private static final long serialVersionUID = 1050856493576526103L;
-	@Id
-	private String id;
+
 	private String groupId;
 	private String threadId;
 	private String targetId;
 	private String targetUserId;
-	private String content;
-	private Integer status;
-	
+	private String content;	
 	@Transient
 	private String targetUserNickname;
 	@Transient
 	private String userNickname;
 	
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
 	public String getGroupId() {
 		return groupId;
 	}
@@ -63,13 +54,6 @@ public class PostReply extends BaseEntity{
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public Integer getStatus() {
-		return status;
-	}
-	public void setStatus(Integer status) {
-		this.status = status;
-	}
-
 	public String getTargetUserNickname() {
 		return targetUserNickname;
 	}

@@ -36,9 +36,6 @@ public class PostReplyServiceImp implements PostReplyService {
 //				if (StringUtils.isNotBlank(post.getContent())) {
 //					predicate.add(cb.like(root.get("content").as(String.class), QueryHelper.getFullImplict(post.getContent())));
 //				}
-//				if (post.getStatus() != null) {
-//					predicate.add(cb.equal(root.get("status").as(Integer.class), post.getStatus()));
-//				}
 				if (StringUtils.isNotBlank(post.getTargetUserId())) {
 					predicate.add(cb.equal(root.get("targetUserId").as(String.class), post.getTargetUserId()));
 				}

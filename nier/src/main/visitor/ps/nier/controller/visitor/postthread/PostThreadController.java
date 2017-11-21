@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import ps.nier.controller.base.BaseController;
 import ps.nier.core.common.utils.UUIDUtils;
+import ps.nier.core.dictionary.DeletedEnum;
 import ps.nier.core.dictionary.PostThreadTypeEnum;
-import ps.nier.core.dictionary.StatusEnum;
 import ps.nier.core.domain.base.ResEntity;
 import ps.nier.core.domain.postthread.PostThread;
 import ps.nier.core.domain.postthread.PostThreadQuery;
@@ -42,7 +42,7 @@ public class PostThreadController extends BaseController{
 		try {
 			postThread.setId(UUIDUtils.getId36());
 			postThread.setCreateTime(new Date());
-			postThread.setStatus(StatusEnum.Valid.getValue());
+			postThread.setDeleted(DeletedEnum.NotDelete.getValue());
 			postThread.setType(PostThreadTypeEnum.Default.getValue());
 			if (postThreadService.save(postThread)) {
 				return renderSuccess();
@@ -61,7 +61,7 @@ public class PostThreadController extends BaseController{
 			try {
 				PostThread postThread = postThreadService.get(id);
 				if (postThread != null) {
-					postThreadService.updateViewCount(id);
+					postThreadService.updateViewNum(id);
 					model.addAttribute("thread", postThread);
 					return "visitor/postthread/view";
 				}

@@ -91,7 +91,7 @@ td{
 			url:"/post/pub.do",
 			data:$("#postForm").serialize() + "&" + $.param(data),
 			success:function(res){
-				alert("保存成功！"+status);
+				alert("保存成功！");
 				$("#postForm")[0].reset();
 				search();
 			},

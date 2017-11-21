@@ -3,4 +3,4 @@ table name prefix:
 	d_		Dictionary			字典表
 	r_		Relationship		关系表
 	b_		Business			业务表
-	u_		Unit				单元表
+	u_		Unit				单元表				

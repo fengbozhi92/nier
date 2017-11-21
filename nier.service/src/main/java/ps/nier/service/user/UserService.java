@@ -21,8 +21,8 @@ public interface UserService {
 	boolean updatePassword(String id, String password);
 	boolean updateImagePath(String id, String imagePath);
 	boolean updateNickname(String id, String nickname);
-	boolean updateFansCount(String id);
-	boolean updateFollowedCount(String id);
+	boolean updateFansNum(String id);
+	boolean updateFollowedNum(String id);
 	boolean updateStatus(String id, Integer status);
 	boolean updateRoles(String id, int roles);
 	UserDetail updateDetail(String id, UserDetail user);

@@ -1,26 +1,18 @@
 package ps.nier.core.domain.groupcategory;
 
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
-import ps.nier.core.domain.base.BaseEntity;
+import ps.nier.core.domain.base.DictionaryEntity;
 @Entity
 @Table(name="d_group_category")
-public class GroupCategory extends BaseEntity{
+public class GroupCategory extends DictionaryEntity{
+	
 	private static final long serialVersionUID = 8138479219339635308L;
-	@Id
-	private String id;
+
 	private String name;
 	private int sequence;
-	private Integer status;
 	
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
 	public String getName() {
 		return name;
 	}
@@ -32,11 +24,5 @@ public class GroupCategory extends BaseEntity{
 	}
 	public void setSequence(int sequence) {
 		this.sequence = sequence;
-	}
-	public Integer getStatus() {
-		return status;
-	}
-	public void setStatus(Integer status) {
-		this.status = status;
 	}
 }

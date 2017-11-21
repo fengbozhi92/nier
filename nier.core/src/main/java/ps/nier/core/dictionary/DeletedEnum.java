@@ -3,9 +3,9 @@ package ps.nier.core.dictionary;
 import java.util.Arrays;
 import java.util.List;
 
-public enum StatusEnum {
-	Valid(1, "启用"), 
-	Invalid(2, "禁用");
+public enum DeletedEnum {
+	Deleted(1, "已删除"), 
+	NotDelete(2, "未删除");
 	
 	private int value;
 	private String label;
@@ -17,25 +17,25 @@ public enum StatusEnum {
 		return label;
 	}
 	
-	private StatusEnum(int value, String label) {
+	private DeletedEnum(int value, String label) {
 		this.value = value;
 		this.label = label;
 	}
 	
-	public static StatusEnum parse(int value){
-		StatusEnum result = null;
+	public static DeletedEnum parse(int value){
+		DeletedEnum result = null;
 		switch (value) {
 		case 1 : 
-			result = StatusEnum.Valid;
+			result = DeletedEnum.Deleted;
 			break;
 		case 2 : 
-			result = StatusEnum.Invalid;
+			result = DeletedEnum.NotDelete;
 			break;
 		}
 		return result;
 	}
 	
-	public static List<StatusEnum> getEnumValues() {
+	public static List<DeletedEnum> getEnumValues() {
         return Arrays.asList(values());
     }
 }

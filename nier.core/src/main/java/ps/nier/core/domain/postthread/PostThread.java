@@ -1,38 +1,28 @@
 package ps.nier.core.domain.postthread;
 
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import ps.nier.core.domain.base.BaseEntity;
+import ps.nier.core.domain.base.DefaultEntity;
 @Entity
 @Table(name="b_post_thread")
-public class PostThread extends BaseEntity{
+public class PostThread extends DefaultEntity{
+	
 	private static final long serialVersionUID = 1L;
-	@Id
-	private String id;
+
 	private String groupId;
 	private String title;
-	private int viewCount;
-	private int replyCount;
+	private int viewNum;
+	private int replyNum;
 	private Integer type;
-	private Integer status;
-	
 	@Transient
 	private String content;
-	
 	@Transient
 	private String userNickname;
 	@Transient
 	private String groupName;
 	
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
 	public String getGroupId() {
 		return groupId;
 	}
@@ -45,29 +35,23 @@ public class PostThread extends BaseEntity{
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public int getViewCount() {
-		return viewCount;
+	public int getViewNum() {
+		return viewNum;
 	}
-	public void setViewCount(int viewCount) {
-		this.viewCount = viewCount;
+	public void setViewNum(int viewNum) {
+		this.viewNum = viewNum;
 	}
-	public int getReplyCount() {
-		return replyCount;
+	public int getReplyNum() {
+		return replyNum;
 	}
-	public void setReplyCount(int replyCount) {
-		this.replyCount = replyCount;
+	public void setReplyNum(int replyNum) {
+		this.replyNum = replyNum;
 	}
 	public Integer getType() {
 		return type;
 	}
 	public void setType(Integer type) {
 		this.type = type;
-	}
-	public Integer getStatus() {
-		return status;
-	}
-	public void setStatus(Integer status) {
-		this.status = status;
 	}
 	public String getContent() {
 		return content;

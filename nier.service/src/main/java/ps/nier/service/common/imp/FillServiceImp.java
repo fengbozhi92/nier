@@ -24,6 +24,7 @@ import ps.nier.service.postreply.PostReplyService;
 import ps.nier.service.user.UserService;
 @Component
 public class FillServiceImp implements FillService{
+	
 	@Autowired
 	private GroupService groupService;
 	@Autowired
