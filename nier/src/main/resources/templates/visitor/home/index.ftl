@@ -126,7 +126,7 @@
 	<#include "/visitor/common/import/js.ftl">
 <script src="/third-party/carousel/js/carousel.js"></script>
 <script src="/third-party/load-mask/js/load-mask.js"></script>
-<script src="/nier/js/icheck.js"></script>
+<script src="/third-party/icheck/js/icheck.min.js"></script>
 <script>
 $('input.icheck').iCheck({ 
 	  labelHover : false, 

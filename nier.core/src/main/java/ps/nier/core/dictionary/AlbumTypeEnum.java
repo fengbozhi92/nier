@@ -3,7 +3,7 @@ package ps.nier.core.dictionary;
 import java.util.Arrays;
 import java.util.List;
 
-public enum AlbumEnum {
+public enum AlbumTypeEnum {
 	Myself(1, "仅自己可见"), 
 	MyFriends(2, "好友可见"),
 	Anyone(2, "所有人可见"),
@@ -19,31 +19,31 @@ public enum AlbumEnum {
 		return label;
 	}
 	
-	private AlbumEnum(int value, String label) {
+	private AlbumTypeEnum(int value, String label) {
 		this.value = value;
 		this.label = label;
 	}
 	
-	public static AlbumEnum parse(int value){
-		AlbumEnum result = null;
+	public static AlbumTypeEnum parse(int value){
+		AlbumTypeEnum result = null;
 		switch (value) {
 		case 1 : 
-			result = AlbumEnum.Myself;
+			result = AlbumTypeEnum.Myself;
 			break;
 		case 2 : 
-			result = AlbumEnum.MyFriends;
+			result = AlbumTypeEnum.MyFriends;
 			break;
 		case 3 : 
-			result = AlbumEnum.Anyone;
+			result = AlbumTypeEnum.Anyone;
 			break;
 		case 4 : 
-			result = AlbumEnum.Question;
+			result = AlbumTypeEnum.Question;
 			break;
 		}
 		return result;
 	}
 	
-	public static List<AlbumEnum> getEnumValues() {
+	public static List<AlbumTypeEnum> getEnumValues() {
         return Arrays.asList(values());
     }
 }
