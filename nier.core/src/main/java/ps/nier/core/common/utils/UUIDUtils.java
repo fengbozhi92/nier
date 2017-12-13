@@ -2,7 +2,7 @@ package ps.nier.core.common.utils;
 
 import java.util.UUID;
 
-public class UUIDUtils {
+public final class UUIDUtils {
 	
 	public static String getId36(){
 		return UUID.randomUUID().toString();

@@ -17,9 +17,12 @@ public class Menu extends DefaultEntity{
 	
 	private String name;
 	private String url;
+	private String code;
+	private String parentCode;
 	private String parentId;
 	private Integer depth;
-	private int sequence;	
+	private int sequence;
+	
 	@Transient
 	private String parentName;
 	@Transient
@@ -51,7 +54,23 @@ public class Menu extends DefaultEntity{
 	public void setUrl(String url) {
 		this.url = url;
 	}
-	public String getParentId() {
+	public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getParentCode() {
+        return parentCode;
+    }
+
+    public void setParentCode(String parentCode) {
+        this.parentCode = parentCode;
+    }
+
+    public String getParentId() {
 		return parentId;
 	}
 	public void setParentId(String parentId) {

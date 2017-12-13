@@ -19,15 +19,14 @@ import ps.nier.core.dictionary.DeletedEnum;
 import ps.nier.core.domain.base.ResEntity;
 import ps.nier.core.domain.financerecord.FinanceRecord;
 import ps.nier.core.domain.financerecord.FinanceRecordQuery;
-import ps.nier.service.finance.FinanceService;
 import ps.nier.service.financerecord.FinanceRecordService;
 
 @Controller
 public class FinanceRecordController extends BaseController{
 	
 	private static final Logger logger = org.slf4j.LoggerFactory.getLogger(FinanceRecordController.class);	
-	@Autowired
-	private FinanceService financeService;
+//	@Autowired
+//	private FinanceService financeService;
 	@Autowired
     private FinanceRecordService financeRecordService;
 	

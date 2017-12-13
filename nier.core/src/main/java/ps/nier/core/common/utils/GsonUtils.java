@@ -5,7 +5,7 @@ import java.lang.reflect.Type;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 
-public class GsonUtils {
+public final class GsonUtils {
 	public static <T> T fromJson(String json, Class<T> classOfT){
 		Gson g = new Gson();
 		return g.fromJson(json, classOfT);

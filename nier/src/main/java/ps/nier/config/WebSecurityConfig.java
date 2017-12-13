@@ -33,8 +33,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         					 "/group/**",
         					 "/post/**",
         					 "/postthread/**").permitAll()
-        		.antMatchers(
-        					 "/person/**",
+        		.antMatchers("/person/**",
         					 "/group/add.do").hasRole("USER")
         		.antMatchers("/manager/**").hasRole("MANAGER")
         		.antMatchers("/developer/**").hasRole("NIER")
@@ -60,8 +59,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
             .sessionManagement()
                 .maximumSessions(1)
-                .expiredUrl("/login?expired");
-                
+                .expiredUrl("/login?expired");       
     }
 	
 	@Bean
