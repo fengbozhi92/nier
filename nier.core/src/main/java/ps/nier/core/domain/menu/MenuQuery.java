@@ -8,7 +8,7 @@ public class MenuQuery extends PageQuery{
 	
 	private String name;
 	private Integer deleted;
-	private String parentId;
+	private String parentCode;
 	private Integer depth;
 	
 	public String getName() {
@@ -23,11 +23,11 @@ public class MenuQuery extends PageQuery{
 	public void setDeleted(Integer deleted) {
 		this.deleted = deleted;
 	}
-	public String getParentId() {
-		return parentId;
+	public String getParentCode() {
+		return parentCode;
 	}
-	public void setParentId(String parentId) {
-		this.parentId = parentId;
+	public void setParentCode(String parentCode) {
+		this.parentCode = parentCode;
 	}
 	public Integer getDepth() {
 		return depth;

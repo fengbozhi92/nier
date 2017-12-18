@@ -1,7 +1,11 @@
 package ps.nier.core.domain.function;
 
-import ps.nier.core.domain.base.DefaultEntity;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
+import ps.nier.core.domain.base.DefaultEntity;
+@Entity
+@Table(name="s_function")
 public class Function extends DefaultEntity{
 
     private static final long serialVersionUID = 1L;
@@ -10,7 +14,7 @@ public class Function extends DefaultEntity{
     private String remark;
     private String url;
     private String menuCode;
-    
+
     public String getName() {
         return name;
     }

@@ -1,5 +1,8 @@
 package ps.nier.config;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,10 +14,15 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
+import ps.nier.core.dictionary.UserRoleEnum;
+import ps.nier.core.domain.permission.Permission;
+import ps.nier.service.permission.PermissionService;
 import ps.nier.service.user.imp.CustomUserServiceImp;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+    @Autowired
+    private PermissionService permissionService;
 	@Override
 	public void configure(WebSecurity web) throws Exception {
 		web.ignoring()
@@ -25,6 +33,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
     protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable();
+		Map<Integer, List<Permission>> mapping = permissionService.getAllMapping();
+		if (mapping != null) {
+		    String[] anonUrls = null;
+		    for (Integer role :mapping.keySet()) {
+		        for(UserRoleEnum u : UserRoleEnum.getEnumValues()) {
+		            if (role == u.getValue()) {
+	                    List<Permission> anons = mapping.get(role);
+	                    anonUrls = new String[anons.size()];
+	                    for (int i=0;i<anons.size();i++){
+	                        anonUrls[i] = anons.get(i).getFunction().getUrl();
+	                    }
+	                }
+		        }
+		        
+		    }
+		}
         http.authorizeRequests()
         		.antMatchers("/",
         					 "/login/**",
@@ -55,7 +79,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
             .anonymous()
-                .authorities("ROLE_ANON")
+                .authorities(UserRoleEnum.Anonymity.getRole())
                 .and()
             .sessionManagement()
                 .maximumSessions(1)

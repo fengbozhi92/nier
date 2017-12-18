@@ -1,6 +1,7 @@
 package ps.nier.service.permission;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.data.domain.Page;
 
@@ -11,6 +12,7 @@ public interface PermissionService {
     Page<Permission> list(PermissionQuery permissionQuery);
     
     List<Permission> listAll();
+    Map<Integer, List<Permission>> getAllMapping();
     
     Permission get(String id);
     

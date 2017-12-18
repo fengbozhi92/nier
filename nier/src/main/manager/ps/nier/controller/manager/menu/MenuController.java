@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import ps.nier.controller.base.BaseController;
 import ps.nier.core.common.utils.UUIDUtils;
+import ps.nier.core.dictionary.CodeTypeEnum;
 import ps.nier.core.domain.base.ResEntity;
 import ps.nier.core.domain.menu.Menu;
 import ps.nier.core.domain.menu.MenuQuery;
+import ps.nier.service.codegenerator.CodeGeneratorService;
 import ps.nier.service.menu.MenuService;
 
 @Controller
@@ -27,11 +29,13 @@ public class MenuController extends BaseController{
 	private static final Logger logger = org.slf4j.LoggerFactory.getLogger(MenuController.class);
 	@Autowired
 	private MenuService menuService;
+    @Autowired
+    private CodeGeneratorService codeGeneratorService;
 	
 	@RequestMapping(value="/manager/menu/list.do")
 	public String list(Model model){
 		try {
-			model.addAttribute("parentMenus", menuService.listAll());
+			model.addAttribute("parentMenus", menuService.getTree());
 		} catch (Throwable t) {
 			t.printStackTrace();
 			logger.error("GroupSubcategoryController's list is error!", t);
@@ -49,12 +53,41 @@ public class MenuController extends BaseController{
 		return renderData(menuService.list(query));
 	}
 	
+    @RequestMapping(value="/manager/menu/add.do")
+    public String add(Model model, HttpServletRequest req){
+        String parentCode = req.getParameter("parentCode");
+        try {
+            if (StringUtils.isNotBlank(parentCode)) {
+                model.addAttribute("parent", menuService.getByCode(parentCode));
+            }
+        } catch (Throwable t) {
+            t.printStackTrace();
+            logger.error("MenuController's add is error!", t);
+        }
+        return "manager/menu/add";
+    }
+    
+    @RequestMapping(value="/manager/menu/edit.do")
+    public String edit(Model model, HttpServletRequest req){
+        String id = req.getParameter("id");
+        if (id != null && id.length() == 36) {
+            try {
+                model.addAttribute("menu", menuService.get(id));
+            } catch (Throwable t) {
+                t.printStackTrace();
+                logger.error("MenuController's edit is error!", t);
+            }
+            return "manager/menu/edit"; 
+        }
+        return "error";
+    }
+    
 	@RequestMapping(value="/manager/menu/getSubmenus.do")
-	public ResponseEntity<ResEntity> getSubmenus(HttpServletRequest req){
-		String parentId = req.getParameter("parentId");
-		if (parentId != null && parentId.length() == 36) {
+	public ResponseEntity<ResEntity> getSubmenus(@RequestBody MenuQuery query){
+	    
+		if (StringUtils.isNoneBlank(query.getParentCode())) {
 			try {
-				List<Menu> menus = menuService.listByParentId(parentId);
+				List<Menu> menus = menuService.listByParentCode(query.getParentCode());
 				return renderData(menus);
 			} catch (Throwable t) {
 				t.printStackTrace();
@@ -63,32 +96,31 @@ public class MenuController extends BaseController{
 		}
 		return renderError();
 	}
+
 	
-	@RequestMapping(value="/manager/menu/get.do")
-	public ResponseEntity<ResEntity> get(HttpServletRequest req){
-		String id = req.getParameter("id");
-		if (id != null && id.length() == 36) {
-			try {
-				Menu menu = menuService.get(id);
-				if (menu != null) {
-					return renderData(menu);
-				}
-			} catch (Throwable t) {
-				t.printStackTrace();
-				logger.error("MenuController's get is error!", t);
-			}
-		}
-		return renderError();
-	}
+    @RequestMapping(value="/manager/menu/getByCode.do")
+    public ResponseEntity<ResEntity> getByCode(HttpServletRequest req){
+        String code = req.getParameter("code");
+        if (StringUtils.isNoneBlank(code)) {
+            try {
+                Menu menu = menuService.getByCode(code);
+                if (menu != null) {
+                    return renderData(menu);
+                }
+            } catch (Throwable t) {
+                t.printStackTrace();
+                logger.error("MenuController's getByCode is error!", t);
+            }
+        }
+        return renderError();
+    }
 	
 	@RequestMapping(value="/manager/menu/save.do")
 	public ResponseEntity<ResEntity> save(Menu menu){
 		try {
 			menu.setId(UUIDUtils.getId36());
 			menu.setCreateTime(new Date());
-			if (StringUtils.isBlank(menu.getParentId())) {
-				menu.setDepth(new Integer(1));
-			}
+			menu.setCode(codeGeneratorService.getCode(CodeTypeEnum.Menu.getType(), menu.getParentCode()));
 			if (menuService.save(menu)) {
 				return renderSuccess();
 			}

@@ -51,7 +51,7 @@ public class FillServiceImp implements FillService{
 	@Override
 	public void fillMenu(Menu item) {
 		if (item != null) {
-			Menu menu = menuService.get(item.getParentId());
+			Menu menu = menuService.get(item.getParentCode());
 			if (menu != null) {
 				item.setParentName(menu.getName());
 			}

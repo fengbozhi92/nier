@@ -43,7 +43,7 @@ public class RegisterController {
 		if (StringUtils.isNotBlank(user.getUsername())
 			&& StringUtils.isNotBlank(user.getPassword())) {
 			user.setId(UUIDUtils.getId36());
-			user.setRoles(UserRoleEnum.User.getValue());
+			user.setRoles(UserRoleEnum.User.getRoles());
 			userRepository.save(user);
 			return "/visitor/register/success";					
 		}

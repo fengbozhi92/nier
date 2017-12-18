@@ -9,6 +9,7 @@
 <script type="text/javascript" src="/third-party/bootstrap-validator/js/bootstrap-validator.min.js"></script>
 <script type="text/javascript" src="/third-party/cropper/js/cropper.js"></script>
 <script type="text/javascript" src="/third-party/wang-editor/wangEditor.js"></script>
+<script type="text/javascript" src="/third-party/toastr/js/toastr.min.js"></script>
 <script type="text/javascript" src="/nier/js/scrolltopcontrol.js"></script>
 <script type="text/javascript" src="/nier/js/nier-core.js"></script>
 <script type="text/javascript" src="/nier/js/nier-helper.js"></script>

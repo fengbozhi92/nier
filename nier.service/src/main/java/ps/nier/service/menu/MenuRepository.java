@@ -12,8 +12,9 @@ import ps.nier.core.domain.menu.Menu;
 
 public interface MenuRepository extends JpaRepository<Menu, String>{
 	Page<Menu> findAll(Specification<Menu> spec, Pageable page);
-	List<Menu> findAllByParentId(String parentId);
+	List<Menu> findByParentCode(String parentCode);
 	
+	Menu findByCode(String code);
 	Menu findByNameAndDepth(String name, Integer depth);
 	
 	int deleteByIdIn(String[] ids);

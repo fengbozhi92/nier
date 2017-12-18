@@ -10,10 +10,10 @@
 			<div class="">
 				<form role="form" action="/login/login.do" method="post">
 					<div class="">
-				    	<input type="text" class="" name="username" placeholder="用户名">
+				    	<input type="text" class="" name="username" placeholder="用户名" value="nier"> 
 			  		</div>
 			  		<div class="">
-				    	<input type="password" class="" name="password" placeholder="密码">
+				    	<input type="password" class="" name="password" placeholder="密码" value="123">
 			  		</div>
 			  		<div class="">
 			    		<label>

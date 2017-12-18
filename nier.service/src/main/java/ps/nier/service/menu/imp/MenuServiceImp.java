@@ -2,10 +2,9 @@ package ps.nier.service.menu.imp;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -20,15 +19,21 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ps.nier.core.common.helper.QueryHelper;
+import ps.nier.core.common.utils.UUIDUtils;
+import ps.nier.core.constant.BusinessConstants;
+import ps.nier.core.domain.function.Function;
 import ps.nier.core.domain.menu.Menu;
 import ps.nier.core.domain.menu.MenuQuery;
 import ps.nier.service.common.FillService;
+import ps.nier.service.function.FunctionService;
 import ps.nier.service.menu.MenuRepository;
 import ps.nier.service.menu.MenuService;
 @Service
 public class MenuServiceImp implements MenuService {
 	@Autowired
 	private MenuRepository menuRepository;
+	@Autowired
+	private FunctionService functionService;
 	@Autowired
 	private FillService fillService;
 	
@@ -47,33 +52,25 @@ public class MenuServiceImp implements MenuService {
 				if (menu.getDepth() != null) {
 					predicate.add(cb.equal(root.get("depth").as(Integer.class), menu.getDepth()));
 				}
-				if (StringUtils.isNotBlank(menu.getParentId())) {
-					predicate.add(cb.equal(root.get("parentId").as(String.class), menu.getParentId()));
+				if (StringUtils.isNotBlank(menu.getParentCode())) {
+					predicate.add(cb.equal(root.get("parentCode").as(String.class), menu.getParentCode()));
 				}
 				Predicate[] p = new Predicate[predicate.size()];
 				query.where(predicate.toArray(p)).orderBy(cb.desc(root.get("createTime").as(Date.class)));
 				return query.getRestriction();
 			}
 		}, menu);
-//		if (list.getContent() != null && !list.getContent().isEmpty()) {
-//			for(GroupSubcategory item : list.getContent()) {
-//				fillService.fillGroupSubcategory(item);
-//			}
-//		}
 		return list;
 	}
 
 	@Override
 	public List<Menu> listAll() {
-		List<Menu> menus = menuRepository.findAll();
-		Map<String, List<Menu>> map = menus.stream().collect(Collectors.groupingBy(Menu::getParentId));
-		List<Menu> tree =  buildingTree("", map);
-		return tree;
+	    return menuRepository.findAll();
 	}
 	
 	@Override
-	public List<Menu> listByParentId(String parentId) {
-		List<Menu> menuList = menuRepository.findAllByParentId(parentId);
+	public List<Menu> listByParentCode(String parentCode) {
+		List<Menu> menuList = menuRepository.findByParentCode(parentCode);
 		if (menuList != null && !menuList.isEmpty()) {
 			for (Menu item : menuList) {
 				fillService.fillMenu(item);
@@ -85,12 +82,30 @@ public class MenuServiceImp implements MenuService {
 
 	@Override
 	public Menu get(String id) {
-		return menuRepository.findOne(id);
+	    Menu menu = menuRepository.findOne(id);
+	    fillService.fillMenu(menu);
+		return menu;
 	}
+	
+    @Override
+    public Menu getByCode(String code) {
+        return menuRepository.findByCode(code);
+    }
 
 	@Override
+	@Transactional
 	public boolean save(Menu menu) {
-		return menuRepository.save(menu) != null;
+		if (menuRepository.save(menu) != null) {
+		    Function func = new Function();
+		    func.setId(UUIDUtils.getId36());
+		    func.setName(BusinessConstants.FUNCTION_DEFAULT_NAME);
+		    func.setMenuCode(menu.getCode());
+		    func.setUrl(menu.getUrl());
+		    func.setCreateTime(menu.getCreateTime());
+		    func.setCreateUser(menu.getCreateUser());
+		    return functionService.save(func);
+		}
+		return false;
 	}
 
 	@Override
@@ -104,8 +119,8 @@ public class MenuServiceImp implements MenuService {
 			if (menu.getDeleted() != null) {
 				out.setDeleted(menu.getDeleted());
 			}
-			if (StringUtils.isNotBlank(menu.getParentId())) {
-				out.setParentId(menu.getParentId());
+			if (StringUtils.isNotBlank(menu.getParentCode())) {
+				out.setParentCode(menu.getParentCode());
 			}
 			if (menu.getDepth() != null) {
 				out.setDepth(menu.getDepth());
@@ -119,6 +134,7 @@ public class MenuServiceImp implements MenuService {
 	}
 
 	@Override
+	@Transactional
 	public boolean batchRemove(String[] ids) {
 		return menuRepository.deleteByIdIn(ids) > 0;
 	}
@@ -127,12 +143,29 @@ public class MenuServiceImp implements MenuService {
 	public boolean isExistedNameAndDepth(String name, Integer depth) {
 		return menuRepository.findByNameAndDepth(name, depth) != null;
 	}
-	
-	private List<Menu> buildingTree(String parentId, Map<String, List<Menu>> map){	
-		return Optional.ofNullable(map.get(parentId)).orElseGet(()->new ArrayList<Menu>())
-		.stream().filter(item->item.getParentId().equals(parentId))
-		.map(x->{return new Menu(x.getId(), x.getName(), x.getUrl(), x.getParentId(), 
-				x.getDepth(), buildingTree(x.getId(), map));}).collect(Collectors.toList());	
-	}
 
+    @Override
+    public List<Menu> getTree() {
+        List<Menu> menus = menuRepository.findAll();
+        List<Menu> result = null;
+        if (menus != null && !menus.isEmpty()) {
+            Map<String, Menu> mapping = new HashMap<String, Menu>();
+            result = new ArrayList<Menu>();
+            for (Menu m : menus) {
+                if (m.getDepth() == 1) {
+                    mapping.put(m.getCode(), m);
+                    result.add(m);
+                } else {
+                    if (m.getDepth() == 2) {
+                        mapping.put(m.getCode(), m);
+                    }
+                    Menu parent = mapping.get(m.getParentCode());
+                    if (parent != null) {
+                        parent.addChild(m);
+                    }
+                }
+            }
+        }
+        return result;
+    }
 }

@@ -19,28 +19,13 @@ public class Menu extends DefaultEntity{
 	private String url;
 	private String code;
 	private String parentCode;
-	private String parentId;
 	private Integer depth;
 	private int sequence;
 	
 	@Transient
 	private String parentName;
 	@Transient
-	private List<Menu> submenus;
-	
-	public Menu() {
-		super();
-	}
-	
-	public Menu(String id, String name, String url, String parentId, Integer depth, List<Menu> submenus) {
-		super();
-		super.id = id;
-		this.name = name;
-		this.url = url;
-		this.parentId = parentId;
-		this.depth = depth;
-		this.submenus = submenus;
-	}
+	private List<Menu> childs;
 
 	public String getName() {
 		return name;
@@ -69,13 +54,6 @@ public class Menu extends DefaultEntity{
     public void setParentCode(String parentCode) {
         this.parentCode = parentCode;
     }
-
-    public String getParentId() {
-		return parentId;
-	}
-	public void setParentId(String parentId) {
-		this.parentId = parentId;
-	}
 	public Integer getDepth() {
 		return depth;
 	}
@@ -94,16 +72,16 @@ public class Menu extends DefaultEntity{
 	public void setParentName(String parentName) {
 		this.parentName = parentName;
 	}
-	public List<Menu> getSubmenus() {
-		return submenus;
-	}
-	public void setSubmenus(List<Menu> submenus) {
-		this.submenus = submenus;
-	}
-	public void addSubmenu(Menu submenu){
-		if (this.submenus == null) {
-			this.submenus = new ArrayList<Menu>();
+	public List<Menu> getChilds() {
+        return childs;
+    }
+    public void setChilds(List<Menu> childs) {
+        this.childs = childs;
+    }
+    public void addChild(Menu child){
+		if (this.childs == null) {
+			this.childs = new ArrayList<Menu>();
 		}
-		this.submenus.add(submenu);
+		this.childs.add(child);
 	}
 }

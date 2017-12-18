@@ -5,10 +5,11 @@ import java.util.Arrays;
 import java.util.List;
 
 public enum UserRoleEnum {
-	User(1, "ROLE_USER", "USER", "普通用户"), 
-	SeniorUser(2, "ROLE_SENIOR_USER", "SENIOR_USER", "高级用户"), 
-	Manager(4, "ROLE_MANAGER", "MANAGER", "管理员"), 
-	Nier(8, "ROLE_NIER", "NIER", "Nier");
+    Anonymity(1, "ROLE_ANON", "ANON", "匿名用户"),
+	User(2, "ROLE_USER", "USER", "普通用户"), 
+	SeniorUser(4, "ROLE_SENIOR_USER", "SENIOR_USER", "高级用户"), 
+	Manager(128, "ROLE_MANAGER", "MANAGER", "管理员"), 
+	Nier(256, "ROLE_NIER", "NIER", "Nier");
 	
 	private int value;
 	private String role;
@@ -36,13 +37,23 @@ public enum UserRoleEnum {
 	}
 	
 	public static List<UserRoleEnum> parse(int value){
-		List<UserRoleEnum> roles = new ArrayList<UserRoleEnum>(4);
+		List<UserRoleEnum> roles = new ArrayList<UserRoleEnum>();
 		for (UserRoleEnum role : getEnumValues()) {
-			if ((value & role.value) > 0) {
+			if ((value & role.getValue()) > 0) {
 				roles.add(role);
 			}
 		}
 		return roles;
+	}
+	
+	public int getRoles() {
+	    int result = value;
+	    for (UserRoleEnum role : getEnumValues()) {
+            if (role.getValue() < value) {
+               result += role.getValue();
+            }
+        }
+	    return result;
 	}
 	
 	public static List<UserRoleEnum> getEnumValues() {

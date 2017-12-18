@@ -12,9 +12,11 @@ public interface MenuService {
 	Page<Menu> list(MenuQuery menu);
 	
 	List<Menu> listAll();
-	List<Menu> listByParentId(String parentId);
+	List<Menu> listByParentCode(String parentCode);
+	List<Menu> getTree();
 	
 	Menu get(String id);
+	Menu getByCode(String code);
 	
 	boolean save(Menu menu);
 	
