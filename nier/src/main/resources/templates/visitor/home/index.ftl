@@ -4,9 +4,9 @@
 <head>
 <title>home</title>
 <#include "/visitor/common/import/header.ftl">
-<link rel="stylesheet" type="text/css" href="/third-party/carousel/css/carousel.css"/> 
-<link rel="stylesheet" type="text/css" href="/third-party/load-mask/css/load-mask.css"/>
-<link href="/third-party/icheck/css/green.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/static/third-party/carousel/css/carousel.css"/> 
+<link rel="stylesheet" type="text/css" href="/static/third-party/load-mask/css/load-mask.css"/>
+<link href="/static/third-party/icheck/css/green.css" rel="stylesheet">
 </head>
 <body>
 	<#include "/visitor/common/layout/top.ftl">
@@ -124,9 +124,9 @@
 	<!-- ########## PENDANT END ########## -->
 	<#include "/visitor/common/layout/footer.ftl">
 	<#include "/visitor/common/import/js.ftl">
-<script src="/third-party/carousel/js/carousel.js"></script>
-<script src="/third-party/load-mask/js/load-mask.js"></script>
-<script src="/third-party/icheck/js/icheck.min.js"></script>
+<script src="/static/third-party/carousel/js/carousel.js"></script>
+<script src="/static/third-party/load-mask/js/load-mask.js"></script>
+<script src="/static/third-party/icheck/js/icheck.min.js"></script>
 <script>
 $('input.icheck').iCheck({ 
 	  labelHover : false, 

@@ -12,7 +12,7 @@ public interface PermissionService {
     Page<Permission> list(PermissionQuery permissionQuery);
     
     List<Permission> listAll();
-    Map<Integer, List<Permission>> getAllMapping();
+    Map<Integer, List<String>> getAllMapping();
     
     Permission get(String id);
     

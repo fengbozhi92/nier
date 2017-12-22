@@ -1,25 +1,17 @@
 package ps.nier.core.domain.user;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import ps.nier.core.dictionary.UserRoleEnum;
+import ps.nier.core.domain.base.DefaultEntity;
 
 @Entity
 @Table(name="s_user")
 @JsonIgnoreProperties({"handler", "hibernateLazyInitializer"})
-public class User implements UserDetails{
+public class User extends DefaultEntity{
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -31,6 +23,7 @@ public class User implements UserDetails{
 	private String 		nickname;			//昵称
 	private String 		email;				//邮箱
 	private String		imagePath;			//头像
+	private String salt;
 
 	public String getId() {
 		return id;
@@ -38,14 +31,12 @@ public class User implements UserDetails{
 	public void setId(String id) {
 		this.id = id;
 	}
-	@Override
 	public String getUsername() {
 		return username;
 	}
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	@Override
 	public String getPassword() {
 		return password;
 	}
@@ -69,42 +60,17 @@ public class User implements UserDetails{
 	}
 	public void setRoles(int roles) {
 		this.roles = roles;
-	}
-	
+	}	
 	public String getImagePath() {
 		return imagePath;
 	}
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
 	}
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		List<GrantedAuthority> authorityList = new ArrayList<GrantedAuthority>();
-		List<UserRoleEnum> roleList = UserRoleEnum.parse(roles);
-		for (UserRoleEnum role : roleList) {
-			authorityList.add(new SimpleGrantedAuthority(role.getRole()));
-		}
-		return authorityList;
-	}
-	@Override
-	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-	@Override
-	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-	@Override
-	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-	@Override
-	public boolean isEnabled() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-	
+    public String getSalt() {
+        return salt;
+    }
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
 }

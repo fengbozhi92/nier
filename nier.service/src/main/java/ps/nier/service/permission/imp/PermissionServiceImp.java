@@ -2,9 +2,9 @@ package ps.nier.service.permission.imp;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -16,6 +16,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import ps.nier.core.dictionary.UserRoleEnum;
 import ps.nier.core.domain.permission.Permission;
 import ps.nier.core.domain.permission.PermissionQuery;
 import ps.nier.service.permission.PermissionRepository;
@@ -69,10 +70,26 @@ public class PermissionServiceImp implements PermissionService {
     }
 
     @Override
-    public Map<Integer, List<Permission>> getAllMapping() {
+    public Map<Integer, List<String>> getAllMapping() {
         List<Permission> permissions = permissionRepository.findAll();
         if (permissions != null && !permissions.isEmpty()) {
-            return permissions.stream().collect(Collectors.groupingBy(Permission::getRole));
+            Map<Integer, List<String>> mapping = new HashMap<Integer, List<String>>(); 
+            Integer role = null;
+            for (Permission p : permissions) {
+                role = p.getRole(); 
+                for(UserRoleEnum u : UserRoleEnum.getEnumValues()) {
+                    if (role == u.getValue()) {
+                        if (mapping.get(role) != null) {
+                            mapping.get(role).add(p.getFunction().getUrl());
+                        } else {
+                            List<String> urls = new ArrayList<String>();
+                            urls.add(p.getFunction().getUrl());
+                            mapping.put(role, urls);
+                        }
+                    }
+                }
+            }
+            return mapping;
         }
         return null;
     }
